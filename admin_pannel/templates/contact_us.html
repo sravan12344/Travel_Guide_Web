@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <div>
+                            <br>
+                            <h4 class="mb-sm-0">Contact Us</h4>
+                            <br>
+                        </div>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> /
+                                <a href="{% url 'settings' %}">Settings</a> /
+                                <a style="color: #808080;">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {% if existing_contact %}
+                            <p style="color: red;">Form can't accept more than one data.</p>
+
+                            {% else %}
+                            <br>
+                            <form action="" class="row g-3 needs-validation" enctype="multipart/form-data" method="post"
+                                  novalidate>
+
+                                {% csrf_token %}
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Banner Image </b>*</b></label>
+                                            <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                                   aria-label="Upload" class="form-control"
+                                                   name="image" required type="file">
+                                            <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                                upload a
+                                                JPEG, JPG, or PNG file.'
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Subject</b><b style="color: red;">*</b></label>
+                                            <input class="form-control" maxlength="50" name="subject"
+                                                   pattern="[A-Za-z][A-Za-z\s]*"
+                                                   placeholder="Enter subject" required type="text">
+                                            <div class="invalid-feedback">This field is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Description</b><b
+                                                    style="color: red;">*</b></label>
+                                            <textarea class="form-control" id="countryDescription" name="description"
+                                                      oninput="validateCountryDescription(this)"
+                                                      placeholder="Enter Description" required
+                                                      type="text"></textarea>
+                                            <div class="invalid-feedback" id="countryDescription-error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Address</b><b style="color: red;">*</b></label>
+                                            <textarea class="form-control" id="countryDescription" name="address"
+                                                      oninput="validateCountryDescription(this)"
+                                                      placeholder="Enter Address" required
+                                                      type="text"></textarea>
+                                            <div class="invalid-feedback" id="countryDescription-error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Mobile Number</b><b
+                                                    style="color: red;">*</b></label>
+                                            <input class="form-control" maxlength="10" name="mobile_num"
+                                                   pattern="[6-9]\d{9}"
+                                                   placeholder="Enter Mobile no." required type="tel">
+
+                                            <div class="invalid-feedback">This field is required enter a valid 10-digit
+                                                contact
+                                                number.
+                                            </div>
+                                            {% if error_message_mobile %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_mobile }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Email ID</b><b
+                                                    style="color: red;">*</b></label>
+                                            <input class="form-control" maxlength="50" name="email_id"
+                                                   pattern=".+@gmail\.com"
+                                                   placeholder="Enter email Id" required type="email">
+                                            <div class="invalid-feedback">This field is required</div>
+                                            {% if error_message_email %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_email }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label"><b>Webiste</b><b style="color: red;">*</b></label>
+                                            <input class="form-control" maxlength="100" name="website"
+                                                   placeholder="Enter Website Address"
+                                                   required type="text">
+                                            <div class="invalid-feedback">This field is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <input class="btn" style="background-color: #0a42aa; color: white;"
+                                           type="submit"></input>&nbsp;
+                                    <input class="btn" style="background-color:#626875; color:white;"
+                                           type="reset"></input>
+                                </div>
+                        </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-header">
+                        <h4 class="card-title">Contact Us</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive border rounded">
+                            <table class="table " data-toggle="data-table" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Image</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email Id</th>
+                                    <th>Address</th>
+                                    <th>Subject</th>
+                                    <th>website</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for j in contact %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td><img class="rounded-circle" height="50px;" src="{{j.banner_image.url}}"
+                                             width="50px;"></td>
+                                    <td>{{j.mobile_num}}</td>
+                                    <td>{{j.email}}</td>
+                                    <td>{{j.address}}</td>
+                                    <td>{{j.subject}}</td>
+                                    <td>{{ j.website }}</td>
+                                    <td class="status">
+                                        {% if j.contact_status %}
+                                        <a href="{% url 'deactivate_contactus' id=j.id %}"><b style="color:blue;">
+                                            <span>Active</span></b></a>
+                                        {% else %}
+                                        <a href="{% url 'activate_contactus' id=j.id %}"><b style="color:red;">
+                                            <span>Inactive</span></b></a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                style="background-color: #0a42aa; color: white;" type="button"><i
+                                                class="bi-pencil-fill"></i></button>
+                                        <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                style=" background-color:#d11d26; color:white;" type="button"><i
+                                                class="bi bi-trash3-fill"></i></button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+{% for n in contact %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit contact Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/update_contactus/{{n.id}}" class="row g-3 needs-validation" enctype="multipart/form-data"
+                      method="post" novalidate>
+                    {% if disable_form %}disabled{% endif %}
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Banner Image</b><b
+                                            style="color: red;">*</b></label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                           aria-label="Upload" class="form-control" name="image" required type="file"
+                                           value="{{n.banner_image}}">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type. Please upload
+                                        a JPEG, JPG, or PNG file.'
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Subject</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="50" name="subject"
+                                           pattern="[A-Za-z][A-Za-z\s]*"
+                                           placeholder="Enter subject" required type="text"
+                                           value="{{n.subject}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Description</b><b
+                                            style="color: red;">*</b></label>
+                                    <textarea class="form-control" id="countryDescription" name="description"
+                                              oninput="validateCountryDescription(this)" placeholder="Enter Description"
+                                              required
+                                              type="text">{{n.description}}</textarea>
+                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="pwd"><b>Address</b><b
+                                            style="color: red;">*</b></label>
+                                    <textarea class="form-control" id="countryDescription" name="address"
+                                              oninput="validateCountryDescription(this)"
+                                              placeholder="Enter Address" required
+                                              type="text">{{n.address}}</textarea>
+                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Mobile Number</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" id="" maxlength="10" name="mobile_num"
+                                           pattern="[6-9]\d{9}" placeholder="Enter Mobile no." required type="text"
+                                           value="{{n.mobile_num}}">
+                                    <div class="invalid-feedback">This field is required enter a valid 10-digit
+                                        contact
+                                        number.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="pwd"><b>Email ID</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" id="email1" maxlength="50" name="email_id"
+                                           pattern=".+@gmail\.com" placeholder="Enter email Id" required type="email"
+                                           value="{{n.email}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><b>Webiste</b><b style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="100" name="website"
+                                           placeholder="Enter subject"
+                                           required type="text" value="{{ n.website }}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn" style="background-color: #0a42aa; color: white;">Update</button>
+                            <button class="btn" style="background-color: #626875; color:white;" type="reset">Reset
+                            </button>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+        <br>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% for d in contact %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete contact details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the {{d.email}} </h6>
+                <br>
+                <div align="center">
+                    <a class="btn" style="background-color:#d11d26; color:white;"
+                        href="{% url 'delete_contactus' pk=d.pk %}">Delete
+                    </a>
+                    <button class="btn" data-bs-dismiss="modal" style="background-color:#626875; color:white;">Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

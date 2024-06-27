@@ -1,0 +1,147 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title data-rightJoin=" Responsive Bootstrap 5 Admin Dashboard Template" data-setting="app_name">Travelling guie / booking</title>
+    <meta content="Qompac UI is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules."
+          name="description">
+    <meta content="premium, admin, dashboard, template, bootstrap 5, clean ui, qompac-ui, admin dashboard,responsive dashboard, optimized dashboard, simple auth"
+          name="keywords">
+    <meta content="Iqonic Design" name="author">
+    <meta content="Qompac UI Simple | Responsive Bootstrap 5 Admin Dashboard Template" name="DC.title">
+    <!-- Favicon -->
+    <link href="https://templates.iqonic.design/product/qompac-ui/html/dist/assets/images/favicon.ico"
+          rel="shortcut icon">
+
+    <!-- Library / Plugin Css Build -->
+    <link href="../../static/assets/css/core/libs.min.css" rel="stylesheet">
+    <!-- qompac-ui Design System Css -->
+    <link href="../../static/assets/css/qompac-ui.minf700.css?v=1.0.1" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="../../static/assets/css/custom.minf700.css?v=1.0.1" rel="stylesheet">
+    <!-- Dark Css -->
+    <link href="../../static/assets/css/dark.minf700.css?v=1.0.1" rel="stylesheet">
+
+    <!-- Customizer Css -->
+    <link href="../../static/assets/css/customizer.minf700.css?v=1.0.1" rel="stylesheet">
+
+    <!-- RTL Css -->
+    <link href="../../static/assets/css/rtl.minf700.css?v=1.0.1" rel="stylesheet">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+          rel="stylesheet">
+</head>
+<body class=" ">
+<div class="wrapper">
+    <section class="login-content overflow-hidden">
+        <div class="row no-gutters align-items-center bg-white">
+            <div class="col-md-12 col-lg-6 align-self-center">
+                <a class="navbar-brand d-flex align-items-center mb-3 justify-content-center text-primary"
+                   href="../index.html">
+                    <h2 class="logo-title ms-3 mb-0" data-setting="app_name">Travelling Guide Booking</h2>
+                </a>
+                <div class="row justify-content-center pt-5">
+                    <div class="col-lg-9">
+                        <div class="card  d-flex justify-content-center mb-0 auth-card iq-auth-form">
+                            <div class="card-body">
+                                <h2 class="mb-2 text-center">Sign In</h2>
+                                <p class="text-center">Login to stay connected.</p>
+                                <form action="{% url 'login_adminpannel' %}" method="post" id="signInForm" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="Username">User Name</label>
+        <input class="form-control" name="username" required type="text">
+        <div class="invalid-feedback">Please enter a username</div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="password1">Password</label>
+        <input class="form-control" name="password" required type="password">
+        <div class="invalid-feedback">Please enter a password</div>
+
+                                    </div>
+<!--                                    <div class="form-check mb-3">-->
+<!--                                       <input type="checkbox" class="form-check-input" id="customCheck1">-->
+<!--                                       <label class="form-check-label" for="customCheck1">Remember Me</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                                    <a>Forgot Password?</a>-->
+<!--                                    </div>-->
+                                   <div align="center"><input class="btn btn-primary" type="submit" value="Sign In"></div>
+
+<!--                              <p class="mt-3 text-center">-->
+<!--                                 Don't have an Account <a href="" class="text-underline">Sign Up</a>-->
+<!--                              </p>-->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-lg-block d-none bg-primary p-0  overflow-hidden">
+                <img alt="images" class="img-fluid gradient-main" loading="lazy"
+                     src="../../static/assets/images/auth/01.png">
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    document.getElementById("signInForm").addEventListener("submit", function(event) {
+        var form = event.target;
+
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            var usernameField = form.elements['username'];
+            var passwordField = form.elements['password'];
+
+            if (usernameField.value === '') {
+                usernameField.classList.add('is-invalid');
+            } else {
+                usernameField.classList.remove('is-invalid');
+            }
+
+            if (passwordField.value === '') {
+                passwordField.classList.add('is-invalid');
+            } else {
+                passwordField.classList.remove('is-invalid');
+            }
+        }
+
+        form.classList.add('was-validated');
+    });
+</script>
+<!-- Library Bundle Script -->
+<script src="../../assets/js/core/libs.min.js"></script>
+<!-- Plugin Scripts -->
+
+
+<!-- Slider-tab Script -->
+<script src="../../assets/js/plugins/slider-tabs.js"></script>
+
+
+<!-- Lodash Utility -->
+<script src="../../assets/vendor/lodash/lodash.min.js"></script>
+<!-- Utilities Functions -->
+<script src="../../assets/js/iqonic-script/utility.min.js"></script>
+<!-- Settings Script -->
+<script src="../../assets/js/iqonic-script/setting.min.js"></script>
+<!-- Settings Init Script -->
+<script src="../../assets/js/setting-init.js"></script>
+<!-- External Library Bundle Script -->
+<script src="../../assets/js/core/external.min.js"></script>
+<!-- Widgetchart Script -->
+<script defer src="../../assets/js/charts/widgetchartsf700.js?v=1.0.1"></script>
+<!-- Dashboard Script -->
+<script defer src="../../assets/js/charts/dashboardf700.js?v=1.0.1"></script>
+<!-- qompacui Script -->
+<script defer src="../../assets/js/qompac-uif700.js?v=1.0.1"></script>
+<script defer src="../../assets/js/sidebarf700.js?v=1.0.1"></script>
+
+</body>
+</html>

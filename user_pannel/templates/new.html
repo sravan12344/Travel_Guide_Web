@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<!-- Mirrored from getnajmul.com/theme/trabble/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 07:02:48 GMT -->
+
+<head>
+    <style>
+        .travel-booking-btn {
+            border: none;
+            /* Remove border */
+            padding: 10px 20px;
+            /* Add padding for better appearance */
+            background-color: crimson;
+            /* Specify your desired background color */
+            color: #fff;
+            /* Set text color */
+            cursor: pointer;
+            /* Change cursor on hover */
+            text-decoration: none;
+            /* Remove default link underline */
+            display: inline-block;
+            /* Make the button a block element */
+        }
+
+        .timeline-content.collapsed {
+    max-height: 95px; /* Adjust the value based on your design */
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+}
+
+        .travel-booking-btn:hover {
+            background-color: salmon;
+            /* Specify your desired background color on hover */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="TRABBLE - Tour, Travel, Travel Agency Template" name="description">
+    <meta content="Tour, Travel, Travel Agency Template" name="keywords">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Travelling Guide</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="../../static/images/favicon.ico" rel="shortcut icon" type="../../static/image/x-icon">
+    <!-- bootstrap css -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- animate css -->
+    <link href="../../static/css/animate.css" rel="stylesheet">
+    <!-- Button Hover animate css -->
+    <link href="../../static/css/hover-min.css" rel="stylesheet">
+    <!-- jquery-ui.min css -->
+    <link href="../../static/css/jquery-ui.min.css" rel="stylesheet">
+    <!-- meanmenu css -->
+    <link href="../../static/css/meanmenu.min.css" rel="stylesheet">
+    <!-- owl.carousel css -->
+    <link href="../../static/css/owl.carousel.min.css" rel="stylesheet">
+    <!-- slick css -->
+    <link href="../../static/css/slick.css" rel="stylesheet">
+    <!-- chosen.min-->
+    <link href="../../static/css/chosen.min.css" rel="stylesheet">
+    <!-- chosen.min-->
+    <link href="../../static/css/jquery-customselect.css" rel="stylesheet">
+    <!-- font-awesome css -->
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+    <!-- magnific Css -->
+    <link href="../../static/css/magnific-popup.css" rel="stylesheet">
+    <!-- Revolution Slider -->
+    <link href="../../static/css/assets/revolution/layers.css" rel="stylesheet">
+    <link href="../../static/css/assets/revolution/navigation.css" rel="stylesheet">
+    <link href="../../static/css/assets/revolution/settings.css" rel="stylesheet">
+    <!-- custome css -->
+    <link href="../../static/css/style.css" rel="stylesheet">
+    <!-- responsive css -->
+    <link href="../../static/css/responsive.css" rel="stylesheet">
+    <!-- modernizr css -->
+    <script src="../../static/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+        /* Hide left and right arrows in Revolution Slider */
+        .tp-rightarrow,
+        .tp-leftarrow {
+            display: none !important;
+        }
+    </style>
+
+
+</head>
+
+<body>
+<header>
+    <div class="header-top-area">
+        <!-- logo area start here -->
+        <div class="col-md-2">
+            <div class="logo-area">
+                <!-- Your logo content goes here -->
+            </div>
+        </div>
+        <!-- logo area end here -->
+        <div class="container">
+            <div class="row">
+                <div class="header-top-left col-md-8 col-sm-9 col-xs-12">
+                    <ul class="header-top-contact">
+                        {% for contact in user_contactus %}
+                        <li><i aria-hidden="true" class="fa fa-map-marker"></i>{{contact.address|title}}</li>
+                        <li><i aria-hidden="true" class="fa fa-phone"></i>{{contact.mobile_num}}</li>
+                        <li><i aria-hidden="true" class="fa fa-envelope-o"></i>{{contact.website}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="header-top-right  col-md-3">
+                    <div class="book-tab col-lg-10">
+
+                        {% if user %}
+                            <div class="col-lg-6">
+                                <a class="book-btn" href="{% url 'logout_userpannel' %}" style="margin-right: 10px; padding: 10px; padding-left: 20px; padding-right: 20px; border-radius: 5px; color: #fff;">Logout</a>
+                                <form action="{% url 'logout_userpannel' %}" id="logout-form" method="POST" style="display: none;">
+                                    {% csrf_token %}
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="col-lg-6">
+                                <a class="book-btn" href="{% url 'login_userpannel' %}" style="margin-right: 10px; padding: 10px; padding-left: 20px; padding-right: 20px; border-radius: 5px; color: #fff;">Login</a>
+                            </div>
+                            <div class="col-lg-6">
+                                <a class="book-btn" href="{% url 'register_userpannel' %}" style="margin-left: 30px; padding: 10px; border-radius: 5px; color: #fff;">Register</a>
+                            </div>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- header top end -->
+
+    <div class="header-bottom-area" id="stick-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-14">
+                    <nav>
+                        <ul class="main-menu text-right">
+                            <div class="col-md-3">
+                                <div class="logo-area">
+                                    <a href="{% url 'userpannel_allpackages' %}"><img alt="" src="../../images/logo.png"></a>
+                                </div>
+                            </div>
+                            <li><a href="{% url 'userpannel_allpackages' %}">Home</a></li>
+                            <li><a href="">Package Type</a>
+                                <ul class="dropdown">
+                                    {% if types %}
+                                    {% for type in types %}
+                                    <li><a href="{% url 'userpannel_packagetype' type.id %}?selected_package_type={{ type.package_type }}">{{ type.package_type }}</a></li>
+                                    {% endfor %}
+                                    {% else %}
+                                    <h4>No Package Types</h4>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'userpannel_hotels' %}">Hotels</a></li>
+                            <li><a href="{% url 'userpannel_bestpackages' %}">Best Packages</a></li>
+                            <li><a>Package duration</a>
+                                <ul class="dropdown">
+                                    <li><a href="{% url 'packageduration' 7 %}">One week trip</a></li>
+                                    <li><a href="{% url 'packageduration' 14 %}">Two weeks trip</a></li>
+                                    <li><a href="{% url 'packageduration' 21 %}">Three weeks trip</a></li>
+                                    <li><a href="{% url 'packageduration' 30 %}">One month trip</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'userpannel_contactus' %}">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div> <!-- main menu end here -->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- header-bottom area end here -->
+</header> <!-- header area end here -->
+
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <!-- footer left -->
+            <div class="col-md-3 col-sm-6">
+                <div class="single-footer">
+                    <div class="footer-title">
+                        <a href="{% url 'userpannel_allpackages' %}"><img alt="" src="../../static/images/logo.png">
+                        </a>
+                    </div>
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <p>There are 7 billion people on this planet who you have not met, and 195 countries you
+                                have not
+                                visited. If you are stuck in this insignigicant place being pressured into making
+                                decision about
+                                your future, when you barely even know who you are.</p>
+                        </div>
+                        <ul class="footer-contact">
+                            {% for contact in user_contactus %}
+                            <li><img alt="" class="map" src="../../static/images/icon/map.png">{{contact.address | truncatechars:23|title}}
+                            </li>
+                            <li><img alt="" class="map"
+                                     src="../../static/images/icon/phone.png">{{contact.mobile_num}}
+                            </li>
+                            <li><img alt="" class="map" src="../../static/images/icon/gmail.png">{{contact.email}}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- footer left -->
+
+            <div class="col-md-3 col-sm-6">
+                <div class="single-footer">
+                    <div class="single-recent-post">
+                        <div class="footer-title">
+                            <h3>Recent News</h3>
+                        </div>
+                        <ul class="recent-post">
+                            <li>
+                                <a href="#">
+                                    <div class="post-thum">
+                                        <img alt="" class="img-rounded" src="../../static/images/blog/f4.jpg">
+                                    </div>
+                                    <div class="post-content">
+                                        <p>A Clean Website Gives More Experience To The Visitors.
+                                        </p>
+                                        <span>12 July, 2018</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="post-thum">
+                                        <img alt="" class="img-rounded" src="../../static/images/blog/f5.jpg">
+                                    </div>
+                                    <div class="post-content">
+                                        <p>A Clean Website Gives More Experience To The Visitors.
+                                        </p>
+                                        <span>12 July, 2018</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="post-thum">
+                                        <img alt="" class="img-rounded" src="../../static/images/blog/f6.jpg">
+                                    </div>
+                                    <div class="post-content">
+                                        <p>A Clean Website Gives More Experience To The Visitors.
+                                        </p>
+                                        <span>12 July, 2018</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- footer latest news -->
+
+            <!-- footer destination -->
+            <div class="col-md-3 col-sm-6">
+                <div class="single-footer">
+                    <div class="footer-title">
+                        <h3>Destination</h3>
+                    </div>
+                    <ul class="footer-gallery">
+                        <li>
+                            <a href="#">
+                                <div class="image-overlay">
+                                    <img alt="" src="../../static/images/destination/1.jpg">
+                                    <div class="overly-city">
+                                        <span>Austrila</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="image-overlay">
+                                    <img alt="" src="../../static/images/destination/2.jpg">
+                                    <div class="overly-city">
+                                        <span>England</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="image-overlay">
+                                    <img alt="" src="../../static/images/destination/3.jpg">
+                                    <div class="overly-city">
+                                        <span>France</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="image-overlay">
+                                    <img alt="" src="../../static/images/destination/4.jpg">
+                                    <div class="overly-city">
+                                        <span>America</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- footer destination -->
+
+            <!-- footer contact -->
+            <div class="col-md-3 col-sm-6 f-phone-responsive">
+                <div class="single-footer">
+                    <div class="footer-title">
+                        <h3>Quick Contact</h3>
+                    </div>
+                    <div class="footer-contact-form">
+                        <form action="{% url 'userpannel_contactus' %}" method="POST">
+                            {% csrf_token %}
+                            <ul class="footer-form-element">
+                                <li>
+                                    <input id="email" name="email" onblur="if(this.value==''){this.value='Email Address'}" onfocus="if(this.value=='Email Address'){this.value=''}" placeholder=""
+                                           type="text"
+                                           value="Email Address">
+                                </li>
+                                <li>
+                                        <textarea cols="30" id="message" name="message" placeholder="Message"
+                                                  rows="10"></textarea>
+                                </li>
+                                <li>
+                                    <button>Send</button>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="footer-social-media">
+                        <div class="social-footer-title">
+                            <h3>Follow Us</h3>
+                        </div>
+                        <ul class="footer-social-link">
+                            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a>
+                            </li>
+                            <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- footer contact -->
+        </div>
+
+        <div class="row">
+            <div class="footer-bottom">
+                <div class="col-md-5">
+                    <div class="copyright">
+                        <p>Copyright &copy; 2023 Travelling By <a href="#"><span>Ramanasoft</span></a></p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <ul class="payicon pull-right">
+                        <li>We Accept</li>
+                        <li><img alt="" src="../../images/payicon01.png"></li>
+                        <li><img alt="" src="../../images/payicon02.png"></li>
+                        <li><img alt="" src="../../images/payicon03.png"></li>
+                        <li><img alt="" src="../../images/payicon04.png"></li>
+                        <li><img alt="" src="../../images/payicon05.png"></li>
+                        <li><img alt="" src="../../images/payicon06.png"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> <!-- end footer -->
+
+<!-- footer area starts here -->
+
+
+<!-- Footer area ends here -->
+
+<!-- ============================
+       JavaScript Files
+============================= -->
+<!-- jquery -->
+<script src="../../static/js/vendor/jquery-3.2.0.min.js"></script>
+<!-- bootstrap js -->
+<script src="../../static/js/bootstrap.min.js"></script>
+<!-- owl.carousel js -->
+<script src="../../static/js/owl.carousel.min.js"></script>
+<!-- slick js -->
+<script src="../../static/js/slick.min.js"></script>
+<!-- meanmenu js -->
+<script src="../../static/js/jquery.meanmenu.min.js"></script>
+<!-- jquery-ui js -->
+<script src="../../static/js/jquery-ui.min.js"></script>
+<!-- wow js -->
+<script src="../../static/js/wow.min.js"></script>
+<!-- counter js -->
+<script src="../../static/js/jquery.counterup.min.js"></script>
+<!-- Countdown js -->
+<script src="../../static/js/jquery.countdown.min.js"></script>
+<!-- waypoints js -->
+<script src="../../static/js/jquery.waypoints.min.js"></script>
+<!-- Isotope js -->
+<script src="../../static/js/isotope.pkgd.min.js"></script>
+<!-- magnific js -->
+<script src="../../static/js/jquery.magnific-popup.min.js"></script>
+<!-- Image loaded js -->
+<script src="../../static/js/imagesloaded.pkgd.min.js"></script>
+<!-- chossen js -->
+<script src="../../static/js/chosen.jquery.min.js"></script>
+<!-- Revolution JS -->
+<script src="../../static/js/assets/revolution/jquery.themepunch.revolution.min.js"></script>
+<script src="../../static/js/assets/revolution/jquery.themepunch.tools.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.actions.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.carousel.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.migration.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.navigation.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.parallax.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="../../static/js/assets/revolution/extensions/revolution.extension.video.min.js"></script>
+<script src="../../static/js/assets/revolution/revolution.js"></script>
+<!-- plugin js -->
+<script src="../../static/js/plugins.js"></script>
+<!-- select2 js -->
+<script src="../../static/js/select2.min.js"></script>
+<script src="../../static/js/colors.js"></script>
+<!-- customSelect Js -->
+<script src="../../static/js/jquery-customselect.js"></script>
+<!-- custom js -->
+<script src="../../static/js/custom.js"></script>
+<script>
+    function showSearchForm(tab) {
+        // Hide all forms
+        document.getElementById('hotels-form').style.display = 'none';
+        document.getElementById('tour-form').style.display = 'none';
+        document.getElementById('vehicles-form').style.display = 'none';
+
+        // Show the selected form
+        document.getElementById(tab + '-form').style.display = 'block';
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        function handleDropdownDependencies(formId, countryId, stateId, cityId, hotelNameId) {
+            $(document).on('change', formId + ' ' + countryId, function () {
+                var country_id = $(this).val();
+                var stateSelect = $(formId + ' ' + stateId);
+                var citySelect = $(formId + ' ' + cityId);
+                var hotelNameSelect = $(formId + ' ' + hotelNameId);
+
+                // Make an AJAX request to fetch states for the selected country
+                $.ajax({
+                    url: "/ajax/load_states/",
+                    data: { country_id: country_id },
+                    dataType: "json",
+                    success: function (data) {
+                        stateSelect.empty();
+                        stateSelect.append('<option value="">Select State</option>');
+
+                        $.each(data, function (index, state) {
+                            stateSelect.append('<option value="' + state.id + '">' + state.state_name + '</option>');
+                        });
+                    },
+                });
+
+                // Reset city and hotel dropdowns
+                citySelect.empty();
+                hotelNameSelect.empty();
+            });
+
+            $(document).on('change', formId + ' ' + stateId, function () {
+                var country_id = $(formId + ' ' + countryId).val();
+                var state_id = $(this).val();
+                var citySelect = $(formId + ' ' + cityId);
+                var hotelNameSelect = $(formId + ' ' + hotelNameId);
+
+                // Make an AJAX request to fetch cities for the selected country and state
+                $.ajax({
+                    url: "/ajax/load_cities/",
+                    data: { country_id: country_id, state_id: state_id },
+                    dataType: "json",
+                    success: function (data) {
+                        citySelect.empty();
+                        citySelect.append('<option value="">Select City</option>');
+
+                        $.each(data, function (index, city) {
+                            citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                        });
+                    },
+                });
+
+                // Reset hotel dropdown
+                citySelect.empty();
+                hotelNameSelect.empty();
+            });
+
+            $(document).on('change', formId + ' ' + cityId, function () {
+                var country_id = $(formId + ' ' + countryId).val();
+                var state_id = $(formId + ' ' + stateId).val();
+                var city_id = $(this).val();
+                var hotelNameSelect = $(formId + ' ' + hotelNameId);
+
+                // Make an AJAX request to fetch hotels for the selected country, state, and city
+                $.ajax({
+                    url: "/ajax/load_hotels/",
+                    data: { country_id: country_id, state_id: state_id, city_id: city_id },
+                    dataType: "json",
+                    success: function (data) {
+                        hotelNameSelect.empty();
+                        hotelNameSelect.append('<option value="" >Select Hotel</option>');
+
+                        $.each(data, function (index, hotel) {
+                            hotelNameSelect.append('<option value="' + hotel.id + '">' + hotel.hotel_name + '</option>');
+                        });
+                    },
+                });
+            });
+        }
+
+        // Apply the dropdown dependencies for the hotels form
+        handleDropdownDependencies("#hotels-form", "#standard4", "#standard12", "#standard5", "#standard6");
+        // Add similar calls for tour and vehicles forms
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        function handleDropdownDependencies(formId, countryId, stateId, cityId, placeId) {
+            $(document).on('change', formId + ' ' + countryId, function () {
+                var country_id = $(this).val();
+                var stateSelect = $(formId + ' ' + stateId);
+                var citySelect = $(formId + ' ' + cityId);
+                var tourPlaceSelect = $(formId + ' ' + placeId);
+
+                // Make an AJAX request to fetch states for the selected country
+                $.ajax({
+                    url: "/ajax/load_states/",
+                    data: { country_id: country_id },
+                    dataType: "json",
+                    success: function (data) {
+                        stateSelect.empty();
+                        stateSelect.append('<option value="">Select State</option>');
+
+                        $.each(data, function (index, state) {
+                            stateSelect.append('<option value="' + state.id + '">' + state.state_name + '</option>');
+                        });
+                    },
+                });
+
+                // Reset city and hotel dropdowns
+                citySelect.empty();
+                tourPlaceSelect.empty();
+            });
+
+            $(document).on('change', formId + ' ' + stateId, function () {
+                var country_id = $(formId + ' ' + countryId).val();
+                var state_id = $(this).val();
+                var citySelect = $(formId + ' ' + cityId);
+                var tourPlaceSelect = $(formId + ' ' + placeId);
+
+                // Make an AJAX request to fetch cities for the selected country and state
+                $.ajax({
+                    url: "/ajax/load_cities/",
+                    data: { country_id: country_id, state_id: state_id },
+                    dataType: "json",
+                    success: function (data) {
+                        citySelect.empty();
+                        citySelect.append('<option value="">Select City</option>');
+
+                        $.each(data, function (index, city) {
+                            citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                        });
+                    },
+                });
+
+                // Reset hotel dropdown
+                tourPlaceSelect.empty();
+            });
+
+            $(document).on('change', formId + ' ' + cityId, function () {
+                var country_id = $(formId + ' ' + countryId).val();
+                var state_id = $(formId + ' ' + stateId).val();
+                var city_id = $(this).val();
+                var tourPlaceSelect = $(formId + ' ' + placeId);
+
+                $.ajax({
+                    url: "/ajax/load_tourplaces/",
+                    data: { country_id: country_id,state_id: state_id, city_id: city_id },
+                    dataType: "json",
+                    success: function (data) {
+                        tourPlaceSelect.empty();
+                        tourPlaceSelect.append('<option value="">Select Tour Place</option>');
+
+                        $.each(data, function (index, tourPlace) {
+                            tourPlaceSelect.append('<option value="' + tourPlace.id + '">' + tourPlace.tour_name + '</option>');
+                        });
+                    },
+                });
+            });
+        }
+
+        // Apply the dropdown dependencies for the hotels form
+
+        handleDropdownDependencies("#tour-form", "#standard7", "#standard12", "#standard8", "#standard9");
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        function handleDropdownDependencies(formId, countryId, stateId, cityId, vehicleId) {
+            $(document).on('change', formId + ' ' + countryId, function () {
+                var country_id = $(this).val();
+                var stateSelect = $(formId + ' ' + stateId);
+                var citySelect = $(formId + ' ' + cityId);
+                var vehicleSelect = $(formId + ' ' + vehicleId);
+
+                $.ajax({
+                    url: "/ajax/load_states/",
+                    data: { country_id: country_id },
+                    dataType: "json",
+                    success: function (data) {
+                        stateSelect.empty();
+                        stateSelect.append('<option value="">Select State</option>');
+
+                        $.each(data, function (index, state) {
+                            stateSelect.append('<option value="' + state.id + '">' + state.state_name + '</option>');
+                        });
+                    },
+                });
+            });
+            citySelect.empty();
+
+            $(document).on('change', formId + ' ' + stateId, function () {
+                var state_id = $(this).val();
+                var citySelect = $(formId + ' ' + cityId);
+
+                $.ajax({
+                    url: "/ajax/load_cities/",
+                    data: { state_id: state_id },
+                    dataType: "json",
+                    success: function (data) {
+                        citySelect.empty();
+                        citySelect.append('<option value="">Select City</option>');
+
+                        $.each(data, function (index, city) {
+                            citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                        });
+                    },
+                });
+            });
+
+            $(document).on('change', formId + ' ' + cityId, function () {
+                // Add logic to load vehicle types based on the selected city
+                var city_id = $(this).val();
+                var vehicleSelect = $(formId + ' ' + vehicleId);
+
+                $.ajax({
+                    url: "/ajax/load_vehicle_types/",
+                    data: { city_id: city_id },
+                    dataType: "json",
+                    success: function (data) {
+                        vehicleSelect.empty();
+                        vehicleSelect.append('<option value="">Select Vehicle Type</option>');
+
+                        $.each(data, function (index, vehicle) {
+                            vehicleSelect.append('<option value="' + vehicle.id + '">' + vehicle.type_of_vehicle + '</option>');
+                        });
+                    },
+                });
+            });
+        }
+
+        // Apply the dropdown dependencies for the vehicles form
+        handleDropdownDependencies("#vehicles-form", "#standard11", "#standard14", "#standard13","#standard12");
+
+    });
+</script>
+
+
+<!-- <script>
+    $(document).ready(function () {
+        function handleDropdownDependencies(formId, countryId, cityId, hotelNameId) {
+            $(document).on('change', formId + ' ' + countryId, function () {
+                var country_id = $(this).val();
+                var citySelect = $(formId + ' ' + cityId);
+                // var hotelNameSelect = $(formId + ' ' + hotelNameId);
+
+                $.ajax({
+                    url: "/ajax/load_cities/",
+                    data: { country_id: country_id },
+                    dataType: "json",
+                    success: function (data) {
+                        citySelect.empty();
+                        citySelect.append('<option value="">Select City</option>');
+
+                        $.each(data, function (index, city) {
+                            citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                        });
+                    },
+                });
+
+            });
+        }
+
+        // Apply the dropdown dependencies for the vehicles form
+        handleDropdownDependencies("#vehicles-form", "#standard11", "#standard13", "#standard12");
+    });
+</script> -->
+
+
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var subject = document.getElementById('subject').value;
+        var comments = document.getElementById('comments').value;
+
+        // Simple validation for non-empty fields
+        if (name.trim() === '' || email.trim() === '' || subject.trim() === '' || comments.trim() === '') {
+            alert('All fields must be filled out');
+            return false;
+        }
+
+        // Validation for the email format
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Invalid email format');
+            return false;
+        }
+
+        // Add more specific validations as needed
+
+        return true; // Form will be submitted if all validations pass
+    }
+</script>
+<script>
+    function validateCountryDescription(textarea) {
+        const errorMessageElement = document.getElementById('countryDescription-error');
+        const descriptionValue = textarea.value; // Remove leading and trailing spaces
+        // Reset previous error message
+        errorMessageElement.textContent = '';
+        // Check if the first character is an alphabet
+        if (!/^[A-Za-z]/.test(descriptionValue) || /^\s/.test(descriptionValue)) {
+            errorMessageElement.textContent = 'The description must start with an alphabet and cannot start with or contain only spaces.';
+            textarea.setCustomValidity('Description must start with an alphabet and cannot start with or contain only spaces');
+        } else {
+            textarea.setCustomValidity('');
+        }
+        // Check length constraint
+        if (descriptionValue.length > 240) {
+            errorMessageElement.textContent = 'Description exceeds the maximum length of 240 characters.';
+            textarea.setCustomValidity('Exceeds maximum length');
+        }
+    }
+</script>
+<script>
+    function generateRows() {
+        var numberOfTickets = document.getElementById('ticket').value;
+        var tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = '';
+
+        for (var i = 1; i <= numberOfTickets; i++) {
+            var row = tableBody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+
+            cell1.innerHTML = i;
+            cell2.innerHTML = '<input type="text" class="form-control" required pattern="[A-Za-z][A-Za-z\s]*" name="firstname_' + i + '" placeholder="First Name">';
+            cell3.innerHTML = '<input type="text" class="form-control" required pattern="[A-Za-z][A-Za-z\s]*" name="lastname_' + i + '" placeholder="Last Name">';
+            cell4.innerHTML = '<input type="number" class="form-control" required name="age_' + i + '" placeholder="Age" min="1" max="999">';
+            cell5.innerHTML = '<select class="form-select" required name="gender_' + i + '">' +
+                '<option value="" selected disabled>Select Gender</option>' +
+                '<option value="Male">Male</option>' +
+                '<option value="Female">Female</option>' +
+                '<option value="Other">Other</option>' +
+                '</select>';
+            // Add other fields...
+
+            // Add event listeners for input validation
+            cell2.firstChild.addEventListener('input', validateInput);
+            cell3.firstChild.addEventListener('input', validateInput);
+            cell4.firstChild.addEventListener('input', validateInput);
+        }
+    }
+
+    function validateInput(event) {
+        var input = event.target;
+        var isValid = false;
+
+        // Perform basic validation
+        if (input.value.trim() !== '' && !input.value.startsWith(' ')) {
+            isValid = true;
+        }
+
+        // Update styles or display error messages based on validation result
+        if (isValid) {
+            input.classList.remove('is-invalid');
+        } else {
+            input.classList.add('is-invalid');
+        }
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // Hide content by default
+        $('.timeline-content').addClass('collapsed');
+
+        // Toggle collapsed class on click
+        $('.timeline-content').on('click', function () {
+            $(this).toggleClass('collapsed');
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

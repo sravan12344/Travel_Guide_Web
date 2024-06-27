@@ -1,0 +1,117 @@
+{% extends 'new.html' %}
+
+{% block content %}
+<!-- slider area start here -->
+<!-- blog breadcrumb version one strat here -->
+
+    {% for x in about %}
+    <section class="breadcrumb-blog-version-one">
+
+        <!-- <img src="" alt="" style="width: 100%; height:500px;"> -->
+        <div class="single-bredcurms" style="background-image:url('{{x.image3.url}}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="bredcrums-content">
+                            <h2>Hotel Details</h2>
+                                    <ul class="dropdown">
+                                        {% if types %}
+                                            {% for type in types %}
+                                                <li><a href="{% url 'userpannel_packagetype' type.id %}?selected_package_type={{ type.package_type }}">{{ type.package_type }}</a></li>
+                                            {% endfor %}
+                                        {% else %}
+                                            <h4>No Package Types</h4>
+                                        {% endif %}
+                                    </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    
+    
+        </div>
+    </section>
+    
+     {% endfor %} 
+     
+    <!-- </div> -->
+<!-- blog breadcrumb version one end here -->
+
+
+
+<section class="popular-packages pb-70 pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-title text-center">
+                    <h2>All our hotel</h2>
+                    <p>There are 7 billion people on this planet who you have not met, and 195 countries you have not visited. If you are stuck in this insignigicant place being pressured into making decision about your future, when you barely even know who you are.</p>
+                </div>
+            </div>
+        </div>
+        {% for data in user_hotels %}
+        <div class="container">
+            <div class="row">
+                <!-- single hotels -->
+                <div class="col-md-4 col-sm-6 co-lxs-12 single-item">
+                    <div class="single-hotels">
+                        <div class="hotel-image">
+                            <img src="{{ data.image1.url }}" alt="{{ data.title }}" style="height:350px; width:1000px">
+                        </div>
+                        <div class="hotel-description">
+                            <h4>{{ data.country_name.country_name }}  - {{ data.hotel_name }}</h4>
+                        <p>{{ data.type_of_hotel }} - {{ data.Address }}</p>
+                            <div class="hotel-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="hotet-book-btn">
+                                <a href="{% url 'hoteldetails' id=data.id %}" class="travel-primary-btn hvr-shutter-out-horizontal">show details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} 
+        <!-- <div class="row">
+                        
+            <div class="col-md-4 col-sm-6">
+                <div class="single-package">
+                    <div class="package-image">
+                        <a></a>
+                        <br>
+                    </div>
+                    <div class="hotel-description">
+						<h4>Sheraton Hotel</h4>
+						<p>Start from <span>$50/</span>Per Nights 2 Person</p>
+						<div class="hotel-rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<div class="hotet-book-btn">
+							<a href="hoteldetails.html" class="travel-primary-btn hvr-shutter-out-horizontal">show details</a>
+						</div>
+					</div>
+ <div class="package-content" align="center">
+                        <h3>{{ data.country_name.country_name }}  - {{ data.hotel_name }}</h3>
+                        <p>{{ data.type_of_hotel }} - {{ data.Address }}</p>
+                         <div class="hotet-book-btn">
+                            <a href="" class="travel-primary-btn hvr-shutter-out-horizontal">show details</a>
+                        </div>
+                        <li><a class="travel-booking-btn hvr-shutter-out-horizontal" href=>More Details</a></li> 
+                    </div> 
+                    </div>
+                 </div> 
+                        
+            </div>
+        </div>
+    </div> -->
+</section> <!--end  popular package -->
+
+{% endblock %}

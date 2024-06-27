@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <div>
+                            <br>
+                            <h4 class="mb-sm-0">User Details</h4>
+                            <br>
+                        </div>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a style="color: #808080;">Manage Users</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <br>
+                            <form action="" class="row g-3 needs-validation" method="POST" novalidate>
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="pwd"><b>User Name</b>
+                                                <b style="color: red;">*</b></label>
+                                            <input class="form-control" id="pwd" maxlength="50" name="user" pattern="[A-Za-z][A-Za-z\s]*"
+                                                   placeholder="Enter Name"
+                                                   required title="Start with a capital letter"
+                                                   type="text">
+                                            <div class="invalid-feedback">This field is required enter a valid user name
+                                                should
+                                                Start with a capital letter.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="pwd"><b>User Id Proof</b>
+                                                <b style="color: red;">*</b></label>
+                                            <input class="form-control" id="pwd" maxlength="12" name="profile" pattern="[A-Za-z0-9][A-Za-z0-9\s]*"
+                                                   placeholder="Ex: Aadhar / Pan / passport"
+                                                   required
+                                                   type="text">
+                                            <div class="invalid-feedback">This field is required enter a valid user ID
+                                                proof.
+                                            </div>
+                                            {% if error_message_proof %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_proof }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="email"><b>User Email</b>
+                                                <b style="color: red;">*</b></label>
+                                            <input class="form-control" id="email1" maxlength="50" name="email" pattern=".+@gmail\.com"
+                                                   placeholder="Enter Email" required type="email">
+                                            <div class="invalid-feedback">This field is required enter a valid email
+                                                address.
+                                            </div>
+                                            {% if error_message_email %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_email }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="pwd"><b>User Contact Number</b>
+                                                <b style="color: red;">*</b></label>
+                                            <input class="form-control" maxlength="10" name="contact" pattern="[6-9]\d{9}"
+                                                   placeholder="Enter Contact Number" required
+                                                   type="text">
+                                            <div class="invalid-feedback">This field is required enter a valid 10-digit
+                                                contact
+                                                number.
+                                            </div>
+                                            {% if error_message_contact %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_contact }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="pwd"><b>Age</b>
+                                                <b style="color: red;">*</b></label>
+                                            <input class="form-control" maxlength="3" name="age" pattern="\d{1,3}"
+                                                   placeholder="Enter Age"
+                                                   required type="text">
+                                            <div class="invalid-feedback">This field is required enter a valid 3-digit
+                                                age
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="pwd"><b>Gender</b>
+                                                <b style="color: red;">*</b></label>
+                                            <select aria-label="Default select example" class="form-select mb-3"
+                                                    id="stateName"
+                                                    name="gender" required>
+                                                <option value="">Select Gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                <option>Others</option>
+                                            </select>
+                                            <div class="invalid-feedback">This field is required select a gender.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="institute_name"><b>Package Code </b>
+                                                <b style="color: red;">*</b></label>
+                                            <select aria-label="Default select example" class="form-select mb-3"
+                                                    id="id_city_name"
+                                                    name="code" required>
+                                                <option value="">Select Package Code</option>
+                                                {% for x in packagecode %}
+                                                <option value="{{x.id}}">{{x.package_code}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <div class="invalid-feedback">This field is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <input class="btn" style="background-color: #0a42aa; color: white;" type="submit">&nbsp;
+                                    <input class="btn" style="background-color:#626875; color:white;" type="reset">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4 class="card-title">User Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table " data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Package Code</th>
+                                        <th>Name</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                        <th>Email Id</th>
+                                        <th>contact Number</th>
+                                        <th>Id Proof</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in display_user %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{x.package_code.package_code}}</td>
+                                        <td>{{x.username}}</td>
+                                        <td>{{x.gender}}</td>
+                                        <td>{{x.age}}</td>
+                                        <td>{{x.email}}</td>
+                                        <td>{{x.contact}}</td>
+                                        <td>{{x.profile}}</td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;"
+                                                    type="button"><i class="bi-pencil-fill"></i></button>
+                                            <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary" style=" background-color:#d11d26; color:white;"
+                                                    type="button"><i class="bi bi-trash3-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for x in display_user %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit User Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/update_user/{{x.id}}" class="row g-3 needs-validation" method="POST" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>User Name</b><b style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="50" name="edit_username" pattern="[A-Za-z][A-Za-z\s]*"
+                                           placeholder="Enter User Name" required
+                                           title="Start with a capital letter" type="text"
+                                           value="{{x.username}}">
+                                    <div class="invalid-feedback">This field is required enter a valid user name
+                                        should Start with a capital letter.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>User Email</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="50" name="edit_email" placeholder="Enter User Email"
+                                           required type="email" value="{{x.email}}">
+                                    <div class="invalid-feedback">This field is required enter a valid email
+                                        address.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="short_name"><b>User Contact Number</b> <b style="color: red;">*</b>
+                                    </label>
+                                    <input class="form-control" maxlength="10" name="edit_contact" pattern="[6-9]\d{9}"
+                                           placeholder="Enter User Contact Number" required
+                                           type="text" value="{{x.contact}}">
+                                    <div class="invalid-feedback">This field is required enter a valid 10-digit
+                                        contact number.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Age</b> <b style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="3" name="edit_age" pattern="\d{1,3}"
+                                           placeholder="Enter Age" required value="{{x.age}}">
+                                    <div class="invalid-feedback">This field is required enter a valid 3-digit age.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Package Code </b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_city_name"
+                                            name="code" required>
+                                        <option value="">Select Package Code</option>
+                                        {% for x in packagecode %}
+                                        <option value="{{x.id}}">{{x.package_code}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="short_name"><b>Gender</b> <b style="color: red;">*</b> </label>
+                                    <select aria-label="Default select example" class="form-select mb-3" id="stateName"
+                                            name="edit_gender" required value="{{x.gender}}">
+                                        <option value="">Select Gender</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Others</option>
+                                    </select>
+                                    <div class="invalid-feedback">This field is required select a gender.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="pwd"><b>User Id Proof</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" id="pwd" maxlength="12" name="edit_profile"
+                                           pattern="[A-Za-z0-9][A-Za-z0-9\s]*" placeholder="Ex: Aadhar / Pan / passport" required
+                                           type="text" value="{{x.profile}}">
+                                    <div class="invalid-feedback">This field is required enter a valid user ID
+                                        proof.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <button class="btn" style="background-color: #0a42aa; color: white;">Update</button>
+                        <button class="btn" style="background-color:#626875; color:white;" type="reset">Reset</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for x in display_user %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete User details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the <b> "{{x.username}}"</b></h6>
+                <br>
+                <div align="center">
+                    <a class="btn" href="{% url 'delete_user' x.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete</a>
+                    <a class="btn" data-bs-dismiss="modal" style="background-color:#626875; color:white;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

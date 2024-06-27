@@ -1,0 +1,632 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <div>
+                            <br>
+                            <h4 class="mb-sm-0">Package Details</h4>
+                            <br>
+                        </div>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> /
+                                <a href="{% url 'addtourpackage' %}">ATP</a> /
+                                <a style="color: #808080;">Package Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" class="row g-3 needs-validation" enctype="multipart/form-data" method="POST"
+                                  novalidate onsubmit="return validateCheckbox()">
+                                {% csrf_token %}
+                                <div class="live-preview">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Country Name</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            id="id_countryname" name="country_name" required>
+                                                        <option value="">Select Country Name</option>
+                                                        {% for country in all_countries %}
+                                                        <option value="{{ country.id }}">{{ country.country_name }}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label>State Name<b style="color: red;">*</b></label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            id="id_statename" name="statename" required>
+                                                        <option value="">Select State Name</option>
+                                                        {% for x in all_states %}
+                                                        <option value="{{ x.id }}">{{ x.state_name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="short_name"><b>City Name</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            id="id_city_name" name="city_name" required>
+                                                        <option value="">Select City Name</option>
+                                                        {% for city in all_cities %}
+                                                        <option value="{{ city.id }}">{{ city.city_name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label><b>Tour Places</b><b style="color: red;">*</b></label>
+                                                        <div class="d-flex flex-wrap" id="tour-places-checkboxes">
+                                                            <!-- Tour Places will be populated dynamically using AJAX -->
+                                                        </div>
+                                                        <div class="invalid-feedback">Select at least one Place</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="short_name"><b>Select Package Type</b> <b
+                                                            style="color: red;">*</b> </label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            name="package_type" required>
+                                                        <option value="">Select Package Type</option>
+                                                        {% for pkg in all_package_types %}
+                                                        <option value="{{ pkg.id }}">{{ pkg.package_type }}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Number Of Persons</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <input class="form-control" maxlength="3" name="number_of_persons"
+                                                           pattern="\d*" placeholder="Enter Number of persons"
+                                                           required>
+
+                                                    <div class="invalid-feedback">This field is required. Only numeric
+                                                        values are allowed.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-md-9">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Package Code </b><b
+                                                            style="color: red;">*</b></label>
+                                                    <input class="form-control" maxlength="5" name="package_code"
+                                                           pattern="[A-Za-z][A-Za-z\s]*"
+                                                           placeholder="Enter Package Code"
+                                                           required type="text"></input>
+                                                    <div class="invalid-feedback">This field is required.</div>
+                                                    {% if error_message_package_code %}
+                                                    <div role="alert" style="color: #c03221;">
+                                                        {{ error_message_package_code }}
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-md-9">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Package Duration </b><b
+                                                            style="color: red;">*</b></label>
+                                                    <input class="form-control" maxlength="20" minlength="1"
+                                                           name="duration" placeholder="Enter Package Duration"
+                                                           required type="text" pattern="\d*"></input>
+                                                    <!-- pattern="[A-Za-z0-9\s\-_!@#$%^&()+=]" -->
+                                                    <div class="invalid-feedback">This field is required and should
+                                                        contain only letters and spaces.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="stateimage"><b>Package Image(PNG/JPG
+                                                        /
+                                                        Size:-800X533)</b><b style="color: red;">*</b> </label>
+                                                    <input accept=".jpg, .jpeg, .png" class="form-control" name="image"
+                                                           onchange="validateImage(this)"
+                                                           required type="file">
+                                                    <div class="invalid-feedback" id="image-error">Invalid file type.
+                                                        Please upload a JPEG, JPG, or PNG file.'
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Hotel Name</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            id="hotelDropdown" name="hotel_name"
+                                                            required>
+                                                        <option value="">Select Hotel Name</option>
+                                                        {% for hotel in all_hotels %}
+                                                        <option value="{{ hotel.id }}">{{ hotel.hotel_name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="stateimage"><b>Package Cost</b><b
+                                                            style="color: red;">*</b> </label>
+                                                    <input class="form-control" maxlength="5" minlength="1"
+                                                           name="cost" pattern="\d*" placeholder="Enter Package Cost"
+                                                           required></input>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Mode Of Transport</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            name="vehicle_type" required>
+                                                        <option value="">Select Mode Of Transport</option>
+                                                        {% for vehicle in vehicle_types %}
+                                                        <option value="{{ vehicle.id }}">{{ vehicle.type_of_vehicle }}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="stateimage"><b>Itinerary</b><b
+                                                            style="color: red;">*</b> </label>
+                                                            <textarea class="form-control" name="itinerary"
+                                                            oninput="validateCountryDescription(this)"
+                                                            placeholder="Enter Itinerary"
+                                                            required></textarea>
+                                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Package Description</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <textarea class="form-control" name="description"
+                                                              oninput="validateCountryDescription(this)"
+                                                              pattern="[A-Za-z][A-Za-z\s]*"
+                                                              placeholder="Enter Package Description"
+                                                              required></textarea>
+                                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Package Tour Name</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <input class="form-control" maxlength="50" name="title"
+                                                           pattern="[A-Za-z][A-Za-z\s]*"
+                                                           placeholder="Enter Package Tour Name" required></input>
+                                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-lg col-sm">
+                                                <div class="form-group">
+                                                    <label for="institute_name"><b>Guide</b><b
+                                                            style="color: red;">*</b></label>
+                                                    <select aria-label="Default select example" class="form-select mb-3"
+                                                            id="id_countryname" name="guide" required>
+                                                        <option value="">Select Guide</option>
+                                                        {% for x in guides %}
+                                                        <option value="{{x.id}}">{{x.guide_name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="invalid-feedback">This field is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <button class="btn" data-bs-toggle="modal" onclick="validate()"
+                                                    style="background-color: #0a42aa; color: white;"
+                                                    type="submit">Submit
+                                            </button>&nbsp;
+                                            <button class="btn" data-bs-dismiss="modal"
+                                                    style="background-color:#626875; color:white;"
+                                                    type="reset">Reset
+                                            </button>
+                                        </div>
+                                        <br>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4>Tour Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table " data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Image</th>
+                                        <th>Country</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>Tour</th>
+                                        <th>Package Type</th>
+                                        <th>Package Name</th>
+                                        <th>No. Of Persons</th>
+                                        <th>Package Code</th>
+                                        <th>Hotel Name</th>
+                                        <th>Mode Of Transport</th>
+                                        <th>Package Duration</th>
+                                        <th>Package Cost</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in display_package %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td><img class="rounded-circle" height="50px;" src="{{x.image.url}}"
+                                                 width="50px;">
+                                        </td>
+                                        <td>{{x.country_name.country_name}}</td>
+                                        <td>{{x.state_name.state_name}}</td>
+                                        <td>{{x.city_name.city_name}}</td>
+                                        <td> {% for tour_place in x.tour_places.all %}
+                                            {{ tour_place.tour_name }}
+                                            {% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>{{x.package_type.package_type}}</td>
+                                        <td>{{x.title}}</td>
+                                        <td>{{x.number_of_persons}}</td>
+                                        <td>{{x.package_code}}</td>
+                                        <td>{{x.hotel_name.hotel_name}}</td>
+                                        <td>{{x.type_of_vehicle.type_of_vehicle}}</td>
+                                        <td>{{x.duration}}</td>
+                                        <td>{{x.cost}}</td>
+                                        <td class="status">
+                                            {% if x.package_details_status %}
+                                            <a href="{% url 'deactivate_package' id=x.id %}"><b style="color:blue;">
+                                                <span>Active</span></b></a>
+                                            {% else %}
+                                            <a href="{% url 'activate_package' id=x.id %}"><b style="color:red;">
+                                                <span>Inactive</span></b></a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;"
+                                                    type="button"><i
+                                                    class="bi-pencil-fill"></i></button>
+                                            <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style=" background-color:#d11d26; color:white;"
+                                                    type="button"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for x in display_package %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Package Details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/updatepackage/{{x.id}}" class="row g-3 needs-validation" enctype="multipart/form-data"
+                      method="POST"
+                      novalidate onsubmit="return validateCheckbox()">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Country Name</b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id='id_countryname' name="edit_country_name" required>
+                                        <option value="">Select Country Name</option>
+                                        {% for country in all_countries %}
+                                        <option value="{{ country.id }}">{{ country.country_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>State Name<b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_statename" name="statename" required>
+                                        <option value="">Select State Name</option>
+                                        {% for x in all_states %}
+                                        <option value="{{ x.id }}">{{ x.state_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="short_name"><b>City Name</b><b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_city_name" name="edit_city_name" required>
+                                        <option value="">Select City Name</option>
+                                        {% for city in all_cities %}
+                                        <option value="{{ city.id }}">{{ city.city_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Tour Places</b><b
+                                            style="color: red;">*</b></label>
+                                    {% for tour_place in all_tour_places %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="languages" type="checkbox"
+                                               value="{{ tour_place.id }}">
+                                        <label class="form-check-label" for="tour_place{{ tour_place.id }}">
+                                            {{ tour_place.tour_name }}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                    <div class="invalid-feedback" id="languagesError">Select at least one Place
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="short_name"><b>Select Package Type</b> <b
+                                            style="color: red;">*</b> </label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="edit_package_type" required>
+                                        <option value="">Select Package Type</option>
+                                        {% for package_type in all_package_types %}
+                                        <option value="{{ package_type.id }}">{{ package_type.package_type }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Guide</b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_countryname" name="guide" required>
+                                        <option value="">Select Guide</option>
+                                        {% for x in guides %}
+                                        <option value="{{x.id}}">{{x.guide_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Hotel Name</b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="edit_hotel_name" required>
+                                        <option value="">Select Hotel Name</option>
+                                        {% for hotel in all_hotels %}
+                                        <option value="{{ hotel.id }}">{{ hotel.hotel_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Mode Of Transport</b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="edit_vehicle_type" required>
+                                        <option value="">Select Mode Of Transport</option>
+                                        {% for vehicle in vehicle_types %}
+                                        <option value="{{ vehicle.id }}">{{ vehicle.type_of_vehicle }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Number Of Persons</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="3" name="edit_number_of_persons"
+                                           pattern="\d*"
+                                           placeholder="Enter Number of persons" required
+                                           value="{{x.number_of_persons}}">
+                                </div>
+                                <div class="invalid-feedback">This field is required</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Package Code </b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="5" name="edit_package_code"
+                                           pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter Package Code"
+                                           required value="{{x.package_code}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                    {% if error_message_package_code %}
+                                    <div role="alert" style="color: #c03221;">
+                                        {{ error_message_package_code }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Package Duration </b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" name="edit_duration" pattern="\d*"
+                                           placeholder="Enter Package Duration" required
+                                           value="{{x.duration}}"></input>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="stateimage"><b>Package Image(PNG/JPG
+                                        / Size:-800X533)</b><b style="color: red;">*</b> </label>
+                                    <input accept=".jpg, .jpeg, .png" class="form-control"
+                                           id="Image" name="edit_image" onchange="validateImage(this)"
+                                           required type="file">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type.
+                                        Please upload a JPEG, JPG, or PNG file.'
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="stateimage"><b>Package Cost</b><b
+                                            style="color: red;">*</b> </label>
+                                    <input class="form-control" maxlength="5" name="edit_cost" pattern="\d*"
+                                           placeholder="Enter Package Cost" required
+                                           value="{{x.cost}}"></input>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Package Tour Name</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" name="edit_title" pattern="[A-Za-z][A-Za-z\s]*"
+                                           placeholder="Enter Package Tour Name" required
+                                           value="{{x.title}}"></input>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="stateimage"><b>Itinerary</b><b
+                                            style="color: red;">*</b> </label>
+                                    <textarea class="form-control" name="edit_itinerary" pattern="[A-Za-z][A-Za-z\s]*"
+                                              placeholder="Enter Itinerary"
+                                              required>{{x.iternary}}</textarea>
+                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Package Description</b><b
+                                            style="color: red;">*</b></label>
+                                    <textarea class="form-control" name="edit_description" pattern="[A-Za-z][A-Za-z\s]*"
+                                              placeholder="Enter Package Description"
+                                              required>{{x.description}}</textarea>
+                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <button class="btn" href="" onclick="validate()"
+                                style="background-color: #0a42aa; color: white;">Update
+                        </button>
+                        <button class="btn" style="background-color:#626875; color:white;"
+                                type="reset">Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for x in display_package %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Delete Package Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the <b> "{{x.title}}" </b></h6>
+                <br>
+                <div align="center">
+                    <a class="btn" href="{% url 'delete_package' x.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete</a>
+                    <a class="btn" data-bs-dismiss="modal" style="background-color:#626875; color:white;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

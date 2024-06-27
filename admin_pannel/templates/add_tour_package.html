@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <div>
+                            <br>
+                            <h4 class="mb-sm-0">Add Tour Package</h4>
+                            <br>
+                        </div>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a style="color: #808080;">Add Tour Package</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="{% url 'packagedetails' %}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                    <p class="mb-md-0 mb-2 d-flex align-items-center gap-2">
+                                        <svg class="bi bi-basket2" fill="currentColor" height="37"
+                                             viewBox="0 0 16 16" width="37" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z"/>
+                                            <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z"/>
+                                        </svg>
+                                        Package Details
+                                    </p>
+                                    <div class="d-flex align-items-center flex-wrap">
+                                        <span class="badge bg-dark"> {{package_details_count}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

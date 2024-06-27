@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+    <style>
+        .travel-booking-btn {
+            border: none;
+            /* Remove border */
+            padding: 10px 20px;
+            /* Add padding for better appearance */
+            background-color: crimson;
+            /* Specify your desired background color */
+            color: #fff;
+            /* Set text color */
+            cursor: pointer;
+            /* Change cursor on hover */
+            text-decoration: none;
+            /* Remove default link underline */
+            display: inline-block;
+            /* Make the button a block element */
+        }
+        .travel-booking-btn:hover {
+            background-color: salmon;
+            /* Specify your desired background color on hover */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="TRABBLE - Tour, Travel, Travel Agency Template">
+    <meta name="keywords" content="Tour, Travel, Travel Agency Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelling Guide</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="../../static/image/x-icon" href="../../static/images/favicon.ico">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="../../static/css/animate.css">
+    <!-- Button Hover animate css -->
+    <link rel="stylesheet" href="../../static/css/hover-min.css">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="../../static/css/jquery-ui.min.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="../../static/css/meanmenu.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="../../static/css/owl.carousel.min.css">
+    <!-- slick css -->
+    <link rel="stylesheet" href="../../static/css/slick.css">
+    <!-- chosen.min-->
+    <link rel="stylesheet" href="../../static/css/chosen.min.css">
+    <!-- chosen.min-->
+    <link rel="stylesheet" href="../../static/css/jquery-customselect.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css">
+    <!-- magnific Css -->
+    <link rel="stylesheet" href="../../static/css/magnific-popup.css">
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" href="../../static/css/assets/revolution/layers.css">
+    <link rel="stylesheet" href="../../static/css/assets/revolution/navigation.css">
+    <link rel="stylesheet" href="../../static/css/assets/revolution/settings.css">
+    <!-- custome css -->
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="../../static/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="../../static/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        /* Hide left and right arrows in Revolution Slider */
+        .tp-rightarrow,
+        .tp-leftarrow {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- header top start -->
+    <div class="header-top-area">
+       <div class="container">
+          <div class="row">
+             <div class="header-top-left">
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                   <ul class="header-top-contact">
+                      {% for contact in user_contactus %}
+                        <li><i aria-hidden="true" class="fa fa-map-marker"></i>{{contact.address}}</li>
+                        <li><i aria-hidden="true" class="fa fa-phone"></i>{{contact.mobile_num}}</li>
+                        <li><i aria-hidden="true" class="fa fa-envelope-o"></i>{{contact.website}}</li>
+                        {% endfor %}
+                   </ul>
+                </div>
+             </div>
+             <div class="header-top-right">
+                <div class="col-md-offset-3 col-md-2 col-sm-offset-3 col-sm-2 col-xs-12">
+                   <!-- <div class="book-btn">
+                      <a href="#">Book Online</a>
+                   </div> -->
+                </div>
+             </div>
+          </div>
+       </div>
+    </div><!-- header top end -->
+<!-- google map end  -->
+<section class="section">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+             <div class="contact-title">
+             </div><br><br><br><br>
+                <h2 align="center">Sign Up</h2>
+                <br>
+             <div class="contact-form">
+                <div id="contact">
+                   <div id="message"></div>
+                   <!-- Contact Form -->
+                   <form class="form" method="post" action="" name="contactform" id="contactform" class="row g-3" novalidate>
+                      {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Full Name</strong> <b style="color: red;">*</b>
+                                        <input type="text" placeholder="Full name" required name="fullname" id="fullName" pattern="[A-Za-z]{3,50}">
+                                        <div class="text-danger" id="errorFullName"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>User Name</strong> <b style="color: red;">*</b>
+                                        <input type="text" placeholder="User name" required name="username" id="userName" maxlength="50" pattern="[A-Za-z]{3,50}">
+                                        <div class="text-danger" id="errorUserName"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Email Id</strong> <b style="color: red;">*</b>
+                                        <input type="email" placeholder="Email Id" required name="email" id="email" pattern=".+@gmail\.(com|in)">
+                                        <div class="text-danger" id="errorEmail"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Mobile No</strong> <b style="color: red;">*</b>
+                                        <input type="tel" placeholder="Mobile No" required name="mobile" id="mobile" pattern="[6-9]\d{9}">
+                                        <div class="text-danger" id="errorMobile"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Password</strong> <b style="color: red;">*</b>
+                                        <input type="password" placeholder="Password" required name="password" id="password" maxlength="10" minlength="3">
+                                        <div class="text-danger" id="errorPassword"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <strong>Confirm Password</strong> <b style="color: red;">*</b>
+                                        <input type="password" placeholder="Confirm Password" required name="confirm_Password" id="confirmPassword" maxlength="10" minlength="3">
+                                        <div class="text-danger" id="errorConfirmPassword"></div>
+                                    </div>
+                                </div>
+                            </div>
+                       <br>
+                       {% if error %}
+    <div class="error-message" style="color:red">{{ error }}</div>
+{% endif %}
+                            <div class="col-lg-12 d-flex justify-content-between">
+                                <div class="checkbox">
+                                    <input class="form-check-input" type="checkbox" value="" id="rememberCheck">
+                                    <label class="form-check-label" for="rememberCheck">
+                                        Remember me <a href="#">Terms Of Use</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" align="center">
+                                <a type="button" onclick="validateForm()" class="travel-booking-btn hvr-shutter-out-horizontal">Sign Up</a>
+                            </div>
+                            <div id="errorMessages" class="text-danger" align="center"></div>
+<!--                            <div class="form-group" align="center">-->
+<!--                                <h6>Already have an account ? <a href="booknow.html">Sign in</a></h6>-->
+<!--                            </div>-->
+                        </form><!--/ End Contact Form -->
+                </div>
+             </div>
+          </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                 <img src="../../images/contactus/01.png" alt="">
+             </div>
+       </div>
+    </div>
+</section>
+<script>
+    function validateForm() {
+        var fullName = document.getElementById("fullName").value;
+        var userName = document.getElementById("userName").value;
+        var email = document.getElementById("email").value;
+        var mobile = document.getElementById("mobile").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        document.getElementById("errorFullName").innerHTML = fullName.trim() === "" ? "Please enter your full name." : "";
+        document.getElementById("errorUserName").innerHTML = userName.trim() === "" ? "Please enter a user name." : "";
+        document.getElementById("errorEmail").innerHTML = email.trim() === "" ? "Please enter your email ID." : "";
+        document.getElementById("errorMobile").innerHTML = mobile.trim() === "" ? "Please enter your mobile number." : "";
+        document.getElementById("errorPassword").innerHTML = password.trim() === "" ? "Please enter a password." : "";
+        document.getElementById("errorConfirmPassword").innerHTML = confirmPassword.trim() === "" ? "Please confirm your password." : "";
+        if (password !== confirmPassword) {
+            document.getElementById("errorConfirmPassword").innerHTML = "Passwords do not match.";
+        }
+        // Submit the form if there are no error messages
+        if (fullName.trim() === "" || userName.trim() === "" || email.trim() === "" || mobile.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || password !== confirmPassword) {
+            return false;
+        } else {
+            document.getElementById("contactform").submit();
+        }
+    }
+</script>
+<!-- footer area starts here -->
+<footer class="footer-area">
+    <div class="container">
+       <div class="row">
+          <!-- footer left -->
+          <div class="col-md-3 col-sm-6">
+             <div class="single-footer">
+                <div class="footer-title">
+                   <a href="#"><img src="../../images/logo.png" alt="">
+                   </a>
+                </div>
+                <div class="footer-left">
+                   <div class="footer-logo">
+                      <p>We provide the customers with the best packages for world trips</p>
+                   </div>
+                   <ul class="footer-contact">
+                      {% for contact in user_contactus %}
+                            <li><img alt="" class="map" src="../../static/images/icon/map.png">{{contact.address | truncatechars:23}}
+                            </li>
+                            <li><img alt="" class="map"
+                                     src="../../static/images/icon/phone.png">{{contact.mobile_num}}
+                            </li>
+                            <li><img alt="" class="map" src="../../static/images/icon/gmail.png">{{contact.email}}
+                            </li>
+                            {% endfor %}
+                   </ul>
+                </div>
+             </div>
+          </div><!-- footer left -->
+          <!-- footer latest news -->
+          <div class="col-md-3 col-sm-6">
+             <div class="single-footer">
+                <div class="single-recent-post">
+                   <div class="footer-title">
+                      <h3>Recent News</h3>
+                   </div>
+                   <ul class="recent-post">
+                      <li>
+                         <a>
+                            <div class="post-thum">
+                               <img src="../../images/blog/f4.jpg" alt="" class="img-rounded">
+                            </div>
+                            <div class="post-content">
+                               <p>A Clean Package Gives More Experience To The Visitors.
+                               </p>
+                               <span>07 November, 2023</span>
+                            </div>
+                         </a>
+                      </li>
+                      <li>
+                         <a>
+                            <div class="post-thum">
+                               <img src="../../images/blog/f5.jpg" alt="" class="img-rounded">
+                            </div>
+                            <div class="post-content">
+                               <p>A Clean Package Gives More Experience To The Visitors.
+                               </p>
+                               <span>07 November, 2023</span>
+                            </div>
+                         </a>
+                      </li>
+                      <li>
+                         <a>
+                            <div class="post-thum">
+                               <img src="../../images/blog/f6.jpg" alt="" class="img-rounded">
+                            </div>
+                            <div class="post-content">
+                               <p>A Clean Package Gives More Experience To The Visitors.
+                               </p>
+                               <span>07 November, 2023</span>
+                            </div>
+                         </a>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+          </div><!-- footer latest news -->
+          <!-- footer destination -->
+          <div class="col-md-3 col-sm-6">
+             <div class="single-footer">
+                <div class="footer-title">
+                   <h3>Destination</h3>
+                </div>
+                <ul class="footer-gallery">
+                   <li>
+                      <a>
+                         <div class="image-overlay">
+                            <img src="../../images/destination/1.jpg" alt="">
+                            <div class="overly-city">
+                               <span>Italy</span>
+                            </div>
+                         </div>
+                      </a>
+                   </li>
+                   <li>
+                      <a>
+                         <div class="image-overlay">
+                            <img src="../../images/destination/2.jpg" alt="">
+                            <div class="overly-city">
+                               <span>Dubai</span>
+                            </div>
+                         </div>
+                      </a>
+                   </li>
+                   <li>
+                      <a>
+                         <div class="image-overlay">
+                            <img src="../../images/destination/3.jpg" alt="">
+                            <div class="overly-city">
+                               <span>France</span>
+                            </div>
+                         </div>
+                      </a>
+                   </li>
+                   <li>
+                      <a>
+                         <div class="image-overlay">
+                            <img src="../../images/destination/4.jpg" alt="">
+                            <div class="overly-city">
+                               <span>Germany</span>
+                            </div>
+                         </div>
+                      </a>
+                   </li>
+                </ul>
+             </div>
+          </div><!-- footer destination -->
+          <!-- footer contact -->
+          <div class="col-md-3 col-sm-6">
+             <div class="single-footer">
+                <div class="footer-title">
+                   <h3>Quick Contact</h3>
+                </div>
+                <div class="footer-contact-form">
+                   <form action="#" method="post">
+                      <ul class="footer-form-element">
+                         <li>
+                            <input type="text" name="email" id="Email" placeholder="Email" value="Email Address">
+                         </li>
+                         <li>
+                            <textarea name="message" id="Eessage" cols="30" rows="10" placeholder="Message"></textarea>
+                         </li>
+                         <li>
+                            <button>Send</button>
+                         </li>
+                      </ul>
+                   </form>
+                </div>
+                <div class="footer-social-media">
+                   <div class="social-footer-title">
+                      <h3>Follow Us</h3>
+                   </div>
+                   <ul class="footer-social-link">
+                      <li><a><i class="fa fa-facebook"></i></a>
+                      </li>
+                      <li><a><i class="fa fa-twitter"></i></a>
+                      </li>
+                      <li><a><i class="fa fa-linkedin"></i></a>
+                      </li>
+                      <li><a><i class="fa fa-google-plus"></i></a>
+                      </li>
+                      <li><a><i class="fa fa-youtube-play"></i></a>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+          </div><!-- footer contact -->
+       </div>
+       <div class="row">
+          <div class="footer-bottom">
+             <div class="col-md-5">
+                <div class="copyright">
+                   <p>Copyright &copy; 2023 By <a><span>Touristguidebooking</span></a></p>
+                </div>
+             </div>
+             <div class="col-md-7">
+                <ul class="payicon pull-right">
+                   <li>We Accept</li>
+                   <li><img src="../../images/payicon01.png" alt=""></li>
+                   <li><img src="../../images/payicon02.png" alt=""></li>
+                   <li><img src="../../images/payicon03.png" alt=""></li>
+                   <li><img src="../../images/payicon04.png" alt=""></li>
+                   <li><img src="../../images/payicon05.png" alt=""></li>
+                   <li><img src="../../images/payicon06.png" alt=""></li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+</footer>
+<!-- Footer area ends here -->
+    <!-- ============================
+            JavaScript Files
+    ============================= -->
+    <!-- jquery latest version -->
+    <script src="../../js/vendor/jquery-3.2.0.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="../../js/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="../../js/owl.carousel.min.js"></script>
+    <!-- slick js -->
+    <script src="../../js/slick.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="../../js/jquery.meanmenu.min.js"></script>
+    <!-- jquery-ui js -->
+    <script src="../../js/jquery-ui.min.js"></script>
+    <!-- wow js -->
+    <script src="../../js/wow.min.js"></script>
+    <!-- counter js -->
+    <script src="../../js/jquery.counterup.min.js"></script>
+    <!-- Countdown js -->
+    <script src="../../js/jquery.countdown.min.js"></script>
+    <!-- waypoints js -->
+    <script src="../../js/jquery.waypoints.min.js"></script>
+    <!-- Isotope js -->
+    <script src="../../js/isotope.pkgd.min.js"></script>
+    <!-- magnific js -->
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <!-- Image loaded js -->
+    <script src="../../js/imagesloaded.pkgd.min.js"></script>
+    <!-- chossen js -->
+    <script src="../../js/chosen.jquery.min.js"></script>
+    <!-- Jquery plugin -->
+    <script src="../../js/plugins.js"></script>
+    <!-- select2 js plugin -->
+    <script src="../../js/select2.min.js"></script>
+    <script src="../../js/colors.js"></script>
+    <!-- Jquery plugin -->
+    <script src="../../js/jquery-customselect.js"></script>
+    <!-- google map api -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIW0B_E3g-Yg533xy3yF0WHThi-mFvSNQ"></script>
+    <!-- map js -->
+    <script src="../../js/google-map.js"></script>
+    <!-- main js -->
+    <script src="../../js/custom.js"></script>
+  
+<script>
+    function validateForm() {
+        var fullName = document.getElementById("fullName").value;
+        var userName = document.getElementById("userName").value;
+        var email = document.getElementById("email").value;
+        var mobile = document.getElementById("mobile").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        document.getElementById("errorFullName").innerHTML = fullName.trim() === "" ? "Please enter your full name." : "";
+        document.getElementById("errorUserName").innerHTML = userName.trim() === "" ? "Please enter a user name." : "";
+        document.getElementById("errorEmail").innerHTML = email.trim() === "" ? "Please enter your email ID." : "";
+        document.getElementById("errorMobile").innerHTML = mobile.trim() === "" ? "Please enter your mobile number." : "";
+        document.getElementById("errorPassword").innerHTML = password.trim() === "" ? "Please enter a password." : "";
+        document.getElementById("errorConfirmPassword").innerHTML = confirmPassword.trim() === "" ? "Please confirm your password." : "";
+        if (password !== confirmPassword) {
+            document.getElementById("errorConfirmPassword").innerHTML = "Passwords do not match.";
+        }
+        // Submit the form if there are no error messages
+        if (fullName.trim() === "" || userName.trim() === "" || email.trim() === "" || mobile.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || password !== confirmPassword) {
+            return false;
+        } else {
+            document.getElementById("contactform").submit();
+        }
+    }
+</script>
+</body>
+<!-- Mirrored from getnajmul.com/theme/trabble/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 07:03:30 GMT -->
+</html>

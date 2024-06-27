@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <div>
+                            <br>
+                            <h4 class="mb-sm-0">Add Vehicle Details</h4>
+                            <br>
+                        </div>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a href="{% url 'settings' %}">Settings</a> / 
+                                <a href="{% url 'mode_of_transport' %}">MOT</a> / 
+                                <a style="color: #808080;">Add Vehicle Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="#" class="row g-3 needs-validation" method="post" novalidate>
+                                {% csrf_token %}
+                                <div class="live-preview">
+                                    <div class="row">
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label>Type Of Vehicle Name<b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        name="vehicletype" required>
+                                                    <option value="">Select Type Of Vehicle</option>
+                                                    {% for a in vehicle_types %}
+                                                    <option value="{{a.pk}}">{{a.type_of_vehicle}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label>Name Of The Vehicle<b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        name="vehiclename" required>
+                                                    <option value="">Select Vehicle Name</option>
+                                                    {% for s in vehicle_names %}
+                                                    <option value="{{s.pk}}">{{s.name_of_vehicle}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label>Vehicle Number <b style="color: red;">*</b></label>
+                                                <input aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                                       class="form-control"
+                                                       maxlength=20 minlength=3
+                                                       name="vehiclenumber" pattern="[A-Za-z0-9][A-Za-z0-9\s]*"
+                                                       placeholder="Enter Vehicle Number" required
+                                                       title="Only letters and spaces are allowed. Minimum 3 characters and maximum 100 characters."
+                                                       type="text">
+                                                <div class="invalid-feedback">This field is required</div>
+                                                {% if error_message_vehiclenumber %}
+                                                <div role="alert" style="color: #c03221;">
+                                                    {{ error_message_vehiclenumber }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label>Seating Capacity<b style="color: red;">*</b> </label>
+                                                <input aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                                       class="form-control"
+                                                       inputmode="numeric" maxlength="3" minlength="1"
+                                                       name="seatingcapacity" pattern="\d*"
+                                                       placeholder="Enter Seating Capacity " required
+                                                       type="text">
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md col-lg-6 col-sm">
+                                            <div class="form-group">
+                                                <label>Vehicle Type<b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        name="tot" required>
+                                                    <option value="">Select Vehicle Type</option>
+                                                    <option>AC</option>
+                                                    <option>Non-AC</option>
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <input class="btn" style="background-color: #0a42aa; color: white;"
+                                               type="submit"></input>&nbsp;
+                                        <input class="btn" style="background-color:#626875; color:white;"
+                                               type="reset"></input>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4>Vehicle Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table " data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Vehicle Type</th>
+                                        <th>Vehicle Name</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Seating Capacity</th>
+                                        <th>Type Of Transport</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for d in det %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{d.type_of_vehicle.type_of_vehicle}}</td>
+                                        <td>{{d.name_of_vehicle.name_of_vehicle}}</td>
+                                        <td>{{d.vehicle_number}}</td>
+                                        <td>{{d.seating_capacity}}</td>
+                                        <td>{{d.type_of_transport}}</td>
+                                        <td>{{d.vehicle_details_created_at}}</td>
+                                        <td class="status">
+                                            {% if d.vehicle_details_status %}
+                                            <a href="{% url 'deactive_vehicledetails' id=d.id %}"><b
+                                                    style="color:blue;">
+                                                <span>Active</span></b></a>
+                                            {% else %}
+                                            <a href="{% url 'active_vehicledetails' id=d.id %}"><b style="color:red;">
+                                                <span>Inactive</span></b></a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;" type="button"><i
+                                                    class="bi-pencil-fill"></i></button>
+                                            <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                    data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                    style=" background-color:#d11d26; color:white;" type="button"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for r in det %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Vehicle Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/updatevehicledetails/{{r.id}}" class="row g-3 needs-validation" method="post"
+                      novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Type Of Vehicle Name<b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="vehicletype" required>
+                                        <option value="">Select Vehicle Name</option>
+                                        {% for a in vehicle_types %}
+                                        <option value="{{a.id}}">{{a.type_of_vehicle}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name Of The Vehicle<b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="vehiclename" required>
+                                        <option value="">Select Vehicle Name</option>
+                                        {% for s in vehicle_names %}
+                                        <option value="{{s.id}}">{{s.name_of_vehicle}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Vehicle Number <b style="color: red;">*</b></label>
+                                    <input aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                           class="form-control" maxlength=100 minlength=3
+                                           name="vehiclenumber"
+                                           pattern="[A-Za-z0-9][A-Za-z0-9\s]*" placeholder="Enter Vehicle Number"
+                                           required
+                                           title="Only letters and spaces are allowed. Minimum 3 characters and maximum 100 characters."
+                                           type="text"
+                                           value="{{r.vehicle_number}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Seating Capacity<b style="color: red;">*</b> </label>
+                                    <input aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                           class="form-control"
+                                           inputmode="numeric" maxlength="3" minlength="1"
+                                           name="seatingcapacity" pattern="\d*" placeholder="Enter Seating Capacity "
+                                           required
+                                           type="text" value="{{r.seating_capacity}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Type Of Transport<b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="tot" required>
+                                        <option value="{{r.type_of_transport}}">Select Type Of Transport
+                                        </option>
+                                        <option>AC</option>
+                                        <option>Non-AC</option>
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button class="btn" style="background-color: #0a42aa; color: white;" type="submit">
+                                Update
+                            </button>
+                            <button class="btn " style="background-color:#626875; color:white;" type="Reset">Reset
+                            </button>
+                        </div>
+                        <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% for n in det %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Delete Vehicle details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the <b> "{{n.name_of_vehicle}}"</b></h6>
+                <br>
+                <div align="center">
+                    <a class="btn" href="{% url 'deletevehicledetails' pk=n.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete
+                    </a>
+                    <a class="btn" data-bs-dismiss="modal"
+                       style="background-color:#626875; color:white;">Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

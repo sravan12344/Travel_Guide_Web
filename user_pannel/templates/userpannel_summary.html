@@ -1,0 +1,460 @@
+{% extends 'newbase.html' %}
+
+{% block content %}
+<style>
+    .ct-action {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust the space between buttons */
+}
+
+.travel-booking-btn {
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    /* Add any other styles */
+}
+
+</style>
+<section class="popular-packages pb-70 pt-100" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="single-package card">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="package" align="center"><br>
+                                <a href="moredetails.html">
+                                    <br>
+                                    <img src="{{package_detail.image.url }}" alt="Package Image"
+                                        style="height: 210px; width: 300px;">
+                                    <br>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="package-content">
+
+                                {% if package_detail %}
+                                <h4>{{ package_detail.country_name.country_name }} - {{ package_detail.title }}</h4>
+                                <hr>
+                                <p><span><i class="fa fa-clock-o"></i></span> &nbsp;&nbsp;&nbsp;&nbsp;{{ package_detail.duration }}&nbsp;days</p>
+                                <p><span><i class="fa fa-map-marker"></i></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ package_detail.country_name.country_name }}</p>
+                                <p><span><i class="fa fa-list-alt"></i></span> &nbsp;&nbsp;&nbsp;&nbsp;{{ package_detail.package_type.package_type }}</p>
+                                <p><span><i class="fa fa-users"></i></span> &nbsp;&nbsp;&nbsp;&nbsp;{{ package_detail.number_of_persons }}</p>
+                                <p>Inclusions : &nbsp;<i class="fa fa-building"></i> Hotel, <i class="fa fa-car"></i> Vehicle, <i class="fa fa-user"></i> Guide</p>
+                            {% else %}
+                                <p>Package details not available.</p>
+                            {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3"
+                            style="background-color: #f8f6f4; padding-top: 30px; padding-bottom:145px; text-align: center; height: 100%">
+                            <div class="package-content">
+                                <a href="moredetails.html">
+                                    <p style="color: black;">Starting from</p>
+                                    <h3 style="color: black;">₹{{ package_detail.cost }}</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- single package end -->
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="contact-title">
+                    <h2 align="center">Summary</h2>
+                </div>
+                <div class="contact-form">
+                    <div id="contact">
+                        <div id="message"></div>
+                        <!-- Contact Form -->
+                        <form class="form" method="post" action="https://getnajmul.com/theme/trabble/contact.php"
+                            name="contactform" id="contactform">
+
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Number</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Age</th>
+                                            <th>Gender</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody align="center">
+                                       
+                                           
+                                        {% for ticket in tickets %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ ticket.first_name }}</td>
+                                            <td>{{ ticket.last_name }}</td>
+                                            <td>{{ ticket.age }}</td>
+                                            <td>{{ ticket.gender }}</td>
+                                            <!-- other fields... -->
+                                        </tr>
+                                        {% endfor %}
+                                                                        
+                                    </tbody>
+                               
+                            </table>
+                        </form><!--/ End Contact Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="contact-title">
+                    <h4>Payment</h4>
+                    <hr>
+                    <br>
+                </div>
+                <div class="contact-form">
+                    <div id="contact">
+                        <div id="message"></div>
+                        <!-- Contact Form -->
+                        <form class="form" method="post" action="https://getnajmul.com/theme/trabble/contact.php"
+                            name="contactform" id="contactform">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+
+                                        <th>No. of Rooms</th>
+                                        <td>{{ package_detail.hotel_name.total_rooms }}</td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th>No. of persons</th>
+                                        <td id="numberOfPersons">{{ num_tickets }}</td>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Package Amount</th>
+                                        <td>{{ total_amount }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Amount In Words</th>
+                                        <td>{{ amount_in_words }} Only</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <label _ngcontent-serverapp-c3=""
+                                class="check-box d-inline-block mr-1 font-weight-bold"><input _ngcontent-serverapp-c3=""
+                                    id="iagree" name="check" type="checkbox"
+                                    class="ng-untouched ng-pristine ng-valid"><span _ngcontent-serverapp-c3=""
+                                    class="checkmark"></span> I Agree <a _ngcontent-serverapp-c3=""
+                                    href="javascript:void(0)">Terms &amp; Conditions</a></label>
+                                    <div class="form-group" style="display: flex; justify-content: center;">
+                                        <a href="{% url 'userpannel_allpackages' %}" class="travel-booking-btn" style="background-color: gray; color: white; margin-right: 10px; margin-bottom: 5px; font-size: small;" >Replan</a>
+                                        <a href="#" id="container"></a>
+                                    </div>
+                                    
+                            <!-- <div align="center" class="form-group">
+                                <ul class="ct-action">
+                                    <li class="button-container">
+                                        <a class="travel-booking-btn" href="#"
+                                           style="background-color: gray; color:white;">Replan</a>
+                                        <a id="container"></a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </form><!--/ End Contact Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script async
+        defer
+        onload="onGooglePayLoaded()" src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script>
+    /**
+   * Define the version of the Google Pay API referenced when creating your
+   * configuration
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|apiVersion in PaymentDataRequest}
+   */
+   const baseRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0
+   };
+
+   /**
+   * Card networks supported by your site and your gateway
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
+   * @todo confirm card networks supported by your site and gateway
+   */
+   const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
+
+   /**
+   * Card authentication methods supported by your site and your gateway
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
+   * @todo confirm your processor supports Android device tokens for your
+   * supported card networks
+   */
+   const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
+
+   /**
+   * Identify your gateway and your site's gateway merchant identifier
+   *
+   * The Google Pay API response will return an encrypted payment method capable
+   * of being charged by a supported gateway after payer authorization
+   *
+   * @todo check with your gateway on the parameters to pass
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway|PaymentMethodTokenizationSpecification}
+   */
+   const tokenizationSpecification = {
+    type: 'PAYMENT_GATEWAY',
+    parameters: {
+    'gateway': 'example',
+    'gatewayMerchantId': 'exampleGatewayMerchantId'
+    }
+   };
+
+   /**
+   * Describe your site's support for the CARD payment method and its required
+   * fields
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
+   */
+   const baseCardPaymentMethod = {
+    type: 'CARD',
+    parameters: {
+    allowedAuthMethods: allowedCardAuthMethods,
+    allowedCardNetworks: allowedCardNetworks
+    }
+   };
+
+   /**
+   * Describe your site's support for the CARD payment method including optional
+   * fields
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
+   */
+   const cardPaymentMethod = Object.assign(
+    {},
+    baseCardPaymentMethod,
+    {
+    tokenizationSpecification: tokenizationSpecification
+    }
+   );
+
+   /**
+   * An initialized google.payments.api.PaymentsClient object or null if not yet set
+   *
+   * @see {@link getGooglePaymentsClient}
+   */
+   let paymentsClient = null;
+
+   /**
+   * Configure your site's support for payment methods supported by the Google Pay
+   * API.
+   *
+   * Each member of allowedPaymentMethods should contain only the required fields,
+   * allowing reuse of this base request when determining a viewer's ability
+   * to pay and later requesting a supported payment method
+   *
+   * @returns {object} Google Pay API version, payment methods supported by the site
+   */
+   function getGoogleIsReadyToPayRequest() {
+    return Object.assign(
+    {},
+    baseRequest,
+    {
+    allowedPaymentMethods: [baseCardPaymentMethod]
+    }
+    );
+   }
+
+   /**
+   * Configure support for the Google Pay API
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|PaymentDataRequest}
+   * @returns {object} PaymentDataRequest fields
+   */
+   function getGooglePaymentDataRequest() {
+    const paymentDataRequest = Object.assign({}, baseRequest);
+    paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
+    paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
+    paymentDataRequest.merchantInfo = {
+    // @todo a merchant ID is available for a production environment after approval by Google
+   // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
+    // merchantId: 'BCR2DN4TZKSJP6JX',
+   merchantName: 'travelling guide'
+    };
+
+    paymentDataRequest.callbackIntents = ["PAYMENT_AUTHORIZATION"];
+
+    return paymentDataRequest;
+   }
+
+   /**
+   * Return an active PaymentsClient or initialize
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/client#PaymentsClient|PaymentsClient constructor}
+   * @returns {google.payments.api.PaymentsClient} Google Pay API client
+   */
+   function getGooglePaymentsClient() {
+   if ( paymentsClient === null ) {
+   paymentsClient = new google.payments.api.PaymentsClient({
+   environment: 'TEST',
+   paymentDataCallbacks: {
+   onPaymentAuthorized: onPaymentAuthorized
+   }
+   });
+    }
+    return paymentsClient;
+   }
+
+   /**
+   * Handles authorize payments callback intents.
+   *
+   * @param {object} paymentData response from Google Pay API after a payer approves payment through user gesture.
+   * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData object reference}
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentAuthorizationResult}
+   * @returns Promise<{object}> Promise of PaymentAuthorizationResult object to acknowledge the payment authorization status.
+   */
+   function onPaymentAuthorized(paymentData) {
+     return new Promise(function(resolve, reject){
+   // handle the response
+    processPayment(paymentData)
+         .then(function() {
+           resolve({transactionState: 'SUCCESS'});
+         })
+         .catch(function() {
+           resolve({
+             transactionState: 'ERROR',
+             error: {
+               intent: 'PAYMENT_AUTHORIZATION',
+               message: 'Insufficient funds, try again. Next attempt should work.',
+               reason: 'PAYMENT_DATA_INVALID'
+             }
+           });
+           });
+    });
+   }
+
+   /**
+   * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
+   *
+   * Display a Google Pay payment button after confirmation of the viewer's
+   * ability to pay.
+   */
+   function onGooglePayLoaded() {
+    const paymentsClient = getGooglePaymentsClient();
+    paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
+       .then(function(response) {
+         if (response.result) {
+           addGooglePayButton();
+         }
+       })
+       .catch(function(err) {
+         // show error in developer console for debugging
+         console.error(err);
+       });
+   }
+
+   /**
+   * Add a Google Pay purchase button alongside an existing checkout button
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#ButtonOptions|Button options}
+   * @see {@link https://developers.google.com/pay/api/web/guides/brand-guidelines|Google Pay brand guidelines}
+   */
+   function addGooglePayButton() {
+    const paymentsClient = getGooglePaymentsClient();
+    const button =
+    paymentsClient.createButton({onClick: onGooglePaymentButtonClicked});
+    document.getElementById('container').appendChild(button);
+   }
+
+   /**
+   * Provide Google Pay API with a payment amount, currency, and amount status
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#TransactionInfo|TransactionInfo}
+   * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
+   */
+   function getGoogleTransactionInfo() {
+   return {
+   displayItems: [
+   {
+   label: "Subtotal",
+   type: "SUBTOTAL",
+   price: "11.00",
+   },
+   {
+   label: "Tax",
+   type: "TAX",
+   price: "1.00",
+    }
+   ],
+    countryCode: 'IN',
+    currencyCode: "INR",
+    totalPriceStatus: "FINAL",
+    totalPrice: "{{ total_amount }}",
+    totalPriceLabel: "Total"
+    };
+   }
+
+
+   /**
+   * Show Google Pay payment sheet when Google Pay payment button is clicked
+   */
+   function onGooglePaymentButtonClicked() {
+    const paymentDataRequest = getGooglePaymentDataRequest();
+    paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
+
+    const paymentsClient = getGooglePaymentsClient();
+    paymentsClient.loadPaymentData(paymentDataRequest);
+   }
+
+   let attempts = 0;
+   /**
+    * Process payment data returned by the Google Pay API
+   *
+   * @param {object} paymentData response from Google Pay API after user approves payment
+   * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData|PaymentData object reference}
+  */
+   function processPayment(paymentData) {
+     return new Promise(function(resolve, reject) {
+       setTimeout(function() {
+         // @todo pass payment token to your gateway to process payment
+         paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+
+               if (attempts++ % 2 == 0) {
+             reject(new Error('Every other attempt fails, next one should succeed'));
+         } else {
+             resolve({});
+         }
+   }, 500);
+    });
+   }
+</script>
+{% endblock %}

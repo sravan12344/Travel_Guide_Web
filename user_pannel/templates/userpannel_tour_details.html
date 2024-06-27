@@ -1,0 +1,154 @@
+{% extends 'new.html' %}
+
+{% block content %}
+<style>
+    img{
+        padding: 10px;
+    }
+</style>
+<!-- slider area start here -->
+<!-- blog breadcrumb version one strat here -->
+{% for x in about %}
+<section class="breadcrumb-blog-version-one">
+
+    <!-- <img src="" alt="" style="width: 100%; height:500px;"> -->
+    <div class="single-bredcurms" style="background-image:url('{{x.image1.url}}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="bredcrums-content">
+                        <h2>Tour Details</h2>
+                        <!-- <ul class="dropdown">
+                            {% if types %}
+                            {% for type in types %}
+                            <li><a
+                                    href="{% url 'userpannel_packagetype' type.id %}?selected_package_type={{ type.package_type }}">{{ type.package_type }}</a></li>
+                            {% endfor %}
+                            {% else %}
+                            <h4>No Package Types</h4>
+                            {% endif %}
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+{% endfor %} <!-- blog breadcrumb version one end here -->
+
+<section class="section-paddings single-package-area">
+    <div class="container">
+        <div class="row">
+            <!-- single package tab with details -->
+            <div class="col-md-12">
+                <div class="single-package-details">
+                    <div class="single-package-title">
+                        <h2>{{ tour_detials.tourname }} - {{tour_detials.tourcountry.country_name}}
+                        </h2>
+                    </div>
+                    <!-- <ul class="package-content">
+                        <li>{{ user_package_details.duration }}&nbsp;days</li>
+                        <li>
+                            <span>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span> (3 Reviews)
+                        </li>
+                        <li>Code: {{ user_package_details.package_code}}</li>
+                        <li>₹{{ user_package_details.cost }}</li>
+                    </ul> -->
+                    <div class="package-features-image">
+                        <img src="{{ tour_detials.tourimage1.url }}" alt="" class="img-responsove border-raduis-3"
+                            style="height:350px; width:350px"><img
+                            src="{{ tour_detials.tourimage2.url }}" alt="" class="img-responsove border-raduis-3"
+                            style="height:350px; width:350px"><img
+                            src="{{ tour_detials.tourimage3.url }}" alt="" class="img-responsove border-raduis-3"
+                            style="height:350px; width:350px">
+                    </div>
+                </div>
+                <br>
+                <div class="single-package-title">
+                    <h2>{{ tour_detials.tourname }} - {{tour_detials.tourstate.state_name}} - {{tour_detials.tourcity.city_name}}</h2>
+                </div>
+
+                <!-- tab content start -->
+                <div class="row">
+                    <!-- tabs content -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="description">
+                            <div class="row">
+                                <!-- left content -->
+                                <div class="col-md-4" style="padding-right: 15px;">
+                                    <br>
+                                    <div class="tour-description">
+                                        <h4>Tour Description</h4>
+                                        <p>{{ tour_detials.tourdescription|truncatechars:100 }}</p>
+                                    </div>
+                                </div><!-- left-content -->
+
+
+                                <div class="col-md-4">
+                                    <div class="additional-info">
+                                        <br>
+                                        <div class="info-title">
+                                            <h4>Additional Info</h4>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="info-list">
+                                                        <p><span><i class="fa fa-map-marker"></i></span> Open Time</p>
+                                                        <p><span><i class="fa fa-clock-o"></i></span> Closed Time</p>
+                                                        <p><span><i class="fa fa-clock-o"></i></span> Hotel</p>
+                                                        <p><span><i class="fa fa-car"></i></span> Vehicle</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="info-details">
+                                                        <p>{{ tour_detials.open_time }}</p>
+                                                        <p>{{ tour_detials.closed_time }}</p>
+                                                        <p>{{ tour_detials.hotel_name }}</p>
+                                                        <p>{{ tour_detials.type_of_vehicle }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="adding-form">
+                                        <div class="addfor-bg">
+                                            <div class="add-content">
+                                                <h3>Any Question?</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectet ur adipiscing elit, sedpr do eiusmod tempor
+                                                    incididunt ut.</p>
+                                                <ul class="contact-for-add">
+                                                    {% for contact in user_contactus %} 
+                                                    <li><img src="../../static/images/icon/phone.png" alt="">{{contact.mobile_num}}</li>
+                                                    <li><img src="../../static/images/icon/gmail.png" alt="">{{ contact.email }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+            <!-- right content -->
+                            </div>
+                        </div>
+                    </div><!-- tabs content-->
+                </div><!-- tab content end -->
+            </div><!-- single package tab with details -->
+
+            <!-- booking form start here -->
+
+           
+
+
+
+                
+            </div>
+</section>
+
+
+<!-- footer area starts here -->
+
+{% endblock %}

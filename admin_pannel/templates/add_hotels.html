@@ -1,0 +1,484 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                            <h4>Add Hotels</h4>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a href="{% url 'settings' %}">Settings</a> / 
+                                <a href="{% url 'hoteldetails' %}">Hotel Details</a> / 
+                                <a style="color: #808080;">Add Hotels</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="#" class="row g-3 needs-validation" enctype="multipart/form-data"
+                                  method="post" novalidate>
+                                {% csrf_token %}
+                                <div class="live-preview">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name">Country
+                                                    <b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        id="id_countryname" name="country" required>
+                                                    <option value="">Select Country</option>
+                                                    {% for t in countries %}
+                                                    <option value="{{t.id}}">{{t.country_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>State Name
+                                                    <b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        id="id_statename" name="statename" required>
+                                                    <option value="">Select State Name</option>
+                                                    {% for x in state_cat %}
+                                                    <option value="{{ x.id }}">{{ x.state_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name">City
+                                                    <b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        id="id_city_name" name="city_name" required>
+                                                    <option value="">Select City Name</option>
+                                                    {% for x in city_cat %}
+                                                    <option value="{{x.id}}">{{x.city_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name">Package Type
+                                                    <b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        name="package_type" required>
+                                                    <option value="">Select Package Type</option>
+                                                    {% for w in types %}
+                                                    <option value="{{w.id}}">{{w.package_type}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name">Hotel Name
+                                                    <b style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength="20"
+                                                       name="hotel_name" pattern="[A-Za-z][A-Za-z\s]*"
+                                                       placeholder="Enter Hotel Name" required type="text">
+                                                <div class="invalid-feedback">This field is required</div>
+                                                {% if error_message_hotelname %}
+                                                <div role="alert" style="color: #c03221;">
+                                                    {{ error_message_hotelname }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="short_name">Hotel Type
+                                                    <b style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength="50" maxlength="20"
+                                                       minlength="2" name="type_of_hotel"
+                                                       pattern="[A-Za-z0-9][A-Za-z0-9\s\]"
+                                                       placeholder="Enter Hotel Type" required type="text">
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name">Total Rooms
+                                                    <b style="color: red;">*</b></label>
+                                                <input class="form-control" inputmode="numeric" maxlength="3"
+                                                       minlength="1" name="total_rooms" pattern="\d*"
+                                                       placeholder="Enter Total Rooms" required type="text">
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name">Types Of Rooms
+                                                    <b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        name="type_of_rooms" required>
+                                                    <option value="">Select Room Type</option>
+                                                    <option>AC</option>
+                                                    <option>Non-AC</option>
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="short_name">Location
+                                                    <b style="color: red;">*</b></label>
+                                                <input class="form-control" name="location" placeholder="Link"
+                                                       required type="text">
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="short_name">Hotel Address
+                                                    <b style="color: red;">*</b></label>
+                                                <textarea class="form-control" name="address"
+                                                          oninput="validateCountryDescription(this)"
+                                                          pattern="[A-Za-z][A-Za-z\s]*"
+                                                          placeholder="Enter Hotel Address" required
+                                                          type="text"></textarea>
+                                                <div class="invalid-feedback" id="countryDescription-error"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Hotel Image 1
+                                                    <b style="color: red;">*</b> </label>
+                                                <input accept=".jpg, .jpeg, .png"
+                                                       aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                                       class="form-control" name="h_image"
+                                                       onchange="validateImage(this)" required src="{{x.image1.url}}"
+                                                       type="file">
+                                                <div class="invalid-feedback" id="image-error">Invalid file type.
+                                                    Please upload a JPEG, JPG, or PNG file.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Hotel Image 2
+                                                    <b style="color: red;">*</b> </label>
+                                                <input accept=".jpg, .jpeg, .png"
+                                                       aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                                       class="form-control" name="h_image1"
+                                                       onchange="validateImage(this)" required src="{{x.image2.url}}"
+                                                       type="file">
+                                                <div class="invalid-feedback" id="image-error">Invalid file type.
+                                                    Please upload a JPEG, JPG, or PNG file.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Hotel Image 3
+                                                    <b style="color: red;">*</b> </label>
+                                                <input accept=".jpg, .jpeg, .png"
+                                                       aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                                       class="form-control" name="h_image2"
+                                                       onchange="validateImage(this)" required src="{{x.image3.url}}"
+                                                       type="file">
+                                                <div class="invalid-feedback" id="image-error">Invalid file type.
+                                                    Please upload a JPEG, JPG, or PNG file.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <button class="btn" data-bs-toggle="modal"
+                                                    style="background-color: #0a42aa; color: white;" type="submit">
+                                                Submit
+                                            </button>&nbsp;
+                                            <button class="btn" data-bs-dismiss="modal"
+                                                    style="background-color:#626875; color:white;" type="reset">Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4><b>Hotel Details</b></h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table" data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Hotel Image</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Hotel Name</th>
+                                        <th>Hotel Type</th>
+                                        <th>Total Rooms</th>
+                                        <th>Type Of Rooms</th>
+                                        <th>Package Type</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in hotels %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td><img class="rounded-circle" height="50px;" src="{{x.image1.url}}"
+                                                 width="50px;"></td>
+                                        <td>{{x.country_name.country_name}}</td>
+                                        <td>{{x.city_name.city_name}}</td>
+                                        <td>{{x.hotel_name}}</td>
+                                        <td>{{x.type_of_hotel}}</td>
+                                        <td>{{x.total_rooms}}</td>
+                                        <td>{{x.type_of_rooms}}</td>
+                                        <td>{{x.package_type.package_type}}</td>
+                                        <td>{{x.hotel_created_at}}</td>
+                                        <td class="status">
+                                            {% if x.hotel_status %}
+                                            <a href="{% url 'deactive_addhotels' id=x.id %}"><b
+                                                    style="color:blue;">Active</b></a>
+                                            {% else %}
+                                            <a href="{% url 'active_addhotels' id=x.id %}"><b
+                                                    style="color:red;">Inactive</b></a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;" type="button">
+                                                <i class="bi-pencil-fill"></i>
+                                            </button>
+                                            <button class="btn" data-bs-target="#deletedata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                    style="background-color:#d11d26; color:white;" type="button">
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</main>
+{% for x in hotels %}
+<div class="modal fade" id="editdata-{{ forloop.counter }}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Hotel Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!-- Form starts here -->
+            <div class="modal-body">
+                <form action="/updateaddhotels/{{ x.id }}" class="row g-3 needs-validation"
+                      enctype="multipart/form-data" method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body" style="padding-left: 25px; padding-right: 25px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Country Name
+                                        <b style="color: red;">*</b></label>
+                                    <select class="form-select mb-3" id="id_countryname" name="country"
+                                            required>
+                                        <option value="">Select Country</option>
+                                        {% for t in countries %}
+                                        <option value="{{t.id}}">{{t.country_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city">City
+                                        <b style="color: red;">*</b></label>
+                                    <select class="form-select mb-3" id="id_city_name" name="city" required>
+                                        <option value="">Select City</option>
+                                        {% for x in city_cat %}
+                                        <option value="{{x.id}}">{{x.city_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="package_type">Package Type
+                                        <b style="color: red;">*</b></label>
+                                    <select class="form-select mb-3" name="package_type" required>
+                                        <option value="">Select Package Type</option>
+                                        {% for w in types %}
+                                        <option value="{{w.id}}">{{w.package_type}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="hotel_name">Hotel Name
+                                        <b style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="20"
+                                           name="hotel_name" pattern="[A-Za-z][A-Za-z\s]*"
+                                           placeholder="Hotel Name" required type="text" value="{{ x.hotel_name }}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="type_of_hotel">Hotel Type
+                                        <b style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="20" minlength="2"
+                                           name="type_of_hotel" pattern="[A-Za-z0-9][A-Za-z0-9\s\]"
+                                           placeholder="Hotel Type" required type="text"
+                                           value="{{ x.type_of_hotel }}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="total_rooms">Total Rooms
+                                        <b style="color: red;">*</b>
+                                    </label>
+                                    <input class="form-control" inputmode="numeric" name="total_rooms"
+                                           pattern="\d*" placeholder="Total Rooms" required type="text"
+                                           value="{{ x.total_rooms }}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="location">Location
+                                        <b style="color: red;">*</b></label>
+                                    <input class="form-control" name="location" placeholder="Link" required
+                                           type="text" value="{{ x.location }}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="address">Hotel Address
+                                        <b style="color: red;">*</b></label>
+                                    <textarea class="form-control" name="address"
+                                              pattern="[A-Za-z][A-Za-z\s]*" placeholder="Hotel Address" required
+                                              type="text" value="{{ x.Address }}">{{ x.Address }}</textarea>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="type_of_rooms">Type Of Rooms
+                                        <b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            name="type_of_rooms" required>
+                                        <option selected value="{{ x.type_of_rooms }}">{{ x.type_of_rooms }}
+                                        </option>
+                                        <!-- Populate the options dynamically based on your room types -->
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="h_image">Hotel Image 1
+                                        <b style="color: red;">*</b></label>
+                                    <input accept=".jpg, .jpeg, .png"
+                                           aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                           class="form-control" name="h_image" onchange="validateImage(this)"
+                                           required src="{{ x.image1.url }}" type="file">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                        upload a JPEG, JPG, or PNG file.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="h_image1">Hotel Image
+                                        <b style="color: red;">*</b></label>
+                                    <input accept=".jpg, .jpeg, .png"
+                                           aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                           class="form-control" name="h_image1" onchange="validateImage(this)"
+                                           required src="{{ x.image2.url }}" type="file">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type.
+                                        Please upload a JPEG, JPG, or PNG file.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="h_image2">Hotel Image
+                                        <b style="color: red;">*</b></label>
+                                    <input accept=".jpg, .jpeg, .png"
+                                           aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                           class="form-control" name="h_image2" onchange="validateImage(this)"
+                                           required src="{{ x.image3.url }}" type="file">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type.
+                                        Please upload a JPEG, JPG, or PNG file.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button class="btn" style="background-color: #0a42aa; color: white;">Update</button>
+                            <button class="btn" style="background-color: #626875; color: white;" type="reset">Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for x in hotels %}
+<div class="modal fade" id="deletedata-{{ forloop.counter }}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Delete Hotel details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the <b>"{{ x.hotel_name }}"</b></h6>
+                <div align="center">
+                    <a class="btn" href="{% url 'deleteaddhotels' pk=x.id %}"
+                       style=" background-color:#d11d26; color:white;">Delete</a>
+                    <button class="btn" data-bs-dismiss="modal"
+                            style="background-color:#626875; color:white;">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

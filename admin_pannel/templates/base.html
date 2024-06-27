@@ -1,0 +1,1086 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+<!-- Mirrored from templates.iqonic.design/product/qompac-ui/html/dist/dashboard/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 06:53:35 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title data-rightJoin=" Responsive Bootstrap 5 Admin Dashboard Template">Travelling Guide</title>
+    <meta
+        content="Qompac UI is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules."
+        name="description">
+    <meta
+        content="premium, admin, dashboard, template, bootstrap 5, clean ui, qompac-ui, admin dashboard,responsive dashboard, optimized dashboard,"
+        name="keywords">
+    <meta content="Iqonic Design" name="author">
+    <meta content="Qompac UI Responsive Bootstrap 5 Admin Dashboard Template" name="DC.title">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+    <script crossorigin="anonymous" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>    -->
+
+
+    <!-- Favicon -->
+    <link href="https://templates.iqonic.design/product/qompac-ui/html/dist/assets/images/favicon.ico"
+        rel="shortcut icon">
+    <!-- Library / Plugin Css Build -->
+    <link href="../../static/assets/css/core/libs.min.css" rel="stylesheet">
+    <link href="../../static/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!--    <link href="static/assets/vendor/sheperd/dist/css/sheperd.css" rel="stylesheet">-->
+    <!-- Flatpickr css -->
+    <link href="../../static/assets/vendor/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+    <!-- qompac-ui Design System Css -->
+    <link href="../../static/assets/css/qompac-ui.minf700.css?v=1.0.1" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/assets/css/custom.minf700.css?v=1.0.1" rel="stylesheet">
+    <!-- Dark Css -->
+    <link href="../../static/assets/css/dark.minf700.css?v=1.0.1" rel="stylesheet">
+    <!-- Customizer Css -->
+    <link href="../../static/assets/css/customizer.minf700.css?v=1.0.1" rel="stylesheet">
+    <!-- RTL Css -->
+    <link href="../../static/assets/css/rtl.minf700.css?v=1.0.1" rel="stylesheet">
+    <link href="../../static/assets/vendor/swiperSlider/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        .page-title-right .breadcrumb {
+            align-items: center;
+        }
+
+        .breadcrumb li {
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body class="  ">
+    <aside class="sidebar sidebar-base sidebar-white sidebar-default navs-rounded-all " data-sidebar="responsive"
+        data-toggle="main-sidebar" id="first-tour">
+        <div class="sidebar-header d-flex align-items-center justify-content-start">
+            <a class="navbar-brand" href="{% url 'dashboard' %}">
+                <h4 class="logo-title">Travelling Guide</h4>
+            </a>
+            <div class="sidebar-toggle" data-active="true" data-toggle="sidebar">
+                <i class="icon">
+                    <svg class="icon-10" fill="none" height="10" viewBox="0 0 8 8" width="10"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.29853 8C7.11974 8 6.94002 7.93083 6.80335 7.79248L3.53927 4.50446C3.40728 4.37085 3.33333 4.18987 3.33333 4.00036C3.33333 3.81179 3.40728 3.63081 3.53927 3.4972L6.80335 0.207279C7.07762 -0.069408 7.52132 -0.069408 7.79558 0.209174C8.06892 0.487756 8.06798 0.937847 7.79371 1.21453L5.02949 4.00036L7.79371 6.78618C8.06798 7.06286 8.06892 7.51201 7.79558 7.79059C7.65892 7.93083 7.47826 8 7.29853 8Z"
+                            fill="white" />
+                        <path
+                            d="M3.96552 8C3.78673 8 3.60701 7.93083 3.47034 7.79248L0.206261 4.50446C0.0742745 4.37085 0.000325203 4.18987 0.000325203 4.00036C0.000325203 3.81179 0.0742745 3.63081 0.206261 3.4972L3.47034 0.207279C3.74461 -0.069408 4.18831 -0.069408 4.46258 0.209174C4.73591 0.487756 4.73497 0.937847 4.4607 1.21453L1.69649 4.00036L4.4607 6.78618C4.73497 7.06286 4.73591 7.51201 4.46258 7.79059C4.32591 7.93083 4.14525 8 3.96552 8Z"
+                            fill="white" />
+                    </svg>
+                </i>
+            </div>
+        </div>
+        <div class="sidebar-body pt-0 data-scrollbar">
+            <div class="sidebar-list">
+                <!-- Sidebar Menu Start -->
+                <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
+                    <!-- <li class="nav-item static-item">
+                    <a class="nav-link static-item disabled text-start" href="#" tabindex="-1">
+                        <span class="default-icon">Home</span>
+                        <span class="mini-icon" data-bs-toggle="tooltip" title="Home" data-bs-placement="right">-</span>
+                    </a>
+                </li> -->
+                    <li class="nav-item">
+                        <a aria-controls="horizontal-menu" aria-current="page" aria-expanded="false" class="nav-link "
+                            href="{% url 'dashboard' %}" role="button">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="icon-20" fill="none" viewBox="" width="20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z"
+                                        fill="currentColor" opacity="0.4"></path>
+                                    <path clip-rule="evenodd"
+                                        d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Dashboard</span>
+                        </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="{% url 'addguide' %}">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="icon-20" fill="none" viewBox="0 0 24 24" width="20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12.0865 22C11.9627 22 11.8388 21.9716 11.7271 21.9137L8.12599 20.0496C7.10415 19.5201 6.30481 18.9259 5.68063 18.2336C4.31449 16.7195 3.5544 14.776 3.54232 12.7599L3.50004 6.12426C3.495 5.35842 3.98931 4.67103 4.72826 4.41215L11.3405 2.10679C11.7331 1.96656 12.1711 1.9646 12.5707 2.09992L19.2081 4.32684C19.9511 4.57493 20.4535 5.25742 20.4575 6.02228L20.4998 12.6628C20.5129 14.676 19.779 16.6274 18.434 18.1581C17.8168 18.8602 17.0245 19.4632 16.0128 20.0025L12.4439 21.9088C12.3331 21.9686 12.2103 21.999 12.0865 22Z"
+                                        fill="currentColor" opacity="0.4"></path>
+                                    <path
+                                        d="M11.3194 14.3209C11.1261 14.3219 10.9328 14.2523 10.7838 14.1091L8.86695 12.2656C8.57097 11.9793 8.56795 11.5145 8.86091 11.2262C9.15387 10.9369 9.63207 10.934 9.92906 11.2193L11.3083 12.5451L14.6758 9.22479C14.9698 8.93552 15.448 8.93258 15.744 9.21793C16.041 9.50426 16.044 9.97004 15.751 10.2574L11.8519 14.1022C11.7049 14.2474 11.5127 14.3199 11.3194 14.3209Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Add Guide</span>
+                        </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link " href="{% url 'addtourpackage' %}">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="bi bi-plus-lg" fill="currentColor" height="16" viewBox="0 0 16 16"
+                                    width="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                                        fill-rule="evenodd" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Add Tour Package</span>
+                        </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="{% url 'manageuser' %}">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="icon-20" fill="none" viewBox="0 0 14 14" width="20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.6663 6.99992C13.6663 10.6826 10.6817 13.6666 6.99967 13.6666C3.31767 13.6666 0.333008 10.6826 0.333008 6.99992C0.333008 3.31859 3.31767 0.333252 6.99967 0.333252C10.6817 0.333252 13.6663 3.31859 13.6663 6.99992Z"
+                                        fill="currentColor" opacity="0.4" />
+                                    <path clip-rule="evenodd"
+                                        d="M4.01351 6.20239C3.57284 6.20239 3.21484 6.56039 3.21484 6.99973C3.21484 7.43973 3.57284 7.79839 4.01351 7.79839C4.45418 7.79839 4.81218 7.43973 4.81218 6.99973C4.81218 6.56039 4.45418 6.20239 4.01351 6.20239ZM6.99958 6.20239C6.55891 6.20239 6.20091 6.56039 6.20091 6.99973C6.20091 7.43973 6.55891 7.79839 6.99958 7.79839C7.44024 7.79839 7.79824 7.43973 7.79824 6.99973C7.79824 6.56039 7.44024 6.20239 6.99958 6.20239ZM9.18718 6.99973C9.18718 6.56039 9.54518 6.20239 9.98584 6.20239C10.4265 6.20239 10.7845 6.56039 10.7845 6.99973C10.7845 7.43973 10.4265 7.79839 9.98584 7.79839C9.54518 7.79839 9.18718 7.43973 9.18718 6.99973Z"
+                                        fill="currentColor" fill-rule="evenodd" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Manage Users</span>
+                        </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="{% url 'managebooking' %}">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="icon-20" fill="none" viewBox="0 0 14 13" width="20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.85044 12.5583C5.32841 11.6182 3.91355 10.5097 2.63172 9.25306C1.7268 8.35584 1.0357 7.26031 0.611238 6.05018C-0.147183 3.69015 0.735667 0.992986 3.20054 0.192264C4.50154 -0.216313 5.9165 0.034503 7.00449 0.866556C8.09289 0.0354335 9.50738 -0.215301 10.8085 0.192264C13.2733 0.992986 14.1621 3.69015 13.4037 6.05018C12.9827 7.25917 12.2957 8.3546 11.395 9.25306C10.1121 10.5083 8.69734 11.6167 7.17632 12.5583L7.01042 12.6667L6.85044 12.5583Z"
+                                        fill="currentColor" opacity="0.4" />
+                                    <path
+                                        d="M7.00694 12.6666L6.85033 12.5583C5.32643 11.6183 3.90959 10.5098 2.62569 9.25304C1.71648 8.35707 1.02126 7.26144 0.593354 6.05016C-0.159142 3.69013 0.723708 0.992966 3.18858 0.192245C4.48958 -0.216332 5.9232 0.0346753 7.00694 0.873695V12.6666Z"
+                                        fill="currentColor" />
+                                    <path
+                                        d="M11.153 4.66615C11.0191 4.65753 10.8943 4.5906 10.8081 4.48104C10.7218 4.37149 10.6815 4.22893 10.6966 4.08677C10.7111 3.61854 10.4447 3.19234 10.0338 3.02651C9.7733 2.95539 9.61553 2.67324 9.6807 2.39499C9.74255 2.12121 9.99891 1.95098 10.2566 2.0126C10.2891 2.018 10.3204 2.02979 10.3489 2.04737C11.1727 2.36439 11.7061 3.2176 11.6637 4.1505C11.6623 4.2919 11.6072 4.42665 11.5109 4.52387C11.4146 4.62109 11.2854 4.67244 11.153 4.66615Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Manage Booking</span>
+                        </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a aria-controls="horizontal-menu" aria-current="page" aria-expanded="false" class="nav-link "
+                            href="{% url 'settings' %}" role="button">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="bi bi-gear-fill" fill="currentColor" height="16" viewBox="0 0 16 16"
+                                    width="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Settings</span>
+                        </a>
+                    </li>
+                    <br>
+
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="{% url 'login_adminpannel' %} ">
+                            <i class="icon" data-bs-placement="right" data-bs-toggle="tooltip" title="">
+                                <svg class="icon-20" fill="none" viewBox="0 0 24 24" width="20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z"
+                                        fill="currentColor"></path>
+                                    <path
+                                        d="M11.949 12.467C14.2851 12.467 16.1583 10.5831 16.1583 8.23351C16.1583 5.88306 14.2851 4 11.949 4C9.61293 4 7.73975 5.88306 7.73975 8.23351C7.73975 10.5831 9.61293 12.467 11.949 12.467Z"
+                                        fill="currentColor" opacity="0.4"></path>
+                                    <path
+                                        d="M21.0881 9.21923C21.6925 6.84176 19.9205 4.70654 17.664 4.70654C17.4187 4.70654 17.1841 4.73356 16.9549 4.77949C16.9244 4.78669 16.8904 4.802 16.8725 4.82902C16.8519 4.86324 16.8671 4.90917 16.8895 4.93889C17.5673 5.89528 17.9568 7.0597 17.9568 8.30967C17.9568 9.50741 17.5996 10.6241 16.9728 11.5508C16.9083 11.6462 16.9656 11.775 17.0793 11.7948C17.2369 11.8227 17.3981 11.8371 17.5629 11.8416C19.2059 11.8849 20.6807 10.8213 21.0881 9.21923Z"
+                                        fill="currentColor" opacity="0.4"></path>
+                                    <path
+                                        d="M22.8094 14.817C22.5086 14.1722 21.7824 13.73 20.6783 13.513C20.1572 13.3851 18.747 13.205 17.4352 13.2293C17.4155 13.232 17.4048 13.2455 17.403 13.2545C17.4003 13.2671 17.4057 13.2887 17.4316 13.3022C18.0378 13.6039 20.3811 14.916 20.0865 17.6834C20.074 17.8032 20.1698 17.9068 20.2888 17.8888C20.8655 17.8059 22.3492 17.4853 22.8094 16.4866C23.0637 15.9589 23.0637 15.3456 22.8094 14.817Z"
+                                        fill="currentColor"></path>
+                                    <path
+                                        d="M7.04459 4.77973C6.81626 4.7329 6.58077 4.70679 6.33543 4.70679C4.07901 4.70679 2.30701 6.84201 2.9123 9.21947C3.31882 10.8216 4.79355 11.8851 6.43661 11.8419C6.60136 11.8374 6.76343 11.8221 6.92013 11.7951C7.03384 11.7753 7.09115 11.6465 7.02668 11.551C6.3999 10.6234 6.04263 9.50765 6.04263 8.30991C6.04263 7.05904 6.43303 5.89462 7.11085 4.93913C7.13234 4.90941 7.14845 4.86348 7.12696 4.82926C7.10906 4.80135 7.07593 4.78694 7.04459 4.77973Z"
+                                        fill="currentColor" opacity="0.4"></path>
+                                    <path
+                                        d="M3.32156 13.5127C2.21752 13.7297 1.49225 14.1719 1.19139 14.8167C0.936203 15.3453 0.936203 15.9586 1.19139 16.4872C1.65163 17.4851 3.13531 17.8066 3.71195 17.8885C3.83104 17.9065 3.92595 17.8038 3.91342 17.6832C3.61883 14.9167 5.9621 13.6046 6.56918 13.3029C6.59425 13.2885 6.59962 13.2677 6.59694 13.2542C6.59515 13.2452 6.5853 13.2317 6.5656 13.2299C5.25294 13.2047 3.84358 13.3848 3.32156 13.5127Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar-footer"></div>
+    </aside>
+    <main class="main-content">
+        <div class="position-relative ">
+            <!--Nav Start-->
+            <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
+                <div class="container-fluid navbar-inner">
+                    <a class="navbar-brand" href="{% url 'dashboard' %}">
+                        <h4>Travelling Guide</h4>
+                    </a>
+                    <div class="sidebar-toggle" data-active="true" data-toggle="sidebar">
+                        <i class="icon d-flex">
+                            <svg class="icon-20" viewBox="0 0 24 24" width="20">
+                                <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </i>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between product-offcanvas">
+                        <!-- <div class="breadcrumb-title border-end me-3 pe-3 d-none d-xl-block">
+                       <small class="mb-0 text-capitalize">Home</small>
+                    </div> -->
+                        <div class="offcanvas offcanvas-end shadow-none iq-product-menu-responsive" id="offcanvasBottom"
+                            tabindex="-1">
+                            <div class="offcanvas-body">
+                                <ul class="iq-nav-menu list-unstyled">
+                                </ul>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="d-flex align-items-end">
+                                    <button aria-controls="navbarSupportedContent" aria-expanded="false"
+                                        aria-label="Toggle navigation" class="navbar-toggler"
+                                        data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
+                                        id="navbar-toggle" type="button">
+                                        <span class="navbar-toggler-icon">
+                                            <span class="navbar-toggler-bar bar1 mt-1"></span>
+                                            <span class="navbar-toggler-bar bar2"></span>
+                                            <span class="navbar-toggler-bar bar3"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0 ">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" data-bs-toggle="dropdown" href="#" id="search-drop">
+                                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect fill="currentColor" height="2" opacity="0.5" rx="1"
+                                                        transform="rotate(45 17.0365 15.1223)" width="8.15546"
+                                                        x="17.0365" y="15.1223"></rect>
+                                                    <path
+                                                        d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                                        fill="currentColor"></path>
+                                                </svg>
+                                            </a>
+                                            <ul aria-labelledby="search-drop"
+                                                class="p-0 sub-drop dropdown-menu dropdown-menu-end">
+                                                <li class="">
+                                                    <div
+                                                        class="p-3 card-header justify-content-between border-bottom rounded-top">
+                                                        <div class="header-title">
+                                                            <div class="iq-search-bar device-search  position-relative">
+                                                                <form action="#" class="searchbox">
+                                                                    <input
+                                                                        class="text search-input form-control bg-soft-primary"
+                                                                        placeholder="Search here" type="text">
+                                                                    <a class="d-lg-none d-flex"
+                                                                        href="javascript:void(0);">
+                                                                        <span
+                                                                            class="material-symbols-outlined">search</span>
+                                                                    </a>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <ul aria-labelledby="notification-drop"
+                                            class="p-0 sub-drop dropdown-menu dropdown-menu-end">
+                                            <li class="">
+                                                <div
+                                                    class="p-3 card-header d-flex justify-content-between bg-primary rounded-top">
+                                                    <div class="header-title">
+                                                        <h5 class="mb-0 text-white">All Notifications</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="p-0 card-body all-notification">
+                                                    <a class="iq-sub-card" href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <img alt=""
+                                                                class="p-1 avatar-40 rounded-pill bg-soft-primary"
+                                                                loading="lazy" src="../assets/images/shapes/01.png">
+                                                            <div class="ms-3 w-100">
+                                                                <h6 class="mb-0 ">Emma Watson Bni</h6>
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <p class="mb-0">95 MB</p>
+                                                                    <small class="float-end font-size-12">Just
+                                                                        Now</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="iq-sub-card" href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <div>
+                                                                <img alt=""
+                                                                    class="p-1 avatar-40 rounded-pill bg-soft-primary"
+                                                                    loading="lazy"
+                                                                    src="../../static/assets/images/shapes/02.png">
+                                                            </div>
+                                                            <div class="ms-3 w-100">
+                                                                <h6 class="mb-0 ">New customer is join</h6>
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <p class="mb-0">Cyst Bni</p>
+                                                                    <small class="float-end font-size-12">5 days
+                                                                        ago</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="iq-sub-card" href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <img alt=""
+                                                                class="p-1 avatar-40 rounded-pill bg-soft-primary"
+                                                                loading="lazy" src="../..//assets/images/shapes/03.png">
+                                                            <div class="ms-3 w-100">
+                                                                <h6 class="mb-0 ">Two customer is left</h6>
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <p class="mb-0">Cyst Bni</p>
+                                                                    <small class="float-end font-size-12">2 days
+                                                                        ago</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="iq-sub-card" href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <img alt=""
+                                                                class="p-1 avatar-40 rounded-pill bg-soft-primary"
+                                                                loading="lazy" src="../assets/images/shapes/04.png">
+                                                            <div class="w-100 ms-3">
+                                                                <h6 class="mb-0 ">New Mail from Fenny</h6>
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <p class="mb-0">Cyst Bni</p>
+                                                                    <small class="float-end font-size-12">3 days
+                                                                        ago</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        </li>
+<!--                                        <li class="nav-item theme-scheme-dropdown">-->
+<!--                                            <a class="nav-link" href="#" id="mode-drop">-->
+<!--                                                <svg class="icon-24" fill="none" viewBox="0 0 24 24" width="24"-->
+<!--                                                    xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                    <path-->
+<!--                                                        d="M11.9905 5.62598C10.7293 5.62574 9.49646 5.9995 8.44775 6.69997C7.39903 7.40045 6.58159 8.39619 6.09881 9.56126C5.61603 10.7263 5.48958 12.0084 5.73547 13.2453C5.98135 14.4823 6.58852 15.6185 7.48019 16.5104C8.37186 17.4022 9.50798 18.0096 10.7449 18.2557C11.9818 18.5019 13.2639 18.3757 14.429 17.8931C15.5942 17.4106 16.5901 16.5933 17.2908 15.5448C17.9915 14.4962 18.3655 13.2634 18.3655 12.0023C18.3637 10.3119 17.6916 8.69129 16.4964 7.49593C15.3013 6.30056 13.6808 5.62806 11.9905 5.62598Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M22.1258 10.8771H20.627C20.3286 10.8771 20.0424 10.9956 19.8314 11.2066C19.6204 11.4176 19.5018 11.7038 19.5018 12.0023C19.5018 12.3007 19.6204 12.5869 19.8314 12.7979C20.0424 13.0089 20.3286 13.1274 20.627 13.1274H22.1258C22.4242 13.1274 22.7104 13.0089 22.9214 12.7979C23.1324 12.5869 23.2509 12.3007 23.2509 12.0023C23.2509 11.7038 23.1324 11.4176 22.9214 11.2066C22.7104 10.9956 22.4242 10.8771 22.1258 10.8771Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M11.9905 19.4995C11.6923 19.5 11.4064 19.6187 11.1956 19.8296C10.9848 20.0405 10.8663 20.3265 10.866 20.6247V22.1249C10.866 22.4231 10.9845 22.7091 11.1953 22.9199C11.4062 23.1308 11.6922 23.2492 11.9904 23.2492C12.2886 23.2492 12.5746 23.1308 12.7854 22.9199C12.9963 22.7091 13.1147 22.4231 13.1147 22.1249V20.6247C13.1145 20.3265 12.996 20.0406 12.7853 19.8296C12.5745 19.6187 12.2887 19.5 11.9905 19.4995Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M4.49743 12.0023C4.49718 11.704 4.37865 11.4181 4.16785 11.2072C3.95705 10.9962 3.67119 10.8775 3.37298 10.8771H1.87445C1.57603 10.8771 1.28984 10.9956 1.07883 11.2066C0.867812 11.4176 0.749266 11.7038 0.749266 12.0023C0.749266 12.3007 0.867812 12.5869 1.07883 12.7979C1.28984 13.0089 1.57603 13.1274 1.87445 13.1274H3.37299C3.6712 13.127 3.95706 13.0083 4.16785 12.7973C4.37865 12.5864 4.49718 12.3005 4.49743 12.0023Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M11.9905 4.50058C12.2887 4.50012 12.5745 4.38141 12.7853 4.17048C12.9961 3.95954 13.1147 3.67361 13.1149 3.3754V1.87521C13.1149 1.57701 12.9965 1.29103 12.7856 1.08017C12.5748 0.869313 12.2888 0.750854 11.9906 0.750854C11.6924 0.750854 11.4064 0.869313 11.1955 1.08017C10.9847 1.29103 10.8662 1.57701 10.8662 1.87521V3.3754C10.8664 3.67359 10.9849 3.95952 11.1957 4.17046C11.4065 4.3814 11.6923 4.50012 11.9905 4.50058Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M18.8857 6.6972L19.9465 5.63642C20.0512 5.53209 20.1343 5.40813 20.1911 5.27163C20.2479 5.13513 20.2772 4.98877 20.2774 4.84093C20.2775 4.69309 20.2485 4.54667 20.192 4.41006C20.1355 4.27344 20.0526 4.14932 19.948 4.04478C19.8435 3.94024 19.7194 3.85734 19.5828 3.80083C19.4462 3.74432 19.2997 3.71531 19.1519 3.71545C19.0041 3.7156 18.8577 3.7449 18.7212 3.80167C18.5847 3.85845 18.4607 3.94159 18.3564 4.04633L17.2956 5.10714C17.1909 5.21147 17.1077 5.33543 17.0509 5.47194C16.9942 5.60844 16.9649 5.7548 16.9647 5.90264C16.9646 6.05048 16.9936 6.19689 17.0501 6.33351C17.1066 6.47012 17.1895 6.59425 17.294 6.69878C17.3986 6.80332 17.5227 6.88621 17.6593 6.94272C17.7959 6.99923 17.9424 7.02824 18.0902 7.02809C18.238 7.02795 18.3844 6.99865 18.5209 6.94187C18.6574 6.88509 18.7814 6.80195 18.8857 6.6972Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M18.8855 17.3073C18.7812 17.2026 18.6572 17.1195 18.5207 17.0627C18.3843 17.006 18.2379 16.9767 18.0901 16.9766C17.9423 16.9764 17.7959 17.0055 17.6593 17.062C17.5227 17.1185 17.3986 17.2014 17.2941 17.3059C17.1895 17.4104 17.1067 17.5345 17.0501 17.6711C16.9936 17.8077 16.9646 17.9541 16.9648 18.1019C16.9649 18.2497 16.9942 18.3961 17.0509 18.5326C17.1077 18.6691 17.1908 18.793 17.2955 18.8974L18.3563 19.9582C18.4606 20.0629 18.5846 20.146 18.721 20.2027C18.8575 20.2595 19.0039 20.2887 19.1517 20.2889C19.2995 20.289 19.4459 20.26 19.5825 20.2035C19.7191 20.147 19.8432 20.0641 19.9477 19.9595C20.0523 19.855 20.1351 19.7309 20.1916 19.5943C20.2482 19.4577 20.2772 19.3113 20.277 19.1635C20.2769 19.0157 20.2476 18.8694 20.1909 18.7329C20.1341 18.5964 20.051 18.4724 19.9463 18.3681L18.8855 17.3073Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M5.09528 17.3072L4.0345 18.368C3.92972 18.4723 3.84655 18.5963 3.78974 18.7328C3.73294 18.8693 3.70362 19.0156 3.70346 19.1635C3.7033 19.3114 3.7323 19.4578 3.78881 19.5944C3.84532 19.7311 3.92822 19.8552 4.03277 19.9598C4.13732 20.0643 4.26147 20.1472 4.3981 20.2037C4.53473 20.2602 4.68117 20.2892 4.82902 20.2891C4.97688 20.2889 5.12325 20.2596 5.25976 20.2028C5.39627 20.146 5.52024 20.0628 5.62456 19.958L6.68536 18.8973C6.79007 18.7929 6.87318 18.6689 6.92993 18.5325C6.98667 18.396 7.01595 18.2496 7.01608 18.1018C7.01621 17.954 6.98719 17.8076 6.93068 17.671C6.87417 17.5344 6.79129 17.4103 6.68676 17.3058C6.58224 17.2012 6.45813 17.1183 6.32153 17.0618C6.18494 17.0053 6.03855 16.9763 5.89073 16.9764C5.74291 16.9766 5.59657 17.0058 5.46007 17.0626C5.32358 17.1193 5.19962 17.2024 5.09528 17.3072Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                    <path-->
+<!--                                                        d="M5.09541 6.69715C5.19979 6.8017 5.32374 6.88466 5.4602 6.94128C5.59665 6.9979 5.74292 7.02708 5.89065 7.02714C6.03839 7.0272 6.18469 6.99815 6.32119 6.94164C6.45769 6.88514 6.58171 6.80228 6.68618 6.69782C6.79064 6.59336 6.87349 6.46933 6.93 6.33283C6.9865 6.19633 7.01556 6.05003 7.01549 5.9023C7.01543 5.75457 6.98625 5.60829 6.92963 5.47184C6.87301 5.33539 6.79005 5.21143 6.6855 5.10706L5.6247 4.04626C5.5204 3.94137 5.39643 3.8581 5.25989 3.80121C5.12335 3.74432 4.97692 3.71493 4.82901 3.71472C4.68109 3.71452 4.53458 3.7435 4.39789 3.80001C4.26119 3.85652 4.13699 3.93945 4.03239 4.04404C3.9278 4.14864 3.84487 4.27284 3.78836 4.40954C3.73185 4.54624 3.70287 4.69274 3.70308 4.84066C3.70329 4.98858 3.73268 5.135 3.78957 5.27154C3.84646 5.40808 3.92974 5.53205 4.03462 5.63635L5.09541 6.69715Z"-->
+<!--                                                        fill="currentColor"></path>-->
+<!--                                                </svg>-->
+<!--                                            </a>-->
+<!--                                            <ul class="list-unstyled dropdown-menu dropdown-content">-->
+<!--                                                <li data-setting="radio">-->
+<!--                                                    <div class="dropdown-item d-flex align-items-center">-->
+<!--                                                        <input class="btn-check" id="color-mode-light"-->
+<!--                                                            name="theme_scheme" type="radio" value="light">-->
+<!--                                                        <label class="d-block" for="color-mode-light">-->
+<!--                                                            <svg class="icon-24" fill="none" height="24"-->
+<!--                                                                viewBox="0 0 24 24" width="24"-->
+<!--                                                                xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                                <path-->
+<!--                                                                    d="M11.9905 5.62598C10.7293 5.62574 9.49646 5.9995 8.44775 6.69997C7.39903 7.40045 6.58159 8.39619 6.09881 9.56126C5.61603 10.7263 5.48958 12.0084 5.73547 13.2453C5.98135 14.4823 6.58852 15.6185 7.48019 16.5104C8.37186 17.4022 9.50798 18.0096 10.7449 18.2557C11.9818 18.5019 13.2639 18.3757 14.429 17.8931C15.5942 17.4106 16.5901 16.5933 17.2908 15.5448C17.9915 14.4962 18.3655 13.2634 18.3655 12.0023C18.3637 10.3119 17.6916 8.69129 16.4964 7.49593C15.3013 6.30056 13.6808 5.62806 11.9905 5.62598Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M22.1258 10.8771H20.627C20.3286 10.8771 20.0424 10.9956 19.8314 11.2066C19.6204 11.4176 19.5018 11.7038 19.5018 12.0023C19.5018 12.3007 19.6204 12.5869 19.8314 12.7979C20.0424 13.0089 20.3286 13.1274 20.627 13.1274H22.1258C22.4242 13.1274 22.7104 13.0089 22.9214 12.7979C23.1324 12.5869 23.2509 12.3007 23.2509 12.0023C23.2509 11.7038 23.1324 11.4176 22.9214 11.2066C22.7104 10.9956 22.4242 10.8771 22.1258 10.8771Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M11.9905 19.4995C11.6923 19.5 11.4064 19.6187 11.1956 19.8296C10.9848 20.0405 10.8663 20.3265 10.866 20.6247V22.1249C10.866 22.4231 10.9845 22.7091 11.1953 22.9199C11.4062 23.1308 11.6922 23.2492 11.9904 23.2492C12.2886 23.2492 12.5746 23.1308 12.7854 22.9199C12.9963 22.7091 13.1147 22.4231 13.1147 22.1249V20.6247C13.1145 20.3265 12.996 20.0406 12.7853 19.8296C12.5745 19.6187 12.2887 19.5 11.9905 19.4995Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M4.49743 12.0023C4.49718 11.704 4.37865 11.4181 4.16785 11.2072C3.95705 10.9962 3.67119 10.8775 3.37298 10.8771H1.87445C1.57603 10.8771 1.28984 10.9956 1.07883 11.2066C0.867812 11.4176 0.749266 11.7038 0.749266 12.0023C0.749266 12.3007 0.867812 12.5869 1.07883 12.7979C1.28984 13.0089 1.57603 13.1274 1.87445 13.1274H3.37299C3.6712 13.127 3.95706 13.0083 4.16785 12.7973C4.37865 12.5864 4.49718 12.3005 4.49743 12.0023Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M11.9905 4.50058C12.2887 4.50012 12.5745 4.38141 12.7853 4.17048C12.9961 3.95954 13.1147 3.67361 13.1149 3.3754V1.87521C13.1149 1.57701 12.9965 1.29103 12.7856 1.08017C12.5748 0.869313 12.2888 0.750854 11.9906 0.750854C11.6924 0.750854 11.4064 0.869313 11.1955 1.08017C10.9847 1.29103 10.8662 1.57701 10.8662 1.87521V3.3754C10.8664 3.67359 10.9849 3.95952 11.1957 4.17046C11.4065 4.3814 11.6923 4.50012 11.9905 4.50058Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M18.8857 6.6972L19.9465 5.63642C20.0512 5.53209 20.1343 5.40813 20.1911 5.27163C20.2479 5.13513 20.2772 4.98877 20.2774 4.84093C20.2775 4.69309 20.2485 4.54667 20.192 4.41006C20.1355 4.27344 20.0526 4.14932 19.948 4.04478C19.8435 3.94024 19.7194 3.85734 19.5828 3.80083C19.4462 3.74432 19.2997 3.71531 19.1519 3.71545C19.0041 3.7156 18.8577 3.7449 18.7212 3.80167C18.5847 3.85845 18.4607 3.94159 18.3564 4.04633L17.2956 5.10714C17.1909 5.21147 17.1077 5.33543 17.0509 5.47194C16.9942 5.60844 16.9649 5.7548 16.9647 5.90264C16.9646 6.05048 16.9936 6.19689 17.0501 6.33351C17.1066 6.47012 17.1895 6.59425 17.294 6.69878C17.3986 6.80332 17.5227 6.88621 17.6593 6.94272C17.7959 6.99923 17.9424 7.02824 18.0902 7.02809C18.238 7.02795 18.3844 6.99865 18.5209 6.94187C18.6574 6.88509 18.7814 6.80195 18.8857 6.6972Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M18.8855 17.3073C18.7812 17.2026 18.6572 17.1195 18.5207 17.0627C18.3843 17.006 18.2379 16.9767 18.0901 16.9766C17.9423 16.9764 17.7959 17.0055 17.6593 17.062C17.5227 17.1185 17.3986 17.2014 17.2941 17.3059C17.1895 17.4104 17.1067 17.5345 17.0501 17.6711C16.9936 17.8077 16.9646 17.9541 16.9648 18.1019C16.9649 18.2497 16.9942 18.3961 17.0509 18.5326C17.1077 18.6691 17.1908 18.793 17.2955 18.8974L18.3563 19.9582C18.4606 20.0629 18.5846 20.146 18.721 20.2027C18.8575 20.2595 19.0039 20.2887 19.1517 20.2889C19.2995 20.289 19.4459 20.26 19.5825 20.2035C19.7191 20.147 19.8432 20.0641 19.9477 19.9595C20.0523 19.855 20.1351 19.7309 20.1916 19.5943C20.2482 19.4577 20.2772 19.3113 20.277 19.1635C20.2769 19.0157 20.2476 18.8694 20.1909 18.7329C20.1341 18.5964 20.051 18.4724 19.9463 18.3681L18.8855 17.3073Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M5.09528 17.3072L4.0345 18.368C3.92972 18.4723 3.84655 18.5963 3.78974 18.7328C3.73294 18.8693 3.70362 19.0156 3.70346 19.1635C3.7033 19.3114 3.7323 19.4578 3.78881 19.5944C3.84532 19.7311 3.92822 19.8552 4.03277 19.9598C4.13732 20.0643 4.26147 20.1472 4.3981 20.2037C4.53473 20.2602 4.68117 20.2892 4.82902 20.2891C4.97688 20.2889 5.12325 20.2596 5.25976 20.2028C5.39627 20.146 5.52024 20.0628 5.62456 19.958L6.68536 18.8973C6.79007 18.7929 6.87318 18.6689 6.92993 18.5325C6.98667 18.396 7.01595 18.2496 7.01608 18.1018C7.01621 17.954 6.98719 17.8076 6.93068 17.671C6.87417 17.5344 6.79129 17.4103 6.68676 17.3058C6.58224 17.2012 6.45813 17.1183 6.32153 17.0618C6.18494 17.0053 6.03855 16.9763 5.89073 16.9764C5.74291 16.9766 5.59657 17.0058 5.46007 17.0626C5.32358 17.1193 5.19962 17.2024 5.09528 17.3072Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M5.09541 6.69715C5.19979 6.8017 5.32374 6.88466 5.4602 6.94128C5.59665 6.9979 5.74292 7.02708 5.89065 7.02714C6.03839 7.0272 6.18469 6.99815 6.32119 6.94164C6.45769 6.88514 6.58171 6.80228 6.68618 6.69782C6.79064 6.59336 6.87349 6.46933 6.93 6.33283C6.9865 6.19633 7.01556 6.05003 7.01549 5.9023C7.01543 5.75457 6.98625 5.60829 6.92963 5.47184C6.87301 5.33539 6.79005 5.21143 6.6855 5.10706L5.6247 4.04626C5.5204 3.94137 5.39643 3.8581 5.25989 3.80121C5.12335 3.74432 4.97692 3.71493 4.82901 3.71472C4.68109 3.71452 4.53458 3.7435 4.39789 3.80001C4.26119 3.85652 4.13699 3.93945 4.03239 4.04404C3.9278 4.14864 3.84487 4.27284 3.78836 4.40954C3.73185 4.54624 3.70287 4.69274 3.70308 4.84066C3.70329 4.98858 3.73268 5.135 3.78957 5.27154C3.84646 5.40808 3.92974 5.53205 4.03462 5.63635L5.09541 6.69715Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                            </svg>-->
+<!--                                                            <span class="ms-3 mb-0">Light</span>-->
+<!--                                                        </label>-->
+<!--                                                    </div>-->
+<!--                                                </li>-->
+<!--                                                <li data-setting="radio">-->
+<!--                                                    <div class="dropdown-item d-flex align-items-center">-->
+<!--                                                        <input class="btn-check" id="color-mode-dark"-->
+<!--                                                            name="theme_scheme" type="radio" value="dark">-->
+<!--                                                        <label class="d-block" for="color-mode-dark">-->
+<!--                                                            <svg class="icon-24" fill="none" height="24"-->
+<!--                                                                viewBox="0 0 24 24" width="24"-->
+<!--                                                                xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                                <path-->
+<!--                                                                    d="M19.0647 5.43757C19.3421 5.43757 19.567 5.21271 19.567 4.93534C19.567 4.65796 19.3421 4.43311 19.0647 4.43311C18.7874 4.43311 18.5625 4.65796 18.5625 4.93534C18.5625 5.21271 18.7874 5.43757 19.0647 5.43757Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M20.0692 9.48884C20.3466 9.48884 20.5714 9.26398 20.5714 8.98661C20.5714 8.70923 20.3466 8.48438 20.0692 8.48438C19.7918 8.48438 19.567 8.70923 19.567 8.98661C19.567 9.26398 19.7918 9.48884 20.0692 9.48884Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M12.0335 20.5714C15.6943 20.5714 18.9426 18.2053 20.1168 14.7338C20.1884 14.5225 20.1114 14.289 19.9284 14.161C19.746 14.034 19.5003 14.0418 19.3257 14.1821C18.2432 15.0546 16.9371 15.5156 15.5491 15.5156C12.2257 15.5156 9.48884 12.8122 9.48884 9.48886C9.48884 7.41079 10.5773 5.47137 12.3449 4.35752C12.5342 4.23832 12.6 4.00733 12.5377 3.79251C12.4759 3.57768 12.2571 3.42859 12.0335 3.42859C7.32556 3.42859 3.42857 7.29209 3.42857 12C3.42857 16.7079 7.32556 20.5714 12.0335 20.5714Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                                <path-->
+<!--                                                                    d="M13.0379 7.47998C13.8688 7.47998 14.5446 8.15585 14.5446 8.98668C14.5446 9.26428 14.7693 9.48891 15.0469 9.48891C15.3245 9.48891 15.5491 9.26428 15.5491 8.98668C15.5491 8.15585 16.225 7.47998 17.0558 7.47998C17.3334 7.47998 17.558 7.25535 17.558 6.97775C17.558 6.70015 17.3334 6.47552 17.0558 6.47552C16.225 6.47552 15.5491 5.76616 15.5491 4.93534C15.5491 4.65774 15.3245 4.43311 15.0469 4.43311C14.7693 4.43311 14.5446 4.65774 14.5446 4.93534C14.5446 5.76616 13.8688 6.47552 13.0379 6.47552C12.7603 6.47552 12.5357 6.70015 12.5357 6.97775C12.5357 7.25535 12.7603 7.47998 13.0379 7.47998Z"-->
+<!--                                                                    fill="currentColor"></path>-->
+<!--                                                            </svg>-->
+<!--                                                            <span class="ms-3 mb-0">Dark</span>-->
+<!--                                                        </label>-->
+<!--                                                    </div>-->
+<!--                                                </li>-->
+<!--                                                <li data-setting="radio">-->
+<!--                                                    <div class="dropdown-item d-flex align-items-center">-->
+<!--                                                        <input checked class="btn-check" id="color-mode-auto"-->
+<!--                                                            name="theme_scheme" type="radio" value="auto">-->
+<!--                                                        <label class="d-block" for="color-mode-auto">-->
+<!--                                                            <svg class="icon-24" fill="none" height="24"-->
+<!--                                                                viewBox="0 0 24 24" width="24"-->
+<!--                                                                xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                                <path clip-rule="evenodd"-->
+<!--                                                                    d="M1.34375 3.9463V15.2178C1.34375 16.119 2.08105 16.8563 2.98219 16.8563H8.65093V19.4594H6.15702C5.38853 19.4594 4.75981 19.9617 4.75981 20.5757V21.6921H19.2403V20.5757C19.2403 19.9617 18.6116 19.4594 17.8431 19.4594H15.3492V16.8563H21.0179C21.919 16.8563 22.6562 16.119 22.6562 15.2178V3.9463C22.6562 3.04516 21.9189 2.30786 21.0179 2.30786H2.98219C2.08105 2.30786 1.34375 3.04516 1.34375 3.9463ZM12.9034 9.9016C13.241 9.98792 13.5597 10.1216 13.852 10.2949L15.0393 9.4353L15.9893 10.3853L15.1297 11.5727C15.303 11.865 15.4366 12.1837 15.523 12.5212L16.97 12.7528V13.4089H13.9851C13.9766 12.3198 13.0912 11.4394 12 11.4394C10.9089 11.4394 10.0235 12.3198 10.015 13.4089H7.03006V12.7528L8.47712 12.5211C8.56345 12.1836 8.69703 11.8649 8.87037 11.5727L8.0107 10.3853L8.96078 9.4353L10.148 10.2949C10.4404 10.1215 10.759 9.98788 11.0966 9.9016L11.3282 8.45467H12.6718L12.9034 9.9016ZM16.1353 7.93758C15.6779 7.93758 15.3071 7.56681 15.3071 7.1094C15.3071 6.652 15.6779 6.28122 16.1353 6.28122C16.5926 6.28122 16.9634 6.652 16.9634 7.1094C16.9634 7.56681 16.5926 7.93758 16.1353 7.93758ZM2.71385 14.0964V3.90518C2.71385 3.78023 2.81612 3.67796 2.94107 3.67796H21.0589C21.1839 3.67796 21.2861 3.78023 21.2861 3.90518V14.0964C15.0954 14.0964 8.90462 14.0964 2.71385 14.0964Z"-->
+<!--                                                                    fill="currentColor" fill-rule="evenodd"></path>-->
+<!--                                                            </svg>-->
+<!--                                                            <span class="ms-3 mb-0">Auto</span>-->
+<!--                                                        </label>-->
+<!--                                                    </div>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </li>-->
+                                        <li class="nav-item iq-full-screen d-none  d-xl-block border-end"
+                                            id="fullscreen-item">
+                                            <a class="nav-link pe-3" data-bs-toggle="dropdown" href="#"
+                                                id="btnFullscreen">
+                                                <span class="btn-inner">
+                                                    <svg class="normal-screen icon-24" fill="none" height="24"
+                                                        viewBox="0 0 24 24" width="24"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M18.5528 5.99656L13.8595 10.8961" stroke="currentColor"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="1.5"></path>
+                                                        <path d="M14.8016 5.97618L18.5524 5.99629L18.5176 9.96906"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="1.5"></path>
+                                                        <path d="M5.8574 18.896L10.5507 13.9964" stroke="currentColor"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="1.5"></path>
+                                                        <path d="M9.60852 18.9164L5.85775 18.8963L5.89258 14.9235"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="1.5"></path>
+                                                    </svg>
+                                                    <svg class="full-normal-screen icon-32 d-none" fill="none"
+                                                        height="24" viewBox="0 0 24 24" width="24"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13.7542 10.1932L18.1867 5.79319" stroke="white"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="1.5"></path>
+                                                        <path d="M17.2976 10.212L13.7547 10.1934L13.7871 6.62518"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="1.5"></path>
+                                                        <path d="M10.4224 13.5726L5.82149 18.1398" stroke="white"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="1.5"></path>
+                                                        <path d="M6.74391 13.5535L10.4209 13.5723L10.3867 17.2755"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="1.5"></path>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+
+                                            <a class="py-0 nav-link d-flex align-items-center ps-3" href="#"
+                                                id="profile-setting" role="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                {% if profiles %}
+                                                {% for x in profiles %}
+                                                <img src="{{ x.image.url }}"
+                                                    alt="../../static/assets/images/avatars/avtar_1.png"
+                                                    class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded"
+                                                    loading="lazy">
+                                                <div class="caption ms-3 d-none d-md-block ">
+                                                    <h6 class="mb-0 caption-title">{{ x.name }}</h6>
+                                                    <p class="mb-0 caption-sub-title">Founder</p>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                {% if image %}
+                                                <img src="../../static/assets/images/avatars/avtar_1.png" alt="Profile"
+                                                    class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded"
+                                                    loading="lazy">
+                                                {% else %}
+                                                <img src="../../static/assets/images/avatars/avtar_1.png" alt="Profile"
+                                                    class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded"
+                                                    loading="lazy">
+                                                {% endif %}
+                                                <div class="caption ms-3 d-none d-md-block ">
+                                                    <h6 class="mb-0 caption-title"></h6>
+                                                    <p class="mb-0 caption-sub-title">Founder</p>
+                                                </div>
+                                                {% endif %}
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="profile-setting">
+                                                {% if profiles %}
+                                                <li><a class="dropdown-item" href="{% url 'userprofile' %}">Profile</a></li>
+                                                {% else %}
+                                                <li><a class="dropdown-item" href="{% url 'create_profile' %}">Create Profile</a></li>
+                                                {% endif %}
+                                                <!-- <li><a class="dropdown-item"
+                                                        href="user-privacy-setting.html">Privacy Setting</a></li>
+                                                <li> -->
+                                                    <hr class="dropdown-divider">
+                                                </li>
+        
+                                                <li><a class="dropdown-item" href="{% url 'login_adminpannel' %}">Logout</a>
+                                                </li>
+                                            </ul>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </nav>
+                </div>
+                {% block content %}
+                {% endblock %}
+        
+                <!-- Footer Section Start -->
+                <footer class="footer">
+                    <div class="footer-body">
+                        <ul class="left-panel list-inline mb-0 p-0">
+                            <!-- <li class="list-inline-item"><a href="javascript:void(0);">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0);">Terms of Use</a></li> -->
+                            <li>Copyright © 2023</li>
+                        </ul>
+                        <div class="right-panel">
+                            ©
+                            <script>2022</script>
+                            <span>Travelling Guide</span>, Made with
+                            <span class="text-gray">
+                                <svg class="icon-16" fill="none" viewBox="0 0 24 24" width="15"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd"
+                                        d="M15.85 2.50065C16.481 2.50065 17.111 2.58965 17.71 2.79065C21.401 3.99065 22.731 8.04065 21.62 11.5806C20.99 13.3896 19.96 15.0406 18.611 16.3896C16.68 18.2596 14.561 19.9196 12.28 21.3496L12.03 21.5006L11.77 21.3396C9.48102 19.9196 7.35002 18.2596 5.40102 16.3796C4.06102 15.0306 3.03002 13.3896 2.39002 11.5806C1.26002 8.04065 2.59002 3.99065 6.32102 2.76965C6.61102 2.66965 6.91002 2.59965 7.21002 2.56065H7.33002C7.61102 2.51965 7.89002 2.50065 8.17002 2.50065H8.28002C8.91002 2.51965 9.52002 2.62965 10.111 2.83065H10.17C10.21 2.84965 10.24 2.87065 10.26 2.88965C10.481 2.96065 10.69 3.04065 10.89 3.15065L11.27 3.32065C11.3618 3.36962 11.4649 3.44445 11.554 3.50912C11.6104 3.55009 11.6612 3.58699 11.7 3.61065C11.7163 3.62028 11.7329 3.62996 11.7496 3.63972C11.8354 3.68977 11.9247 3.74191 12 3.79965C13.111 2.95065 14.46 2.49065 15.85 2.50065ZM18.51 9.70065C18.92 9.68965 19.27 9.36065 19.3 8.93965V8.82065C19.33 7.41965 18.481 6.15065 17.19 5.66065C16.78 5.51965 16.33 5.74065 16.18 6.16065C16.04 6.58065 16.26 7.04065 16.68 7.18965C17.321 7.42965 17.75 8.06065 17.75 8.75965V8.79065C17.731 9.01965 17.8 9.24065 17.94 9.41065C18.08 9.58065 18.29 9.67965 18.51 9.70065Z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                </svg>
+                            </span> by <a target="_blank">Ramanasoft</a>.
+                        </div>
+                    </div>
+                </footer>
+                <!-- footer section end -->
+            </main>
+            <script src="../../static/assets/js/core/libs.min.js"></script>
+            <!-- Plugin Scripts -->
+            <!-- Tour plugin Start -->
+            <!--    <script src="../../static/assets/vendor/sheperd/dist/js/sheperd.min.js"></script>-->
+            <script src="../../static/assets/js/plugins/tour.js" defer></script>
+        
+        
+            <!-- Flatpickr Script -->
+            <script src="../../static/assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
+            <script src="../../static/assets/js/plugins/flatpickr.js" defer></script>
+        
+        
+        
+            <!-- Select2 Script -->
+            <script src="../../static/assets/js/plugins/select2.js" defer></script>
+        
+        
+        
+        
+            <!-- Slider-tab Script -->
+            <script src="../../static/assets/js/plugins/slider-tabs.js"></script>
+        
+        
+        
+        
+        
+            <!-- SwiperSlider Script -->
+            <script src="../../static/assets/vendor/swiperSlider/swiper-bundle.min.js"></script>
+            <script src="../../static/assets/js/plugins/swiper-slider.js" defer></script>
+            <!-- Lodash Utility -->
+            <script src="../../static/assets/vendor/lodash/lodash.min.js"></script>
+            <!-- Utilities Functions -->
+            <script src="../../static/assets/js/iqonic-script/utility.min.js"></script>
+            <!-- Settings Script -->
+            <script src="../../static/assets/js/iqonic-script/setting.min.js"></script>
+            <!-- Settings Init Script -->
+            <script src="../../static/assets/js/setting-init.js"></script>
+            <!-- External Library Bundle Script -->
+            <script src="../../static/assets/js/core/external.min.js"></script>
+            <!-- Widgetchart Script -->
+            <script src="../../static/assets/js/charts/widgetchartsf700.js?v=1.0.1" defer></script>
+            <!-- Dashboard Script -->
+            <script src="../../static/assets/js/charts/dashboardf700.js?v=1.0.1" defer></script>
+            <!-- qompacui Script -->
+            <script src="../../static/assets/js/qompac-uif700.js?v=1.0.1" defer></script>
+            <script src="../../static/assets/js/sidebarf700.js?v=1.0.1" defer></script>
+            <script>
+                $(document).ready(function () {
+                    $("#id_countryname").change(function () {
+                        var country_id = $(this).val();
+        
+                        // Make an AJAX request to fetch states for the selected country
+                        $.ajax({
+                            url: "/ajax/load_states/",
+                            data: { country_id: country_id },
+                            dataType: "json",
+                            success: function (data) {
+                                var stateSelect = $("#id_statename");
+                                stateSelect.empty();
+                                stateSelect.append('<option value="">Select State Name</option>');
+        
+                                $.each(data, function (index, state) {
+                                    stateSelect.append('<option value="' + state.id + '">' + state.state_name + '</option>');
+                                });
+        
+                                // Reset tour places checkboxes and hotel dropdown
+                                $("#tour-places-checkboxes").empty();
+                                $("#hotelDropdown").empty();
+                            },
+                        });
+                    });
+        
+                    $("#id_statename").change(function () {
+                        var country_id = $("#id_countryname").val();
+                        var state_id = $(this).val();
+        
+                        // Make an AJAX request to fetch cities for the selected country and state
+                        $.ajax({
+                            url: "/ajax/load_cities/",
+                            data: { country_id: country_id, state_id: state_id },
+                            dataType: "json",
+                            success: function (data) {
+                                var citySelect = $("#id_city_name");
+                                citySelect.empty();
+                                citySelect.append('<option value="">Select City Name</option>');
+        
+                                $.each(data, function (index, city) {
+                                    citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                                });
+        
+                                // Reset tour places checkboxes
+                                $("#tour-places-checkboxes").empty();
+                            },
+                        });
+                    });
+        
+                    $("#id_city_name").change(function () {
+                        var country_id = $("#id_countryname").val();
+                        var state_id = $("#id_statename").val();
+                        var city_id = $(this).val();
+        
+                        // Make an AJAX request to fetch tour places for the selected country, state, and city
+                        $.ajax({
+                            url: "/ajax/load_tourplaces/",
+                            data: { country_id: country_id, state_id: state_id, city_id: city_id },
+                            dataType: "json",
+                            success: function (data) {
+                                var tourPlacesContainer = $("#tour-places-checkboxes");
+                                tourPlacesContainer.empty();
+        
+                                $.each(data, function (index, tourPlace) {
+                                    tourPlacesContainer.append(
+                                        '<div class="form-check">' +
+                                        '<input class="form-check-input" type="checkbox" value="' + tourPlace.id + '" name="languages">' +
+                                        '<label class="form-check-label" for="tour_place' + tourPlace.id + '">' + tourPlace.tour_name + '</label>' +
+                                        '</div>'
+                                    );
+                                });
+        
+                                // Reset hotel dropdown
+                                $("#hotelDropdown").empty();
+                            },
+                        });
+        
+                        // Make an AJAX request to fetch hotels for the selected country, state, and city
+                        $.ajax({
+                            url: "/ajax/load_hotels/",
+                            data: { country_id: country_id, state_id: state_id, city_id: city_id },
+                            dataType: "json",
+                            success: function (hotelData) {
+                                var hotelDropdown = $("#hotelDropdown");
+                                hotelDropdown.empty();
+                                hotelDropdown.append('<option value="">Select Hotel Name</option>');
+        
+                                $.each(hotelData, function (index, add_hotel) {
+                                    hotelDropdown.append('<option value="' + add_hotel.id + '">' + add_hotel.hotel_name + '</option>');
+                                });
+                            },
+                        });
+                    });
+                });
+            </script>
+        
+            <!-- <script>
+                $(document).ready(function () {
+                    $("#id_countryname").change(function () {
+                        var country_id = $(this).val();
+        
+                        // Make an AJAX request to fetch states for the selected country
+                        $.ajax({
+                            url: "/ajax/load_states/",
+                            data: { country_id: country_id },
+                            dataType: "json",
+                            success: function (data) {
+                                var stateSelect = $("#id_statename");
+                                stateSelect.empty();
+                                stateSelect.append('<option value="">Select State Name</option>');
+        
+                                $.each(data, function (index, state) {
+                                    stateSelect.append('<option value="' + state.id + '">' + state.state_name + '</option>');
+                                });
+        
+                                // Reset tour places checkboxes and hotel dropdown
+                                $("#tour-places-checkboxes").empty();
+                                $("#hotelDropdown").empty();
+                            },
+                        });
+                    });
+        
+                    $("#id_statename").change(function () {
+                        var country_id = $("#id_countryname").val();
+                        var state_id = $(this).val();
+                        $.ajax({
+                            url: "/ajax/load_cities/",
+                            data: { country_id: country_id, state_id: state_id },
+                            dataType: "json",
+                            success: function (data) {
+                                var citySelect = $("#id_city_name");
+                                citySelect.empty();
+                                citySelect.append('<option value="">Select City Name</option>');
+        
+                                $.each(data, function (index, city) {
+                                    citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                                });
+        
+                                // Reset tour places checkboxes
+                                $("#tour-places-checkboxes").empty();
+                            },
+                        });
+                    });
+        
+                    $("#id_city_name").change(function () {
+                        var country_id = $("#id_countryname").val();
+                        var city_id = $(this).val();
+        
+                        // Make an AJAX request to fetch tour places for the selected country and city
+                        $.ajax({
+                            url: "/ajax/load_tourplaces/",
+                            data: { country_id: country_id,state_id: state_id, city_id: city_id },
+                            dataType: "json",
+                            success: function (data) {
+                                var tourPlacesContainer = $("#tour-places-checkboxes");
+                                tourPlacesContainer.empty();
+        
+                                $.each(data, function (index, tourPlace) {
+                                    tourPlacesContainer.append(
+                                        '<div class="form-check">' +
+                                        '<input class="form-check-input" type="checkbox" value="' + tourPlace.id + '" name="languages">' +
+                                        '<label class="form-check-label" for="tour_place' + tourPlace.id + '">' + tourPlace.tour_name + '</label>' +
+                                        '</div>'
+                                    );
+                                });
+        
+        
+                                // Reset hotel dropdown
+                                $("#hotelDropdown").empty();
+                            },
+                        });
+        
+                        // Make an AJAX request to fetch hotels for the selected country, state, and city
+                        $.ajax({
+                            url: "/ajax/load_hotels/",
+                            data: { country_id: country_id,state_id: state_id, city_id: city_id },
+                            dataType: "json",
+                            success: function (hotelData) {
+                                var hotelDropdown = $("#hotelDropdown");
+                                hotelDropdown.empty();
+                                hotelDropdown.append('<option value="">Select Hotel Name</option>');
+        
+                                $.each(hotelData, function (index, add_hotel) {
+                                    hotelDropdown.append('<option value="' + add_hotel.id + '">' + add_hotel.hotel_name + '</option>');
+                                });
+                            },
+                        });
+                    });
+                });
+            </script> -->
+        
+        
+        
+            <!-- <script>
+            $(document).ready(function () {
+              $("#id_countryname").change(function () {
+                var country_id = $(this).val();
+                
+                // Make an AJAX request to fetch cities for the selected country
+                $.ajax({
+                  url: "/ajax/load_cities/",
+                  data: { country_id: country_id },
+                  dataType: "json",
+                  success: function (data) {
+                    var citySelect = $("#id_city_name");
+                    citySelect.empty();
+                    citySelect.append('<option value="">Select City Name</option>');
+          
+                    $.each(data, function (index, city) {
+                      citySelect.append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                    });
+          
+                    // Reset tour places checkboxes and hotel dropdown
+                    $("#tour-places-checkboxes").empty();
+                    $("#hotelDropdown").empty();
+                  },
+                });
+              });
+          
+              $("#id_city_name").change(function () {
+                var country_id = $("#id_countryname").val();
+                var city_id = $(this).val();
+          
+                // Make an AJAX request to fetch tour places for the selected country and city
+                $.ajax({
+                  url: "/ajax/load_tourplaces/",
+                  data: { country_id: country_id, city_id: city_id },
+                  dataType: "json",
+                  success: function (data) {
+                    var tourPlacesContainer = $("#tour-places-checkboxes");
+                    tourPlacesContainer.empty();
+          
+                    $.each(data, function (index, tourPlace) {
+                      tourPlacesContainer.append(
+                        '<div class="form-check">' +
+                          '<input class="form-check-input" type="checkbox" value="' + tourPlace.id + '" name="languages">' +
+                          '<label class="form-check-label" for="tour_place' + tourPlace.id + '">' + tourPlace.tour_name + '</label>' +
+                        '</div>'
+                      );
+                    });
+          
+                    // Reset hotel dropdown
+                    $("#hotelDropdown").empty();
+          
+                    // Make an AJAX request to fetch hotels for the selected country and city
+                    $.ajax({
+                      url: "/ajax/load_hotels/",
+                      data: { country_id: country_id, city_id: city_id },
+                      dataType: "json",
+                      success: function (hotelData) {
+                        var hotelDropdown = $("#hotelDropdown");
+                        hotelDropdown.empty();
+                        hotelDropdown.append('<option value="">Select Hotel Name</option>');
+          
+                        $.each(hotelData, function (index, add_hotel) {
+                          hotelDropdown.append('<option value="' + add_hotel.id + '">' + add_hotel.hotel_name + '</option>');
+                        });
+                      },
+                    });
+                  },
+                });
+              });
+            });
+          </script> -->
+        
+            <script>
+                // Add this script at the end of your HTML file or in a separate JS file
+        
+                // Function to load Name of Vehicle options based on selected Type of Vehicle
+                function loadNamesOfVehicle() {
+                    var typeOfVehicleId = document.getElementById('id_type_of_vehicle').value;
+        
+                    // Clear the current options in the Name of Vehicle dropdown
+                    var nameOfVehicleDropdown = document.getElementById('id_name_of_vehicle');
+                    nameOfVehicleDropdown.innerHTML = '<option value="">Select Vehicle Name</option>';
+        
+                    // If a Type of Vehicle is selected, make an Ajax request to get corresponding names
+                    if (typeOfVehicleId) {
+                        var url = '/ajax/load_names_of_vehicle/?type_of_vehicle_id=' + typeOfVehicleId;
+        
+                        fetch(url)
+                            .then(response => response.json())
+                            .then(data => {
+                                // Populate the Name of Vehicle dropdown with the fetched options
+                                data.forEach(option => {
+                                    var newOption = document.createElement('option');
+                                    newOption.value = option.id;
+                                    newOption.text = option.name_of_vehicle;
+                                    nameOfVehicleDropdown.add(newOption);
+                                });
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                }
+        
+                // Attach the loadNamesOfVehicle function to the change event of Type of Vehicle dropdown
+                document.getElementById('id_type_of_vehicle').addEventListener('change', loadNamesOfVehicle);
+        
+                // Initial load of Name of Vehicle options when the page loads
+                loadNamesOfVehicle();
+            </script>
+        
+        
+            <script>
+                function validateImage(input) {
+                    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                    const maxFileSize = 800 * 533; // Max file size in bytes (800x533 pixels)
+                    const maxImageWidth = 800;
+                    const maxImageHeight = 533;
+        
+                    const file = input.files[0];
+                    const errorElement = document.getElementById('image-error');
+        
+                    // Reset previous error message
+                    errorElement.textContent = '';
+        
+                    // Check if the file has a valid extension
+                    if (!allowedExtensions.exec(file.name)) {
+                        errorElement.textContent = 'Invalid file type. Please upload a JPEG, JPG, or PNG file.';
+                        input.value = '';
+                        return;
+                    }
+        
+                    // Check if the file size is within the limit
+                    if (file.size > maxFileSize) {
+                        errorElement.textContent = 'File size exceeds the limit. Please upload an image with dimensions not exceeding 800x533 pixels.';
+                        input.value = '';
+                        return;
+                    }
+        
+                    // Check image dimensions
+                    const img = new Image();
+                    img.onload = function () {
+                        if (img.width > maxImageWidth || img.height > maxImageHeight) {
+                            errorElement.textContent = 'Image dimensions exceed the limit. Please upload an image with dimensions not exceeding 800x533 pixels.';
+                            input.value = '';
+                        }
+                    };
+        
+                    // Set the image source to the file URL
+                    img.src = URL.createObjectURL(file);
+                }
+            </script>
+        
+        
+        
+            <script>
+                function validateCountryDescription(textarea) {
+                    const errorMessageElement = document.getElementById('countryDescription-error');
+                    const descriptionValue = textarea.value; // Remove leading and trailing spaces
+                    // Reset previous error message
+                    errorMessageElement.textContent = '';
+                    // Check if the first character is an alphabet
+                    if (!/^[A-Za-z]/.test(descriptionValue) || /^\s/.test(descriptionValue)) {
+                        errorMessageElement.textContent = 'The description must start with an alphabet and cannot start with or contain only spaces.';
+                        textarea.setCustomValidity('Description must start with an alphabet and cannot start with or contain only spaces');
+                    } else {
+                        textarea.setCustomValidity('');
+                    }
+                    // Check length constraint
+                    if (descriptionValue.length > 240) {
+                        errorMessageElement.textContent = 'Description exceeds the maximum length of 240 characters.';
+                        textarea.setCustomValidity('Exceeds maximum length');
+                    }
+                }
+            </script>
+        
+            <script>
+                function validateCheckbox() {
+                    // Get all checkboxes with the name 'languages'
+                    var checkboxes = document.querySelectorAll('input[name="languages"]');
+                    var isChecked = false;
+        
+                    // Check if at least one checkbox is checked
+                    checkboxes.forEach(function (checkbox) {
+                        if (checkbox.checked) {
+                            isChecked = true;
+                        }
+                    });
+        
+                    // Display error message if no checkbox is checked
+                    var errorElement = document.getElementById('languagesError');
+                    if (!isChecked) {
+                        errorElement.style.display = 'block';
+                        return false; // prevent form submission
+                    } else {
+                        errorElement.style.display = 'none';
+                        return true; // allow form submission
+                    }
+                }
+            </script>
+            <script>
+                function setDeleteUrl(url) {
+                    // Set the href attribute of the Delete button in the confirmation modal
+                    document.getElementById('confirmDeleteModal').querySelector('.btn-danger').setAttribute('data-delete-url', url);
+                }
+        
+                function confirmDelete() {
+                    // Get the delete URL from the attribute
+                    var deleteUrl = document.getElementById('confirmDeleteModal').querySelector('.btn-danger').getAttribute('data-delete-url');
+        
+                    // Perform the actual delete action
+                    window.location.href = deleteUrl;
+                }
+            </script>
+            <script src="static/assets/js/core/libs.min.js"></script>
+        </body>
+        <!-- Mirrored from templates.iqonic.design/product/qompac-ui/html/dist/dashboard/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 06:54:14 GMT -->
+        
+        </html>                                              

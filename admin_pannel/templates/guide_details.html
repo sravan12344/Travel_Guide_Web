@@ -1,0 +1,489 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <div>
+                            <br>
+                            <h4 class="mb-sm-0">Guide Details</h4>
+                            <br>
+                        </div>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a href="{% url 'addguide' %}">Add Guide</a> / 
+                                <a style="color: #808080;">Guide Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="#" class="row g-3 needs-validation" enctype="multipart/form-data" method="post"
+                                  novalidate onsubmit="return validateCheckbox()">
+                                {% csrf_token %}
+                                <div class="live-preview">
+                                    <div class="row">
+                                        <div class="col-md col-lg col-md-9">
+                                            <div class="form-group">
+                                                <label><b>Guide Name </b><b style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength=100
+                                                       minlength=3
+                                                       name="guidename" pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter Guide Name" required>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                            {% if error_message_guide_name %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_guide_name }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md col-lg col-md-9">
+                                            <div class="form-group">
+                                                <label><b>Guide Age </b><b style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength="3"
+                                                       name="age"
+                                                       pattern="\d{1,3}" placeholder="Enter Guide Age" required>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label class="form-label"><b>Guide Contact No</b><b style="color: red;">*</b>
+                                                </label>
+                                                <input class="form-control" maxlength="10"
+                                                       name="number"
+                                                       pattern="[6-9]\d{9}" placeholder="Enter Guide Contact No." required>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                            {% if error_message_contact_number %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_contact_number }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label><b>Guide Aadhar Number</b><b style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength=12
+                                                       name="aa_number"
+                                                       pattern="\d*" placeholder="Enter Guide aadhar No." required>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                            {% if error_message_aadhar_number %}
+                                            <div role="alert" style="color: #c03221;">
+                                                {{ error_message_aadhar_number }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label><b>Guide Aadhar Image </b> <b style="color: red;">*</b> </label>
+                                                <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03" aria-label="Upload" class="form-control"
+                                                       name="aadhaar_image"
+                                                       onchange="validateImage(this)"
+                                                       required type="file">
+                                                <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                                    upload a JPEG, JPG, or PNG file.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label><b>Guide Experience</b><b style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength="3"
+                                                       minlength="1"
+                                                       name="expe" pattern="\d*" placeholder="Enter Guide Experience" required type="text">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label class="form-label"><b>Guide Temparary Address</b><b
+                                                        style="color: red;">*</b> </label>
+                                                <textarea class="form-control" id="countryDescription"
+                                                          maxlength="1000"
+                                                          minlength=10
+                                                          name="tem_address"
+                                                          oninput="validateCountryDescription(this)" placeholder="Enter Guide Temparary Address"
+                                                          required></textarea>
+                                                <div class="invalid-feedback" id="countryDescription-error"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label><b>Guide Permanent Address</b><b
+                                                        style="color: red;">*</b></label>
+                                                <textarea class="form-control" minlength=10
+                                                          name="per_address"
+                                                          oninput="validateCountryDescription(this)"
+                                                          pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter Guide Permanent Address"
+                                                          required></textarea>
+                                                <div class="invalid-feedback" id="countryDescription-error"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label><b>Languages Known</b><b
+                                                        style="color: red;">*</b></label><br><br>
+                                                <span style="white-space: nowrap;">
+                                                    <input class="form-check-input" id="flexCheckDefault1"
+                                                           name="languages" type="checkbox" value="Telugu">
+                                                    <label class="form-check-label"
+                                                           for="flexCheckDefault1">Telugu</label>
+                                                </span>
+                                                <span style="white-space: nowrap;">
+                                                    <input class="form-check-input" id="flexCheckDefault2"
+                                                           name="languages" type="checkbox" value="Hindi">
+                                                    <label class="form-check-label"
+                                                           for="flexCheckDefault2">Hindi</label>
+                                                </span>
+                                                <span style="white-space: nowrap;">
+                                                    <input class="form-check-input" id="flexCheckDefault3"
+                                                           name="languages" type="checkbox" value="English">
+                                                    <label class="form-check-label"
+                                                           for="flexCheckDefault3">English</label>
+                                                </span>
+                                                <span style="white-space: nowrap;">
+                                                    <input class="form-check-input" id="flexCheckDefault3"
+                                                           name="languages" type="checkbox" value="Tamil">
+                                                    <label class="form-check-label"
+                                                           for="flexCheckDefault3">Tamil</label>
+                                                </span>
+                                                <span style="white-space: nowrap;">
+                                                    <input class="form-check-input" id="flexCheckDefault3"
+                                                           name="languages" type="checkbox" value="Kannada">
+                                                    <label class="form-check-label"
+                                                           for="flexCheckDefault3">Kannada</label>
+                                                </span>
+                                                <span style="white-space: nowrap;">
+                                                    <input class="form-check-input" id="flexCheckDefault3"
+                                                           name="languages" type="checkbox" value="Malayalam">
+                                                    <label class="form-check-label"
+                                                           for="flexCheckDefault3">Malayalam</label>
+                                                </span>
+                                                <!-- Repeat the above structure for other checkboxes -->
+                                                <div class="invalid-feedback" id="languagesError">Select at least one
+                                                    language
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md col-lg col-sm">
+                                            <div class="form-group">
+                                                <label><b>Guide Gender</b><b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        name="gender" required>
+                                                    <option value="">Select Gender</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                    <option>Others</option>
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <button class="btn" data-bs-toggle="modal"
+                                                    onclick="validate()"
+                                                    style="background-color: #0a42aa; color: white;" type="submit">Submit
+                                            </button>&nbsp;
+                                            <button class="btn" data-bs-dismiss="modal"
+                                                    style="background-color:#626875; color:white;"
+                                                    type="reset">Reset
+                                            </button>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4>Guide Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table " data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Aadhar Image</th>
+                                        <th>Guide Name</th>
+                                        <th>Guide Age</th>
+                                        <th>Gender</th>
+                                        <th>Languages Known</th>
+                                        <th>Guide Contact No</th>
+                                        <th>Aadhar No.</th>
+                                        <th>Temporary Address</th>
+                                        <th>Permanent Address</th>
+                                        <th>Guide Experience</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for e in display %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td><img class="rounded-circle" height="50px;" src="{{e.guide_aadhar.url}}"
+                                                 width="50px;"></td>
+                                        <td>{{e.guide_name}}</td>
+                                        <td>{{e.guide_age}}</td>
+                                        <td>{{e.gender}}</td>
+                                        <td>{{ e.guide_languages_known }}</td>
+                                        <td>{{e.guide_contact_number}}</td>
+                                        <td>{{e.guide_aadhar_number}}</td>
+                                        <td>{{e.guide_tem_add}}</td>
+                                        <td>{{e.guide_permanent_add}}</td>
+                                        <td>{{e.guide_experience}}</td>
+                                        <td>{{e.guide_created_at}}</td>
+                                        <td class="status">
+                                            {% if e.guide_status %}
+                                            <a href="{% url 'deactive_guidedetails' id=e.id %}"><b style="color:blue;">
+                                                <span>Active</span></b></a>
+                                            {% else %}
+                                            <a href="{% url 'active_guidedetails' id=e.id %}"><b style="color:red;">
+                                                <span>Inactive</span></b></a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;"
+                                                    type="button"><i class="bi-pencil-fill"></i></button>
+                                            <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                    data-bs-toggle="modal" data-bs-whatever="Mary"
+                                                    style=" background-color:#d11d26; color:white;" type="button"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for i in display%}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Guide Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/updateguidedetails/{{i.id}}" class="row g-3 needs-validation"
+                      enctype="multipart/form-data"
+                      method="POST" novalidate onsubmit="return validateCheckbox()">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div>
+                            <div class="row">
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Guide Name </b><b style="color: red;">*</b></label>
+                                        <input class="form-control" maxlength=100
+                                               minlength=3 name="guidename" pattern="[A-Za-z][A-Za-z\s]*"
+                                               placeholder="Enter Guide Name"
+                                               required value="{{i.guide_name}}">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Guide Age </b><b style="color: red;">*</b></label>
+                                        <input class="form-control" name="age"
+                                               pattern="\d{1,3}"
+                                               placeholder="Enter Guide Age" required value="{{i.guide_age}}">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label class="form-label"><b>Guide Contact No</b><b
+                                                style="color: red;">*</b> </label>
+                                        <input class="form-control" name="number"
+                                               pattern="[6-9]\d{9}"
+                                               placeholder="Enter Guide Contact No." required value="{{i.guide_contact_number}}">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Guide Aadhar Number</b><b style="color: red;">*</b></label>
+                                        <input class="form-control" name="aa_number"
+                                               pattern="\d*"
+                                               placeholder="Enter Guide aadhar No." required value="{{i.guide_aadhar_number}}">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label class="form-label"><b>Guide Aadhar image (PNG/JPG /
+                                            Size:-800X533)</b><b style="color: red;">*</b> </label>
+                                        <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                               aria-label="Upload" class="form-control"
+                                               name="aadhaar_image" onchange="validateImage(this)"
+                                               required type="file" value="{{i.guide_aadhar}}">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Guide Experience</b><b style="color: red;">*</b></label>
+                                        <input class="form-control" maxlength="3"
+                                               minlength="1"
+                                               name="expe" pattern="\d*" placeholder="Enter Guide Experience" required
+                                               value="{{i.guide_experience}}">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label class="form-label"><b>Guide Temparary Address</b><b
+                                                style="color: red;">*</b> </label>
+                                        <textarea class="form-control" id="countryDescription" maxlength="1000"
+                                                  minlength=10 name="tem_address"
+                                                  oninput="validateCountryDescription(this)" placeholder="Enter Guide Temparary Address">{{i.guide_tem_add}}</textarea>
+                                        <div class="invalid-feedback" id="countryDescription-error"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Guide Permanent Address</b><b style="color: red;">*</b></label>
+                                        <textarea class="form-control" id="countryDescription" maxlength="1000"
+                                                  minlength=10 name="per_address"
+                                                  oninput="validateCountryDescription(this)" placeholder="Enter Guide Permanent Address" required>{{i.guide_permanent_add}}</textarea>
+                                        <div class="invalid-feedback" id="countryDescription-error"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Languages Known</b><b style="color: red;">*</b></label>
+                                        <br><br>
+                                        <span style="white-space: nowrap;">
+                                                <input class="form-check-input" id="flexCheckDefault1" name="languages"
+                                                       type="checkbox" value="Telugu">
+                                                <label class="form-check-label" for="flexCheckDefault1">Telugu</label>
+                                            </span>
+                                        <span style="white-space: nowrap;">
+                                                <input class="form-check-input" id="flexCheckDefault2" name="languages"
+                                                       type="checkbox" value="Hindi">
+                                                <label class="form-check-label" for="flexCheckDefault2">Hindi</label>
+                                            </span>
+                                        <span style="white-space: nowrap;">
+                                                <input class="form-check-input" id="flexCheckDefault3" name="languages"
+                                                       type="checkbox" value="English">
+                                                <label class="form-check-label" for="flexCheckDefault3">English</label>
+                                            </span>
+                                        <span style="white-space: nowrap;">
+                                                <input class="form-check-input" id="flexCheckDefault4" name="languages"
+                                                       type="checkbox" value="Tamil">
+                                                <label class="form-check-label" for="flexCheckDefault4">Tamil</label>
+                                            </span>
+                                        <span style="white-space: nowrap;">
+                                                <input class="form-check-input" id="flexCheckDefault5" name="languages"
+                                                       type="checkbox" value="Kannada">
+                                                <label class="form-check-label" for="flexCheckDefault5">Kannada</label>
+                                            </span>
+                                        <span style="white-space: nowrap;">
+                                                <input class="form-check-input" id="flexCheckDefault6" name="languages"
+                                                       type="checkbox" value="Malayalam">
+                                                <label class="form-check-label"
+                                                       for="flexCheckDefault6">Malayalam</label>
+                                            </span>
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md col-lg col-sm">
+                                    <div class="form-group">
+                                        <label><b>Guide Gender</b><b style="color: red;">*</b></label>
+                                        <select aria-label="Default select example" class="form-select mb-3"
+                                                name="gender" required>
+                                            <option value="">Select Gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Others</option>
+                                        </select>
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <button class="btn" href="" style="background-color: #0a42aa; color: white;">Update</button>
+                        <button class="btn" href="" style="background-color:#626875; color:white;" type="reset">Reset
+                        </button>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for k in display%}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Delete Guide details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete <b> "{{k.guide_name}}"</b></h6>
+                <br>
+                <div align="center">
+                    <a class="btn" href="{% url 'deleteguidedetails' pk=k.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete</a>
+                    <a class="btn" data-bs-dismiss="modal"
+                       style="background-color:#626875; color:white;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

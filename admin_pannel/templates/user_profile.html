@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <main class="main-content">
+        <div class="position-relative  iq-banner ">
+            <div class="iq-navbar-header " style="height: 190 px;">
+
+                <div class="iq-header-img">
+                    <img src="../../static/assets/images/dashboard/top-header.png" alt="header"
+                        class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <br><br><br><br><br><br><br><br><br><br>
+        {% for x in profiles %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="d-flex flex-wrap align-items-center">
+                                <div class="profile-img position-relative me-3 mb-3 mb-lg-0 profile-logo profile-logo1">
+                                    <img src="{{ x.image.url }}" alt="User-Profile"
+                                        class="theme-color-default-img img-fluid rounded-pill avatar-100"
+                                        loading="lazy">
+
+                                    <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                        data-bs-toggle="modal" data-bs-whatever="Mary"
+                                        style="background-color: #0a42aa; color: white; border-radius: 200px;"
+                                        type="button"><i class="bi-pencil-fill"></i></button>
+
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center mb-3 mb-sm-0">
+                                    <h4 class="me-2 h4">{{ x.name }}</h4>
+                                    <span> - Founder</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <h4 class="card-title">About</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+
+
+                    <div class="mb-1">Name: <a href="#" class="ms-3">{{ x.name }}</a></div>
+                    <div class="mb-1">Phone: <a href="#" class="ms-3">{{ x.mobile }}</a></div>
+                    <div>Email: <span class="ms-3">{{ x.email }}</span></div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for x in profiles %}
+<div class="modal fade" id="editdata-{{ forloop.counter }}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit contact Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3 needs-validation" novalidate enctype="multipart/form-data" action="/update/{{x.id}}"
+                    method="post">
+
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md col-lg col-sm">
+                                <div class="form-group">
+                                    <label class="form-label"><b>Profile Image </b>*</b></label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                        aria-label="Upload" class="form-control" name="image" value="{{ x.image }}"
+                                        required type="file">
+                                    <div class="invalid-feedback">Invalid file type. Please upload a
+                                        JPEG, JPG, or PNG file.'</div>
+                                </div>
+                            </div>
+                            <div class="col-md col-lg col-sm">
+                                <div class="form-group">
+                                    <label class="form-label"><b>Profile Name</b><b style="color: red;">*</b></label>
+                                    <input class="form-control" placeholder="Enter Profile Name" value="{{ x.name }}"
+                                        required type="tel" name="name">
+
+                                    <div class="invalid-feedback">This field is required</div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md col-lg col-sm">
+                                <div class="form-group">
+                                    <label class="form-label"><b>Mobile Number</b><b style="color: red;">*</b></label>
+                                    <input class="form-control" placeholder="Enter Mobile no." required type="tel"
+                                        name="mobile" pattern="[6-9]\d{9}" value="{{x.mobile}}" maxlength="10">
+
+                                    <div class="invalid-feedback">This field is required enter a valid 10-digit
+                                        contact
+                                        number.</div>
+                                    {% if error_message_mobile %}
+                                    <div style="color: #c03221;" role="alert">
+                                        {{ error_message_mobile }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md col-lg col-sm">
+                                <div class="form-group">
+                                    <label class="form-label"><b>Email ID</b><b style="color: red;">*</b></label>
+                                    <input class="form-control" placeholder="Enter email Id" required type="email"
+                                        maxlength="50" name="email" value="{{x.email}}" pattern=".+@gmail\.com">
+                                    <div class="invalid-feedback">This field is required</div>
+                                    {% if error_message_email %}
+                                    <div style="color: #c03221;" role="alert">
+                                        {{ error_message_email }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input class="btn" style="background-color: #0a42aa; color: white;" type="submit"></input>&nbsp;
+                        <input class="btn" style="background-color:#626875; color:white;" type="reset"></input>
+                    </div>
+            </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
+
+{% endfor %}
+{% endblock %}

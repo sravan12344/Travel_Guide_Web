@@ -1,0 +1,133 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('dashboard', views.dashboard, name='dashboard'),
+    path('settings', views.settings, name='settings'),
+    path('mode_of_transport', views.mode_of_transport, name='mode_of_transport'),
+    path('hoteldetails', views.hoteldetails, name='hoteldetails'),
+    path('navigation', views.navigation, name='navigation'),
+    path('addguide', views.addguide, name='addguide'),
+    path('addtourpackage', views.addtourpackage, name='addtourpackage'),
+    path('managebooikng', views.managebooking, name="managebooking"),
+    path('', views.login, name='login_adminpannel'),
+    path('logout', views.logout,name='logout'),
+    path("count/",views.count_admin,name="count"),
+
+    path('create_countries', views.create_countries, name='create_countries'),
+    path('edit_countries', views.edit_countries, name="edit_countries"),
+    path('update_countries/<int:id>', views.update_countries, name='update_countries'),
+    path('delete_countries/<int:pk>/', views.delete_countries, name='delete_countries'),
+    path('deactivate_country/<int:id>/', views.deactivecountry, name='deactivate_country'),
+    path('activate_country/<int:id>/', views.activecountry, name='activate_country'),
+
+    path('create_states', views.create_states, name='create_states'),
+    path('edit_states', views.edit_states, name="edit_states"),
+    path('update_states/<int:id>', views.update_states, name='update_states'),
+    path('delete_states/<int:pk>/', views.delete_states, name='delete_states'),
+    path('deactivatestate/<int:id>/', views.deactivestate, name='deactivatestate'),
+    path('activatestate/<int:id>/', views.activestate, name='activatestate'),
+
+
+    path('create_cities', views.create_cities, name='create_cities'),
+    path('edit_cities', views.edit_cities, name="edit_cities"),
+    path('update_cities/<int:id>', views.update_cities, name='update_cities'),
+    path('delete_cities/<int:pk>/', views.delete_cities, name='delete_cities'),
+    path('deactivate_city/<int:id>/', views.deactivate_city, name='deactivate_city'),
+    path('activate_city/<int:id>/', views.activate_city, name='activate_city'),
+
+    path("create_tour", views.create_tour, name="create_tour"),
+    path('edit_tour', views.edit_tour, name="edit_tour"),
+    path('update_tour/<int:id>', views.update_tour, name='update_tour'),
+    path('delete_tour/<int:pk>/', views.delete_tour, name='delete_tour'),
+    path('deactivate_tour/<int:id>/', views.deactivate_tour, name='deactivate_tour'),
+    path('activate_tour/<int:id>/', views.activate_tour, name='activate_tour'),
+
+    path("tour_Details",views.tour_Details,name="tour_Details"),
+    path('edit_tour_Details', views.edit_tour_Details, name="edit_tour_Details"),
+    path('update_tour_Details/<int:id>', views.update_tour_Details, name='update_tour_Details'),
+    path('delete_tour_Details/<int:pk>/', views.delete_tour_Details, name='delete_tour_Details'),
+    path('deactivate_tour_Details/<int:id>/', views.deactivate_tour_Details, name='deactivate_tour_Details'),
+    path('activate_tour_Details/<int:id>/', views.activate_tour_Details, name='activate_tour_Details'),
+
+    path('ajax/load_names_of_vehicle/', views.ajax_load_names_of_vehicle, name='ajax_load_names_of_vehicle'),
+    path('ajax/load_hotels/', views.load_hotels, name='load_hotels'),
+    path('ajax/load_cities/', views.ajax_load_cities, name='ajax_load_cities'),
+    path('ajax/load_states/', views.load_states, name='load_states'),
+    path('ajax/load_tourplaces/', views.ajax_load_tourplaces, name='ajax_load_tourplaces'),
+
+    path('packagetype', views.packagetype, name='packagetype'),
+    path('editpackagetype', views.editpackagetype, name='editpackagetype'),
+    path('updatepackagetype/<int:id>', views.updatepackagetype, name='updatepackagetype'),
+    path('deletepackagetype/<int:pk>', views.deletepackagetype, name='deletepackagetype'),
+    path('deactive_package_type/<int:id>/', views.deactive_package_type, name='deactive_package_type'),
+    path('active_package_type/<int:id>/', views.active_package_type, name='active_package_type'),
+
+    path('vehicletype', views.vehicletype, name='vehicletype'),
+    path('editvehicletype', views.editvehicletype, name='editvehicletype'),
+    path('updatevehicletype/<int:id>', views.updatevehicletype, name='updatevehicletype'),
+    path('deletevehicletype/<int:pk>', views.deletevehicletype, name='deletevehicletype'),
+    path('deactive_vehicletype/<int:id>/', views.deactive_vehicletype, name='deactive_vehicletype'),
+    path('active_vehicletype/<int:id>/', views.active_vehicletype, name='active_vehicletype'),
+
+    path('vehiclename',views.vehiclename,name='vehiclename'),
+    path('editvehiclename', views.editvehiclename, name='editvehiclenamev'),
+    path('updatevehiclename/<int:id>', views.updatevehiclename, name='updatevehiclename'),
+    path('deletevehiclename/<int:pk>', views.deletevehiclename, name='deletevehiclename'),
+    path('deactive_vehiclename/<int:id>/', views.deactive_vehiclename, name='deactive_vehiclename'),
+    path('active_vehiclename/<int:id>/', views.active_vehiclename, name='active_vehiclename'),
+    
+    path('vehicledetails', views.vehicledetails, name='vehicledetails'),
+    path('editvehicledetails', views.editvehicledetails, name='editvehicledetails'),
+    path('updatevehicledetails/<int:id>', views.updatevehicledetails, name='updatevehicledetails'),
+    path('deletevehicledetails/<int:pk>', views.deletevehicledetails, name='deletevehicledetails'),
+    path('deactive_vehicledetails/<int:id>/', views.deactive_vehicledetails, name='deactive_vehicledetails'),
+    path('active_vehicledetails/<int:id>/', views.active_vehicledetails, name='active_vehicledetails'),
+
+    path('manage_user', views.manage_user, name='manageuser'),
+    path('edit_user', views.edit_user, name="edit_user"),
+    path('update_user/<int:id>', views.update_user, name='update_user'),
+    path('delete_user/<int:pk>/', views.delete_user, name='delete_user'),
+
+    path('addhotels', views.addhotels, name='addhotels'),
+    path('editaddhotels', views.editaddhotels, name='editaddhotels'),
+    path('updateaddhotels/<int:id>', views.updateaddhotels, name='updateaddhotels'),
+    path('deleteaddhotels/<int:pk>', views.deleteaddhotels, name='deleteaddhotels'),
+    path('deactive_addhotels/<int:id>/', views.deactive_addhotels, name='deactive_addhotels'),
+    path('active_addhotels/<int:id>/', views.active_addhotels, name='active_addhotels'),
+
+    path('packagedetails', views.packagedetails, name='packagedetails'),
+    path('editpackage/', views.editpackage, name='editpackage'),
+    path('updatepackage/<int:id>', views.updatepackage, name='updatepackage'),
+    path('deletepackage/<int:pk>/', views.deletepackage, name='delete_package'),
+    path('deactivate_package/<int:id>/', views.deactivate_package, name='deactivate_package'),
+    path('activate_package/<int:id>/', views.activate_package, name='activate_package'),
+
+    path('guide_details', views.guidedetails, name='guidedetails'),
+    path('editguidedetails', views.editguidedetails, name="editguidedetails"),
+    path('updateguidedetails/<int:id>', views.updateguidedetails, name='updateguidedetails'),
+    path('deleteguidedetails/<int:pk>', views.deleteguidedetails, name='deleteguidedetails'),
+    path('deactive_guidedetails/<int:id>/', views.deactive_guidedetails, name='deactive_guidedetails'),
+    path('active_guidedetails/<int:id>/', views.active_guidedetails, name='active_guidedetails'),
+
+    path('aboutus', views.aboutus, name='aboutus'),
+    path('edit_aboutus', views.edit_aboutus, name='edit_aboutus'),
+    path('update_aboutus/<int:id>', views.update_aboutus, name='update_aboutus'),
+    path('delete_aboutus/<int:pk>', views.delete_aboutus, name='delete_aboutus'),
+    path('deactivate_aboutus/<int:id>/', views.deactivate_aboutus, name='deactivate_aboutus'),
+    path('activate_aboutus/<int:id>/', views.activate_aboutus, name='activate_aboutus'),
+
+    path('contactus', views.contactus, name='contactus'),
+    path('edit_contactus', views.edit_contactus, name='edit_contactus'),
+    path('update_contactus/<int:id>', views.update_contactus, name='update_contactus'),
+    path('delete_contactus/<int:pk>', views.delete_contactus, name='delete_contactus'),
+    path('deactivate_contactus/<int:id>/', views.deactivate_contactus, name='deactivate_contactus'),
+    path('activate_contactus/<int:id>/', views.activate_contactus, name='activate_contactus'),
+
+    path("user_profile/",views.user_profile,name="userprofile"),
+    path('create_profile/', views.create_profile, name='create_profile'),
+    path('edit_profile/', views.edit_profile, name="edit_profile"),
+    path('update/<int:profile_id>', views.update_profile, name='update_profile'),
+
+]

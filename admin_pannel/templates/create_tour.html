@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <h4>Create Tour Place</h4>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a href="{% url 'settings' %}">Settings</a> / 
+                                <a href="{% url 'navigation' %}">Navigation Location</a> / 
+                                <a style="color: #808080;">Create Tour Place</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" class="row g-3 needs-validation" enctype="multipart/form-data" method="POST"
+                                  novalidate>
+                                {% csrf_token %}
+                                <div class="live-preview">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name"><b>Country Name</b><b
+                                                        style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        id="id_countryname" name="countryname" required>
+                                                    <option value="">Select Country Name</option>
+                                                    {% for x in country_cat %}
+                                                    <option value="{{x.id}}">{{x.country_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label><b>State Name</b><b style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        id="id_statename" name="statename" required>
+                                                    <option value="">Select State Name</option>
+                                                    {% for x in state_cat %}
+                                                    <option value="{{ x.id }}">{{ x.state_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name"><b>City Name</b><b
+                                                        style="color: red;">*</b></label>
+                                                <select aria-label="Default select example" class="form-select mb-3"
+                                                        id="id_city_name" name="city_name" required>
+                                                    <option value="">Select City Name</option>
+                                                    {% for x in city_cat %}
+                                                    <option value="{{x.id}}">{{x.city_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <div class="invalid-feedback">This field is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name"><b>Tour Place Name</b><b
+                                                        style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength=100 minlength=2 name="t_name"
+                                                       pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter Tour Palce Name"
+                                                       required
+                                                       title="Only letters and spaces are allowed"
+                                                       type="text">
+                                                <div class="invalid-feedback">This field is required and should
+                                                    contain only letters and spaces.
+                                                </div>
+                                                {% if error_message_tourname %}
+                                                <div role="alert" style="color: #c03221;">
+                                                    {{ error_message_tourname }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name"><b>Tour Place Code</b><b
+                                                        style="color: red;">*</b></label>
+                                                <input class="form-control" maxlength=8 minlength=2 name="t_shortcode"
+                                                       pattern="[A-Za-z\s]+" placeholder="Enter Tour Place Code"
+                                                       required
+                                                       title="Only letters and spaces are allowed">
+                                                <div class="invalid-feedback">This field is required and should
+                                                    contain only letters and spaces.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="short_name"><b>Tour Place Image</b> <b
+                                                        style="color: red;">*</b> </label>
+                                                <input accept=".jpg, .jpeg, .png"
+                                                       aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                                       class="form-control"
+                                                       name="t_image" onchange="validateImage(this)"
+                                                       required type="file">
+                                                <div class="invalid-feedback" id="image-error">Invalid file type.
+                                                    Please
+                                                    upload a JPEG, JPG, or PNG file.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institute_name"><b>Tour Place Description</b><b
+                                                        style="color: red;">*</b></label>
+                                                <textarea class="form-control" id="countryDescription" maxlength="1000"
+                                                          name="t_description"
+                                                          oninput="validateCountryDescription(this)"
+                                                          placeholder="Enter Tour Place Description"
+                                                          required></textarea>
+                                                <div class="invalid-feedback" id="countryDescription-error"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <button class="btn" data-bs-toggle="modal"
+                                                style="background-color: #0a42aa; color: white;"
+                                                type="submit">Submit
+                                        </button>&nbsp;
+                                        <button class="btn" data-bs-dismiss="modal"
+                                                style="background-color:#626875; color:white;"
+                                                type="reset">Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4 class="card-title">Tour Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table " data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Tour Image</th>
+                                        <th>Country Name</th>
+                                        <th>State Name</th>
+                                        <th>City Name</th>
+                                        <th>Tour Place Name</th>
+                                        <th>Tour Place Code</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in display_tour %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td><img class="rounded-circle" height="50px;" src="{{x.tour_image.url}}"
+                                                 width="50px;"></td>
+                                        <td>{{x.tour_country.country_name}}</td>
+                                        <td>{{x.tour_state.state_name}}</td>
+                                        <td>{{x.tour_city.city_name}}</td>
+                                        <td>{{x.tour_name}}</td>
+                                        <td>{{x.tour_short_code}}</td>
+                                        <td>{{x.tour_created_at}}</td>
+                                        <td class="status">
+                                            {% if x.tour_status %}
+                                            <a href="{% url 'deactivate_tour' id=x.id %}"><b style="color:blue;">
+                                                <span>Active</span></b></a>
+                                            {% else %}
+                                            <a href="{% url 'activate_tour' id=x.id %}"><b style="color:red;">
+                                                <span>Inactive</span></b></a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;"
+                                                    type="button"><i
+                                                    class="bi-pencil-fill"></i></button>
+                                            <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style=" background-color:#d11d26; color:white;"
+                                                    type="button"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </td>
+
+
+                                    </tr>
+                                    {%endfor%}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for x in display_tour %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Tour Place Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/update_tour/{{x.id}}" class="row g-3 needs-validation" enctype="multipart/form-data"
+                      method="POST"
+                      novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Country Name</b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_countryname" name="countryname" required>
+                                        <option value="">Select Country Name</option>
+                                        {% for x in country_cat %}
+                                        <option value="{{x.id}}">{{x.country_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label><b>State Name</b><b style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_statename" name="statename" required>
+                                        <option value="">Select State Name</option>
+                                        {% for x in state_cat %}
+                                        <option value="{{ x.id }}">{{ x.state_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>City Name</b><b
+                                            style="color: red;">*</b></label>
+                                    <select aria-label="Default select example" class="form-select mb-3"
+                                            id="id_city_name" name="city_name" required>
+                                        <option value="">Select City Name</option>
+                                        {% for x in city_cat %}
+                                        <option value="{{x.id}}">{{x.city_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Tour Place Name</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength=20 minlength=2 name="edit_name"
+                                           pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter Tour Place Name"
+                                           required
+                                           title="Only letters and spaces are allowed" type="text"
+                                           value="{{x.tour_name}}">
+                                    <div class="invalid-feedback">This field is required and should contain
+                                        only letters and spaces.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Tour Place Code</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength=8 minlength=2 name="edit_shortcode"
+                                           pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter Tour Place Code"
+                                           required title="Only letters and spaces are allowed" type="text"
+                                           value="{{x.tour_short_code}}">
+                                    <div class="invalid-feedback">This field is required and should contain
+                                        only letters and spaces.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="short_name"><b>Tour Place Image (PNG/JPG /
+                                        Size:-800X533)</b> <b style="color: red;">*</b> </label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                           aria-label="Upload" class="form-control"
+                                           name="edit_image" onchange="validateImage(this)"
+                                           required type="file"
+                                           value="{{x.tour_image}}">
+                                    <div class="invalid-feedback">This field is required and Please upload a
+                                        valid image file (JPEG, JPG, or PNG).
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="institute_name"><b>Tour Place Description</b><b
+                                            style="color: red;">*</b></label>
+                                    <textarea class="form-control" id="countryDescription" maxlength="1000"
+                                              name="edit_description" oninput="validateCountryDescription(this)"
+                                              placeholder="Enter Tour Place Description"
+                                              required>{{x.tour_description}}</textarea>
+                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            <div align="center">
+                <button class="btn" href="" style="background-color: #0a42aa; color: white;">Update</button>
+                <button class="btn" href="" style="background-color:#626875; color:white;"
+                        type="reset">Reset
+                </button>
+            </div>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for x in display_tour %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Delete Tour details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete <b>"{{x.tour_name}}"</b></h6>
+                <br>
+                <div align="center">
+                    <a class="btn" href="{% url 'delete_tour' x.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete</a>
+                    <a class="btn" data-bs-dismiss="modal"
+                       style="background-color:#626875; color:white;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

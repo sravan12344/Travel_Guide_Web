@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <h4>Package Type</h4>
+                        <div class="page-title-right">
+                            <div class="btn btn-link">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> / 
+                                <a href="{% url 'settings' %}">Settings</a> / 
+                                <a style="color: #808080;">Package Type</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="# " class="row g-3 needs-validation" method="post" novalidate>
+                                {% csrf_token %}
+                                <div class="live-preview">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label"><b>Package Type</b><b
+                                                        style="color: red;">*</b></label>
+                                                <input class="form-control" id="" maxlength=100
+                                                       minlength=3 name="packagetype" pattern="[A-Za-z][A-Za-z\s]*"
+                                                       placeholder="Ex: Economy / premium" required title="Only letters and spaces are allowed. Minimum 3 characters and maximum 100 characters."
+                                                       type="text">
+                                                <div class="invalid-feedback">This field is required shouold start with
+                                                    a alphabets
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {% for message in messages %}
+                                        <div role="alert" style="color: #c03221;">
+                                            {{ message }}
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <input class="btn" style="background-color: #0a42aa; color: white;"
+                                               type="submit">&nbsp;
+                                        <input class="btn" style="background-color: #626875; color:white;"
+                                               type="reset">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header">
+                            <h4 class="card-title">Package Type Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive border rounded">
+                                <table class="table " data-toggle="data-table" id="datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Package Type</th>
+                                        <th>Date</th>
+                                        <th>Current Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for a in type %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ a.package_type }}</td>
+                                        <td>{{ a.package_created_at }}</td>
+                                        <td class="status">
+                                            {% if a.package_status %}
+                                            <a href="{% url 'deactive_package_type' id=a.id %}"><b style="color:blue;">
+                                                <span>Active</span></b></a>
+                                            {% else %}
+                                            <a href="{% url 'active_package_type' id=a.id %}"><b style="color:red;">
+                                                <span>Inactive</span></b></a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style="background-color: #0a42aa; color: white;" type="button"><i
+                                                    class="bi-pencil-fill"></i></button>
+                                            <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-whatever="Mary"
+                                                    style=" background-color:#d11d26; color:white;" type="button"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for b in type %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Package Type Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/updatepackagetype/{{b.id}}" class="row g-3 needs-validation" method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label><b>Package Type</b><b style="color: red;">*</b></label><br>
+                                    <input class="form-control" maxlength=100 minlength=3
+                                           name="packagetype"
+                                           pattern="[A-Za-z\s]+" placeholder="Enter Package Type" required
+                                           title="Only letters and spaces are allowed. Minimum 3 characters and maximum 100 characters."
+                                           type="text"
+                                           value="{{b.package_type}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <button class="btn" style="background-color: #0a42aa; color: white;">Update</button>
+                        <button class="btn" style="background-color:#626875; color:white;" type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for c in type %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Delete Package Type details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the <b> "{{c.package_type}}"</b></h6>
+                <br>
+                <div align="center">
+                    <a class="btn" href="{% url 'deletepackagetype' pk=c.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete
+                    </a>
+                    <a class="btn" data-bs-dismiss="modal" style="background-color:#626875; color:white;">Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

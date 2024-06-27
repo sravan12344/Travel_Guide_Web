@@ -1,0 +1,90 @@
+{% extends 'new.html' %}
+{% block content %}
+<!-- blog breadcrumb version one strat here -->
+<section class="breadcrumb-blog-version-one">
+	<!-- <div class="single-bredcurms" > -->
+		{% for x in user_contactus%}
+		<img src="{{x.banner_image.url}}" alt="" style="width: 100%; height:400px;">
+		{% endfor %}
+		<!-- <div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="bredcrums-content">
+						<h2>Contact</h2>
+						<ul>
+							<li><a href="{% url 'userpannel_allpackages' %}">All packages</a></li>
+							<li class="active"><a href="{% url 'userpannel_contactus' %}">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+</section><!-- blog breadcrumb version one end here -->
+
+<section class="section-paddings">
+	<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="contact-title">
+						<h2>Our Office</h2>
+					</div>
+					<div class="address">
+						 {% for contact in user_contactus %}
+						<p>
+							<strong>Address</strong>
+							<br> {{ contact.address }}
+						</p>
+						<p>
+							<strong>Website</strong>
+							<br> {{ contact.website }}
+						</p>
+						<p>
+							<strong>Mobile Number</strong>
+							<br> {{ contact.mobile_num }}
+						</p>
+						<p>
+							<strong>Email</strong>
+							<br> {{ contact.email }}
+						</p>
+						{% endfor %}
+					</div>
+				</div>
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="contact-title">
+					<h2>Contact</h2>
+				</div>
+				<div class="contact-form">
+					<div id="contact">
+						<div id="message"></div>
+						<form class="form" method="post" action="https://getnajmul.com/theme/trabble/contact.php" name="contactform" id="contactform">
+            </form><!--/ End Contact Form -->
+			<form action="" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<input type="text" placeholder="Name" required="required" name="name" id="name" maxlength="100" pattern="[A-Za-z][A-Za-z\s]*">
+				</div>
+				<div class="form-group">
+					<input type="email" placeholder="Email" required="required" maxlength="30" name="email" id="email" pattern=".+@gmail\.com">
+				</div>
+				<div class="form-group">
+					<input type="text" placeholder="Subject" required="required" name="subject" maxlength="50" id="subject" pattern="[A-Za-z][A-Za-z\s]*">
+				</div>
+				<div class="form-group">
+					<textarea name="message" rows="6" placeholder="Message"  id="countryDescription" oninput="validateCountryDescription(this)"></textarea>
+					<div id="countryDescription-error" style="color: red;"></div>
+				</div>
+				<div class="form-group" align="center">
+					<button class="travel-booking-btn hvr-shutter-out-horizontal"><i class="fa fa-send"></i> Submit</button>
+				</div>
+				
+			</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

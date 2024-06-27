@@ -1,0 +1,306 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main-content">
+    <div class="position-relative  iq-banner ">
+        <div class="iq-navbar-header " style="height: 70px;">
+        </div>
+    </div>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+        <div class="container-fluid iq-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
+                        <h4 class="mb-sm-0">About Us</h4>
+                        <div class="btn btn-link">
+                            <a href="{% url 'dashboard' %}">Dashboard</a> /
+                            <a href="{% url 'settings' %}">Settings</a> /
+                            <a style="color: #808080">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        {% if existing_contact %}
+                        <p style="color: red;">Form can't accept more than one data.</p>
+                        {% else %}
+                        <form action="" class="row g-3 needs-validation" enctype="multipart/form-data" method="post"
+                              novalidate>
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for=""><b>Banner Image1 </b><b
+                                                style="color: red;">*</b></label>
+                                        <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                               aria-label="Upload" class="form-control"
+                                               name="image1" required
+                                               type="file" value="{{b.banner_image}}">
+                                        <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                            upload a
+                                            JPEG, JPG, or PNG file.'
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for=""><b>Banner Image2 </b><b
+                                                style="color: red;">*</b></label>
+                                        <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                               aria-label="Upload" class="form-control"
+                                               name="image2" required
+                                               type="file" value="{{b.banner_image}}">
+                                        <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                            upload a
+                                            JPEG, JPG, or PNG file.'
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for=""><b> Hotel Image </b><b
+                                                style="color: red;">*</b></label>
+                                        <input accept=".jpg, .jpeg, .png"
+                                               aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                               class="form-control"
+                                               name="image3" required
+                                               type="file" value="{{b.banner_image}}">
+                                        <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                            upload a
+                                            JPEG, JPG, or PNG file.'
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for=""><b>Package Banner Image </b><b
+                                                style="color: red;">*</b></label>
+                                        <input accept=".jpg, .jpeg, .png"
+                                               aria-describedby="inputGroupFileAddon03" aria-label="Upload"
+                                               class="form-control"
+                                               name="image4" required
+                                               type="file" value="{{b.banner_image}}">
+                                        <div class="invalid-feedback" id="image-error">Invalid file type. Please
+                                            upload a
+                                            JPEG, JPG, or PNG file.'
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label"><b>Subject</b><b
+                                                style="color: red;">*</b></label>
+                                        <input class="form-control" maxlength="100"
+                                               name="subject" pattern="[A-Za-z][A-Za-z\s]*"
+                                               placeholder="Enter subject"
+                                               required type="text">
+                                        <div class="invalid-feedback">This field is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for=""><b>Description</b><b
+                                                style="color: red;">*</b></label>
+                                        <textarea class="form-control" id="countryDescription"
+                                                  name="description" oninput="validateCountryDescription(this)"
+                                                  placeholder="Enter Description" required
+                                                  type="text"></textarea>
+                                        <div class="invalid-feedback" id="countryDescription-error"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <input class="btn" style="background-color: #0a42aa; color: white;" type="submit">&nbsp;
+                                <input class="btn" style="background-color:#626875; color:white;" type="reset">
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-header">
+                        <h4 class="card-title">About Us</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive border rounded">
+                            <table class="table " data-toggle="data-table" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Image</th>
+                                    <th>subject</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for a in about %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td><img class="rounded-circle" height="50px;" src="{{a.image1.url}}"
+                                             width="50px;"></td>
+                                    <td>{{a.subject}}</td>
+                                    <td>{{a.description}}</td>
+                                    <td class="status">
+                                        {% if a.about_status %}
+                                        <a href="{% url 'deactivate_aboutus' id=a.id %}"><b style="color:blue;">
+                                            <span>Active</span></b></a>
+                                        {% else %}
+                                        <a href="{% url 'activate_aboutus' id=a.id %}"><b style="color:red;">
+                                            <span>Inactive</span></b></a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn" data-bs-target="#editdata-{{forloop.counter}}"
+                                                data-bs-toggle="modal"
+                                                data-bs-whatever="Mary"
+                                                style="background-color: #0a42aa; color: white;" type="button"><i
+                                                class="bi-pencil-fill"></i></button>
+                                        <button class="btn" data-bs-target="#delete-{{forloop.counter}}"
+                                                data-bs-toggle="modal"
+                                                data-bs-whatever="Mary"
+                                                style=" background-color:#d11d26; color:white;" type="button"><i
+                                                class="bi bi-trash3-fill"></i></button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% for b in about %}
+<div class="modal fade" id="editdata-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit About Us Details</h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <form action="/update_aboutus/{{b.id}}" class="row g-3 needs-validation" enctype="multipart/form-data"
+                      method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Banner Image1</b>
+                                        <b style="color: red;">*</b>
+                                    </label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                           aria-label="Upload" class="form-control" name="image1" required
+                                           type="file" value="{{b.banner_image}}">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type. Please upload
+                                        a
+                                        JPEG, JPG, or PNG file.'
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Banner Image2</b>
+                                        <b style="color: red;">*</b>
+                                    </label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                           aria-label="Upload" class="form-control" name="image2" required
+                                           type="file" value="{{b.banner_image}}">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type. Please upload
+                                        a JPEG, JPG, or PNG file.'
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Hotel Image </b>
+                                        <b style="color: red;">*</b>
+                                    </label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                           aria-label="Upload" class="form-control" name="image3" required
+                                           type="file" value="{{b.banner_image}}">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type. Please upload
+                                        a JPEG, JPG, or PNG file.'
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Package Banner Image </b>
+                                        <b style="color: red;">*</b>
+                                    </label>
+                                    <input accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon03"
+                                           aria-label="Upload" class="form-control" name="image4" required
+                                           type="file" value="{{b.banner_image}}">
+                                    <div class="invalid-feedback" id="image-error">Invalid file type. Please upload
+                                        a JPEG, JPG, or PNG file.'
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><b>Subject</b><b
+                                            style="color: red;">*</b></label>
+                                    <input class="form-control" maxlength="100" name="subject"
+                                           pattern="[A-Za-z][A-Za-z\s]*" placeholder="Enter subject" required
+                                           type="text"
+                                           value="{{b.subject}}">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md col-lg col-sm">
+                                <div class="form-group">
+                                    <label class="form-label" for=""><b>Description</b><b
+                                            style="color: red;">*</b></label>
+                                    <textarea class="form-control" name="description" placeholder="Enter Description"
+                                              required type="text">{{b.description}}</textarea>
+                                    <div class="invalid-feedback" id="countryDescription-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn" style="background-color: #0a42aa; color: white;">Update</button>
+                            <button class="btn" style="background-color: #626875; color:white;" type="reset">Reset
+                            </button>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for t in about %}
+<div class="modal fade" id="delete-{{forloop.counter}}">
+    <div class="modal-dialog modal-dialog.centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete About Us details </h4>
+                <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <!--form creating starts here-->
+            <div class="modal-body">
+                <h6>Are you sure you want to delete the {{t.subject}}</h6>
+                <div align="center">
+                    <a class="btn" href="{% url 'delete_aboutus' pk=t.pk %}"
+                       style=" background-color:#d11d26; color:white;">Delete
+                    </a>
+                    <a class="btn" data-bs-dismiss="modal" style="background-color:#626875; color:white;">Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
